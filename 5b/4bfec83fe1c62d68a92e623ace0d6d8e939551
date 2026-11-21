@@ -1,0 +1,22 @@
+README.md
+  h_bc262c8ac47a2c 1,6-8,15
+collections/README.md
+  h_bc262c8ac47a2c 1-30
+collections/catalog.json
+  h_bc262c8ac47a2c 1-14
+scripts/research_brief.py
+  h_bc262c8ac47a2c 61-67,69-88,98-100,110-117,126,147-148,179
+tests/test_research_brief.py
+  h_bc262c8ac47a2c 3,7,26,33-78
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5b4bfec83fe1c62d68a92e623ace0d6d8e939551",
+  "prompts": {},
+  "humans": {
+    "h_bc262c8ac47a2c": {
+      "author": "bitchenhui <13261281092@163.com>"
+    }
+  }
+}
