@@ -1,0 +1,52 @@
+README.md
+  h_bc262c8ac47a2c 8
+collections/README.md
+  h_bc262c8ac47a2c 8-9,11,15-16
+collections/agent-knowledge/agent-vvc/EXPERIENCES.md
+  h_bc262c8ac47a2c 1
+collections/agent-knowledge/agent-vvc/dch/autoloop/experiences-index.md
+  h_bc262c8ac47a2c 1
+collections/agent-knowledge/agent-vvc/dch/autoloop/vvc-priors.md
+  h_bc262c8ac47a2c 1
+collections/agent-knowledge/agent-vvc/dch/autotune/experiences-index.md
+  h_bc262c8ac47a2c 1
+collections/eoH-codec/knowledge-base/topics/eoh-code-evolution/README.md
+  h_bc262c8ac47a2c 37
+collections/eoH-codec/knowledge-base/topics/eoh-code-evolution/improvement-directions.md
+  h_bc262c8ac47a2c 1
+collections/eoH-codec/knowledge-base/topics/eoh-code-evolution/interface-design.md
+  h_bc262c8ac47a2c 1
+collections/eoH-codec/knowledge-base/topics/eoh-code-evolution/survey.md
+  h_bc262c8ac47a2c 1
+kb/methods/eoh/improvement-directions.md
+  h_bc262c8ac47a2c 1-107
+kb/methods/eoh/interface-design.md
+  h_bc262c8ac47a2c 1-170
+kb/methods/eoh/survey.md
+  h_bc262c8ac47a2c 1-265
+kb/research-sources.json
+  h_bc262c8ac47a2c 3,5-16,19-71
+profiles/jd266/v1/EXPERIENCES.md
+  h_bc262c8ac47a2c 1-21
+profiles/jd266/v1/autoloop/experiences-index.md
+  h_bc262c8ac47a2c 1-5
+profiles/jd266/v1/autoloop/vvc-priors.md
+  h_bc262c8ac47a2c 1-831
+profiles/jd266/v1/autotune/experiences-index.md
+  h_bc262c8ac47a2c 1-21
+scripts/research_brief.py
+  h_bc262c8ac47a2c 61,67-68,75-76,81,93-95,124,126,155
+tests/test_research_brief.py
+  h_bc262c8ac47a2c 40,55-59,63,66-68
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "42d5bd17b888c355af7921e55e1c3d26e7a35660",
+  "prompts": {},
+  "humans": {
+    "h_bc262c8ac47a2c": {
+      "author": "bitchenhui <13261281092@163.com>"
+    }
+  }
+}
