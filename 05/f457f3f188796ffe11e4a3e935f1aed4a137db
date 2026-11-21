@@ -1,0 +1,20 @@
+.gitignore
+  h_bc262c8ac47a2c 6
+README.md
+  h_bc262c8ac47a2c 1,8-17
+scripts/research_brief.py
+  h_bc262c8ac47a2c 1-163
+tests/test_research_brief.py
+  h_bc262c8ac47a2c 1-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "05f457f3f188796ffe11e4a3e935f1aed4a137db",
+  "prompts": {},
+  "humans": {
+    "h_bc262c8ac47a2c": {
+      "author": "bitchenhui <13261281092@163.com>"
+    }
+  }
+}
