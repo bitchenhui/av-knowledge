@@ -1,8 +1,12 @@
 # 视频/图像编码 · 领域综述
 
-> 引擎合成 · 数据截止 2026-11-15 · 基于 257 条结构化条目 · glm-5.3
+> 引擎合成 · 数据截止 2026-11-21 · 基于 259 条结构化条目 · glm-5.3
 
-# 视频/图像编码领域综述（截至 2026-11-15）
+# 视频/图像编码 · 领域综述
+
+> 引擎合成 · 数据截止 2026-11-20 · 基于 261 条结构化条目 · glm-5.3
+
+# 视频/图像编码领域综述（截至 2026-11-20）
 
 ## 一、发展历程
 
@@ -26,9 +30,9 @@ DCVC-FM 将单模型 PSNR 质量范围从约 3.8 dB 扩至 11.4 dB，并在单 I
 
 DCVC-RT 实现实用化跃迁：1080p 平均 125.2fps 编码/112.8fps 解码，较 H.266/VTM 平均省 21% 码率，并指出编码速度首要瓶颈是非计算性操作（内存 I/O 与函数调用）而非计算量 [paper:arxiv:2502.20762]。GIViC 成为首个 RA 配置下超越 VTM 的 INR 编码器（YUV4:2:0、GOPSize=32 下较 VTM 省 15.94%）[paper:arxiv:2503.19604]。一步扩散压缩成型：OneDC 以单步扩散达 SOTA 感知质量，较多步扩散方案省 39% 码率、解码提速约 20× [paper:arxiv:2505.16687]；StableCodec 将可用码率下探至 0.005bpp [paper:arxiv:2506.21977]。ECVC（较 DCVC-FM 再省 10.5%/11.5%）[paper:arxiv:2410.09706]、BiECVC（RA/IP32 较 VTM 13.2 省 13.4%）[paper:arxiv:2505.09193]、DCMVC（较 VVC 省 22.7%）[paper:arxiv:2505.14541] 标志学习式编码器在各配置下全面对标或超越 VTM。JPEG AI 以主档/高档较 VVC intra 取得 13.1%/19.2% BD-rate 增益，定位首个可在移动设备部署的学习式图像编码标准 [paper:arxiv:2503.16288]。
 
-### 1.6 部署融合与 AI 原生编码（2026）
+### 1.6 部署融合、AI 原生编码与评测可信度审计（2026）
 
-MLVC 通过显式传输 scale 参数规避 NPU 跨平台熵解码失配，首次在 Apple/Intel/Qualcomm NPU 上跑通神经视频编码（100FPS 量级，VCD 会议基准 MOS 口径较 HEVC-QSV 的 BD-rate 提升超 70%）[paper:arxiv:2606.28027]。AV2 完成实测验证：v13.0 在 RA 配置下较 AV1 基准 PSNR-YUV 省 29.81%、VMAF 省 33.79% [paper:arxiv:2605.15800]，其变换/量化/熵编码新工具（IST、TCQ、ATC、FSC 等）构成完整技术文献 [paper:arxiv:2601.02712]。LLM 进入编码器设计闭环：闭环进化自动发现帧级 QP 启发式（三库平均约省 1.26% 码率）[paper:arxiv:2606.20847]乃至直接设计 Planar 预测器（VVenC faster 下省 0.18%）[paper:arxiv:2609.01535]。新模态持续扩展：事件引导编码 ENVC 较 DCMVC 平均省 39.13% BD-rate（PSNR-RGB）[paper:arxiv:2610.02265]、2D 高斯泼溅实现 4K 实时压缩 [paper:arxiv:2609.14129]、神经无损视频压缩 NeuralLVC 全面优于 H.264/H.265 无损模式 [paper:arxiv:2604.03353]。SVT-AV1 进入 3.x/4.x 高速迭代：3.1.0 RA 提速 15–25% 并新增 RTC 模式 [repo_release:github:SVT-AV1-v3.1.0]，4.0.0 完成破坏性 API 更新并使 AVIF 提速 5–8× [repo_release:github:SVT-AV1-v4.0.0]，4.3.0 全 preset 效率再提升 5–8% [repo_release:github:SVT-AV1-v4.3.0]。VVdec 3.2.x 补齐 ARM NEON/SVE 体系并引入 fuzzing 与五项安全修复 [repo_release:github:vvdec-v3.2.1]。
+MLVC 通过显式传输 scale 参数规避 NPU 跨平台熵解码失配，首次在 Apple/Intel/Qualcomm NPU 上跑通神经视频编码（100FPS 量级，VCD 会议基准 MOS 口径较 HEVC-QSV 的 BD-rate 提升超 70%）[paper:arxiv:2606.28027]。AV2 完成实测验证：v13.0 在 RA 配置下较 AV1 基准 PSNR-YUV 省 29.81%、VMAF 省 33.79% [paper:arxiv:2605.15800]，其变换/量化/熵编码新工具（IST、TCQ、ATC、FSC 等）构成完整技术文献 [paper:arxiv:2601.02712]。LLM 进入编码器设计闭环：闭环进化自动发现帧级 QP 启发式（三库平均约省 1.26% 码率）[paper:arxiv:2606.20847]乃至直接设计 Planar 预测器（VVenC faster 下省 0.18%）[paper:arxiv:2609.01535]。新模态持续扩展：事件引导编码 ENVC 较 DCMVC 平均省 39.13% BD-rate（PSNR-RGB）[paper:arxiv:2610.02265]、2D 高斯泼溅实现 4K 实时压缩 [paper:arxiv:2609.14129]、神经无损视频压缩 NeuralLVC 全面优于 H.264/H.265 无损模式 [paper:arxiv:2604.03353]。SVT-AV1 进入 3.x/4.x 高速迭代：3.1.0 RA 提速 15–25% 并新增 RTC 模式 [repo_release:github:SVT-AV1-v3.1.0]，4.0.0 完成破坏性 API 更新并使 AVIF 提速 5–8× [repo_release:github:SVT-AV1-v4.0.0]，4.3.0 全 preset 效率再提升 5–8% [repo_release:github:SVT-AV1-v4.3.0]。VVdec 3.2.x 补齐 ARM NEON/SVE 体系并引入 fuzzing 与五项安全修复 [repo_release:github:vvdec-v3.2.1]；3.3.0 再修复 7 项 GHSA 安全漏洞（含 SEI payload_size 回绕堆越界写、Picture::fillGrey 释放后写），并将 x86 SIMD 扩展至 MIP/CIIP/BDOF 等模块、扩大 ARM NEON 覆盖 [repo_release:github:vvdec-v3.3.0]。年末方法学层面出现对既有结论的系统性审计：LIC-Audit 复核 36 个仓库、353 条 RD 曲线与 28,193 条受控编码记录（8 个公开编解码器发布），量化了 VTM 版本漂移与测量惯例差异对 BD-rate 结论的扭曲，使 LIC 领域“跨论文百分比排序”的阅读惯例面临修正 [paper:arxiv:2611.23419]。
 
 ## 二、技术主线与代表工作
 
@@ -39,6 +43,8 @@ MLVC 通过显式传输 scale 参数规避 NPU 跨平台熵解码失配，首次
 ### 2.2 学习式图像压缩：变换与熵模型的双轮演进
 
 变换侧从 CNN/Transformer 混合（TCM）[paper:arxiv:2303.14978]、大核深卷积（LLIC）[paper:arxiv:2304.09571]、频率分解窗口注意力（FAT）[paper:arxiv:2310.16387]、窗口化通道注意力+小波下采样（SCH，四数据集较 VTM-23.1 降 18.54%–24.71%）[paper:arxiv:2409.14090]，演进到通道级小波域注意力（ChWDTA，−17.82% 至 −22.56%）[paper:arxiv:2606.00111]。熵模型侧从超先验+自回归，经棋盘/通道并行（eContextformer 解码提速 210×）[paper:arxiv:2306.14287]，到线性复杂度多参考（MLIC++）[paper:arxiv:2307.15421]、MetaFormer 式轻量变换+超先验引导全局相关（MLICv2 较 VTM-17.0 Intra 降 16.54%–24.35%）[paper:arxiv:2504.19119]、外部先验分层字典（HiDE，较 VTM-12.1 最多省 24.01%）[paper:arxiv:2603.06766]。此外出现结构化替代路线：无熵编码的 EF-LIC 用无约束 VQ+上下文条件自回归变换，编码提速 3×、解码提速 5× [paper:arxiv:2605.23323]。
+
+需要加可比性警示：上列增益取自不同 VTM 锚点（12.1/16.2/17.0/23.1）与各自测量惯例。LIC-Audit 的审计（36 仓库、28,193 条受控编码记录）表明此类跨论文数字不可直接比较：不同 VTM 参考运行之间的 BD-rate 结果差异最高 3.56pp（审计口径），统一测量后 CLIC Pro 上 55 个方法对中 10 个排序翻转，GLIC 在 Tecnick 上对 HPCM 由领先 1.00% 反转为落后 1.43%，仅改变图像填充即可反转 HPCM 与 CMIC 的比较 [paper:arxiv:2611.23419]。同口径纵向轨迹（统一计算下 Kodak 最佳 canonical BD-rate）为：2020 年 +2.58%（尚劣于 VTM）→ 2023 年 −13.96% → 2025 年 −18.95% [paper:arxiv:2611.23419]——定性结论“LIC 已系统性超越 VVC intra”在统一口径下成立，但方法间几个百分点量级的差距排序不可靠。
 
 ### 2.3 神经视频压缩：从残差编码到条件编码再到实时化
 
@@ -62,11 +68,11 @@ VVC QTMTT 划分搜索是复杂度主源（64×64 intra CTU 最坏情形约 2000
 
 ### 2.8 系统、传输与部署
 
-跨平台一致性：从校准流 [paper:arxiv:2309.11276]、SSF 超先验静态量化（同机 BD-rate 代价 +9.02%–9.93%）[paper:arxiv:2410.20145]，到 DCVC-RT 模型整数化 [paper:arxiv:2502.20762]、JOMP 混合精度量化（位操作减 87.6%）[paper:arxiv:2606.13110]、MLVC scale 显式传输 [paper:arxiv:2606.28027]。端侧轻量：MCUCoder 以 10.5K 参数适配 1–2MB RAM MCU，较 M-JPEG 省约 55% [paper:arxiv:2411.19442]；FPGA 上 VQ-LIC 在 220-DSP Zynq-7020 达 47.98fps [paper:arxiv:2609.29727]。硬件评估：软件解码甜点为 AV1（较 VP9 能耗仅 +16.55%、省 43.95% 码率），硬件解码甜点为 HEVC，硬件解码器能耗不足优化软件的 9% [paper:arxiv:2402.09001]；GPU 硬件编码器实时 RD 可匹敌软件编码器但代际 RD 提升甚微 [paper:arxiv:2511.18686]。流媒体系统：帕累托前沿码率阶梯（同 XPSNR 省 11.76%）[paper:arxiv:2601.10607]、DRL 码率阶梯 DQ-Ladder（较 HLS 至少 −10.3% 且解码时间 −22%）[paper:arxiv:2603.13597]、LCEVC 增强层主观评估 [paper:arxiv:2601.10448]。抗丢包与信道：GRACE 联合训练抗丢包（不可解码帧 −95%、卡顿 −90%）[paper:arxiv:2305.12333]、ReLViC 分散打包+双用途 Transformer [paper:arxiv:2608.30202]、语义感知抗差错 NVC [paper:arxiv:2609.16279]、语义通信/JSCC（PVSC 较 VTM+5G LDPC 省 75–87% 带宽）[paper:arxiv:2605.19397]。
+跨平台一致性：从校准流 [paper:arxiv:2309.11276]、SSF 超先验静态量化（同机 BD-rate 代价 +9.02%–9.93%）[paper:arxiv:2410.20145]，到 DCVC-RT 模型整数化 [paper:arxiv:2502.20762]、JOMP 混合精度量化（位操作减 87.6%）[paper:arxiv:2606.13110]、MLVC scale 显式传输 [paper:arxiv:2606.28027]。端侧轻量：MCUCoder 以 10.5K 参数适配 1–2MB RAM MCU，较 M-JPEG 省约 55% [paper:arxiv:2411.19442]；FPGA 上 VQ-LIC 在 220-DSP Zynq-7020 达 47.98fps [paper:arxiv:2609.29727]。硬件评估：软件解码甜点为 AV1（较 VP9 能耗仅 +16.55%、省 43.95% 码率），硬件解码甜点为 HEVC，硬件解码器能耗不足优化软件的 9% [paper:arxiv:2402.09001]；GPU 硬件编码器实时 RD 可匹敌软件编码器但代际 RD 提升甚微 [paper:arxiv:2511.18686]。解码器加固成为 VVC 软件分发的持续工程线：VVdeC 连续两版集中清理内存安全漏洞（3.2.1 引入 fuzzing 与五项修复；3.3.0 修复七项 GHSA，含 SEI payload_size 回绕堆越界写、TMVP 共位图像尺寸不匹配越界读、Picture::fillGrey 释放后写、LMCS 表越界读、PPS 未重新校验），重灾区集中在 SEI 解析与胶片颗粒合成（4:2:2/4:4:4/4:0:0 及缩放因子≥128 路径同步修复）等非主流码流路径 [repo_release:github:vvdec-v3.2.1; repo_release:github:vvdec-v3.3.0]；3.3.0 同期为帧内预测（planar/角度 PDPC/MIP）、CCLM、CIIP、LMCS、色度去块、affine 4x4 滤波、BDOF 等新增或加速 x86 SIMD，优化 CABAC 与跨图像 CU 映射复用，并扩展 ARM NEON 至亮度角度帧内预测与胶片颗粒合成 [repo_release:github:vvdec-v3.3.0]。流媒体系统：帕累托前沿码率阶梯（同 XPSNR 省 11.76%）[paper:arxiv:2601.10607]、DRL 码率阶梯 DQ-Ladder（较 HLS 至少 −10.3% 且解码时间 −22%）[paper:arxiv:2603.13597]、LCEVC 增强层主观评估 [paper:arxiv:2601.10448]。抗丢包与信道：GRACE 联合训练抗丢包（不可解码帧 −95%、卡顿 −90%）[paper:arxiv:2305.12333]、ReLViC 分散打包+双用途 Transformer [paper:arxiv:2608.30202]、语义感知抗差错 NVC [paper:arxiv:2609.16279]、语义通信/JSCC（PVSC 较 VTM+5G LDPC 省 75–87% 带宽）[paper:arxiv:2605.19397]。
 
 ### 2.9 评测方法学、数据集与标准化
 
-评测维度扩展：BD 教程综述与误差分析 [paper:arxiv:2304.12852; paper:arxiv:2401.04039]、会议场景 VCD [paper:arxiv:2309.07376]、训练集 BVI-AOM（956 序列）[paper:arxiv:2408.05042]、通用基准 USTC-TD [paper:arxiv:2409.08481]、屏幕内容 SDU-SCICD10K [paper:arxiv:2502.15174]、相机原生谈话头数据集（838 段 FFV1，H.266 较 H.264 VMAF BD-rate 最高 −71.3%）[paper:arxiv:2603.26763]、DCT 频谱诊断（发现 NIC 高频能量 80–97% 泄漏到目标频带外）[paper:arxiv:2611.10000]、时域一致性实证 [paper:arxiv:2605.18378]。标准化：JPEG AI（ISO/IEC 6048/ITU-T T.840，含变码率机制至 2.0bpp）[paper:arxiv:2503.16288; paper:arxiv:2510.13867]、IEEE 1857.11 采纳 iWaveV3 为候选 [paper:arxiv:2403.05937]、AVS NVC 参考软件集成 RDO 优化的跳过模式 [paper:arxiv:2611.00181]、MPEG GS 编码 CTC 启动（双阶段 Morton 排序方案为代表）[paper:arxiv:2609.29041]。
+评测维度扩展：BD 教程综述与误差分析 [paper:arxiv:2304.12852; paper:arxiv:2401.04039]、大规模可复现性审计（LIC-Audit：36 仓库、353 条 RD 曲线、28,193 条受控编码记录，量化 VTM 版本漂移与测量惯例对 BD-rate 结论的系统性扭曲）[paper:arxiv:2611.23419]、会议场景 VCD [paper:arxiv:2309.07376]、训练集 BVI-AOM（956 序列）[paper:arxiv:2408.05042]、通用基准 USTC-TD [paper:arxiv:2409.08481]、屏幕内容 SDU-SCICD10K [paper:arxiv:2502.15174]、相机原生谈话头数据集（838 段 FFV1，H.266 较 H.264 VMAF BD-rate 最高 −71.3%）[paper:arxiv:2603.26763]、DCT 频谱诊断（发现 NIC 高频能量 80–97% 泄漏到目标频带外）[paper:arxiv:2611.10000]、时域一致性实证 [paper:arxiv:2605.18378]。标准化：JPEG AI（ISO/IEC 6048/ITU-T T.840，含变码率机制至 2.0bpp）[paper:arxiv:2503.16288; paper:arxiv:2510.13867]、IEEE 1857.11 采纳 iWaveV3 为候选 [paper:arxiv:2403.05937]、AVS NVC 参考软件集成 RDO 优化的跳过模式 [paper:arxiv:2611.00181]、MPEG GS 编码 CTC 启动（双阶段 Morton 排序方案为代表）[paper:arxiv:2609.29041]。
 
 ## 三、当前关键问题
 
@@ -84,7 +90,7 @@ VVC QTMTT 划分搜索是复杂度主源（64×64 intra CTU 最坏情形约 2000
 
 ### 3.4 长预测链误差累积与测试协议失真
 
-DCVC-FM 首次系统性披露：先前 SOTA（DCVC-DC）在 CTC 规定的 intra-period=−1（全序列单 I 帧）下性能崩塌，HEVC-E 上较 VTM 码率 +84.4%——此前“超越传统 codec”的结论部分建立在小 intra-period 宽松协议上 [paper:arxiv:2402.17414]。缓解机制包括周期性上下文刷新 [paper:arxiv:2402.17414]、上下文补偿调制 [paper:arxiv:2505.14541]、部分级联微调抑制训练-测试序列长度失配 [paper:arxiv:2410.09706]、BiECVC 的数据依赖衰减启发双向门控 [paper:arxiv:2505.09193]。协议反思延伸到基准评测：低时延配置的系统性对比长期缺失，且神经编码器在大背景运动内容上表现出不一致性能 [paper:arxiv:2408.05042]。
+DCVC-FM 首次系统性披露：先前 SOTA（DCVC-DC）在 CTC 规定的 intra-period=−1（全序列单 I 帧）下性能崩塌，HEVC-E 上较 VTM 码率 +84.4%——此前“超越传统 codec”的结论部分建立在小 intra-period 宽松协议上 [paper:arxiv:2402.17414]。缓解机制包括周期性上下文刷新 [paper:arxiv:2402.17414]、上下文补偿调制 [paper:arxiv:2505.14541]、部分级联微调抑制训练-测试序列长度失配 [paper:arxiv:2410.09706]、BiECVC 的数据依赖衰减启发双向门控 [paper:arxiv:2505.09193]。协议反思延伸到基准评测：低时延配置的系统性对比长期缺失，且神经编码器在大背景运动内容上表现出不一致性能 [paper:arxiv:2408.05042]。值得注意的是，协议失真并非孤例——参考锚点版本与测量惯例的漂移构成另一维度的评测可信度问题（见 3.8）[paper:arxiv:2611.23419]。
 
 ### 3.5 条件编码的信息瓶颈与解码端状态开销
 
@@ -100,7 +106,7 @@ RDP 理论约束下，生成式压缩面临三重落地问题。其一，解码�
 
 ### 3.8 评测方法学：从标量 RD 到多维保真
 
-四个具体缺口：(1) BD 插值误差在 VMAF/能耗/跨编码器场景可达 5pp，与 1% 量级工具采纳判据同量级，且各开源实现的拟合器/对数底不统一 [paper:arxiv:2304.12852; paper:arxiv:2401.04039]；(2) 数据集与部署场景错位——高制作水准基准主导评测，会议 [paper:arxiv:2309.07376]、UGC [paper:arxiv:2605.15800]、屏幕内容 [paper:arxiv:2502.15174]、谈话头 [paper:arxiv:2603.26763] 等场景统计特性系统性不同，且编码器×数据集交互效应显著；(3) 标量 RD 掩盖结构性失真——NIC 在 ~1bpp 工作点高频重建能量 80–97% 泄漏到目标频带外、目标频率增益仅 0.02–0.23 [paper:arxiv:2611.10000]，时域一致性随压缩非线性退化且运动可预测性比运动量更决定失稳 [paper:arxiv:2605.18378]；(4) 率-失真-计算联合口径尚未标准化，FLOPs 与运行时均不足以单独排序方法 [paper:arxiv:2311.12821]。
+四个具体缺口：(1) 参考锚点漂移与测量惯例不可比——BD 插值误差在 VMAF/能耗/跨编码器场景可达 5pp，各开源实现的拟合器/对数底不统一 [paper:arxiv:2304.12852; paper:arxiv:2401.04039]；LIC-Audit 进一步将其量化为系统性问题：审计范围内被引数值声明横跨 7 个 VTM 版本（9.1–28.3，仅 2025 年论文就涉及 5 个），不同 VTM 参考运行之间的 BD-rate 结果差异最高 3.56pp，统一测量约定后 CLIC Pro 上 55 个方法对中 10 个排序翻转，GLIC 对 HPCM 在 Tecnick 上由领先 1.00% 反转为落后 1.43%，仅改变图像填充即反转 HPCM 与 CMIC 的比较 [paper:arxiv:2611.23419]——当 LIC 增益已收缩到几个百分点量级（Kodak canonical 最佳 2025 年为 −18.95%，但方法间差距普遍在 1–5pp），锚点漂移幅度与待判定差距本身同量级且远超标准化约 1% 的工具采纳判据，跨论文百分比排序实质失效。(2) 数据集与部署场景错位——高制作水准基准主导评测，会议 [paper:arxiv:2309.07376]、UGC [paper:arxiv:2605.15800]、屏幕内容 [paper:arxiv:2502.15174]、谈话头 [paper:arxiv:2603.26763] 等场景统计特性系统性不同，且编码器×数据集交互效应显著。(3) 标量 RD 掩盖结构性失真——NIC 在 ~1bpp 工作点高频重建能量 80–97% 泄漏到目标频带外、目标频率增益仅 0.02–0.23 [paper:arxiv:2611.10000]，时域一致性随压缩非线性退化且运动可预测性比运动量更决定失稳 [paper:arxiv:2605.18378]；且度量口径改变幅度本身：统一测量下以 MS-SSIM 替代 PSNR，多数方法对差距收窄，提示 PSNR 口径下的部分增益可能被夸大 [paper:arxiv:2611.23419]。(4) 率-失真-计算联合口径尚未标准化，FLOPs 与运行时均不足以单独排序方法 [paper:arxiv:2311.12821]。
 
 ### 3.9 传输鲁棒性与跨层联合优化
 
@@ -110,7 +116,7 @@ RDP 理论约束下，生成式压缩面临三重落地问题。其一，解码�
 
 **（1）标准化与学习式方法的融合加速。** JPEG AI 已作为 ISO/IEC 6048/ITU-T T.840 发布并定位首个移动端可部署的学习式图像标准 [paper:arxiv:2503.16288; paper:arxiv:2610.22421]；NNVC 验证了 NN 工具进 JVET 标准的可行路径 [paper:arxiv:2309.05846]；AVS NVC 参考软件已集成学习式跳过模式决策 [paper:arxiv:2611.00181]。〔综述推断〕下一代标准（VVC 之后的 JVET 主线）将大概率采取“传统工具+选择性 NN 工具”的混合形态，且 NN 工具的采纳判据会附加复杂度与一致性硬约束——AV2 已把编码复杂度 ≤5× AV1、解码 ≤2× 前置为红线 [paper:arxiv:2605.15800]，这一做法将成为后续标准制定的范式。
 
-**（2）实用化主线从“超越 VTM”转向“可部署地超越”。** DCVC-RT、MLVC、KD-NVC、JOMP 等工作表明研究重心已移向实时吞吐、整数化一致性、码控与 NPU 兼容 [paper:arxiv:2502.20762; paper:arxiv:2606.28027; paper:arxiv:2606.04595; paper:arxiv:2606.13110]。部署导向综述与开放基准（TinyLIC：10 kMACs/px 超 HEVC、50 kMACs/px 匹配 VVC）正在把变码率、整数推理、鲁棒性、互操作确立为系统级评测维度 [paper:arxiv:2610.22421]。〔综述推断〕神经编码器在视频会议等特定垂类（MLVC 在 VCD 上 MOS 口径较 HEVC-QSV 提升超 70% [paper:arxiv:2606.28027]）将率先商用，通用分发场景仍将长期由 AV1/AV2/VVC 硬件生态主导——硬件解码能耗不足优化软件的 9% [paper:arxiv:2402.09001] 且 GPU 硬件编码 RD 已可匹敌软件 [paper:arxiv:2511.18686]。
+**（2）实用化主线从“超越 VTM”转向“可部署地超越”。** DCVC-RT、MLVC、KD-NVC、JOMP 等工作表明研究重心已移向实时吞吐、整数化一致性、码控与 NPU 兼容 [paper:arxiv:2502.20762; paper:arxiv:2606.28027; paper:arxiv:2606.04595; paper:arxiv:2606.13110]。部署导向综述与开放基准（TinyLIC：10 kMACs/px 超 HEVC、50 kMACs/px 匹配 VVC）正在把变码率、整数推理、鲁棒性、互操作确立为系统级评测维度 [paper:arxiv:2610.22421]。〔综述推断〕神经编码器在视频会议等特定垂类（MLVC 在 VCD 上 MOS 口径较 HEVC-QSV 提升超 70% [paper:arxiv:2606.28027]）将率先商用，通用分发场景仍将长期由 AV1/AV2/VVC 硬件生态主导——硬件解码能耗不足优化软件的 9% [paper:arxiv:2402.09001]、GPU 硬件编码 RD 已可匹敌软件 [paper:arxiv:2511.18686]，且传统生态仍在系统深化（VVdeC 连续版本对 x86 SIMD/ARM NEON 与内存安全加固的持续投入 [repo_release:github:vvdec-v3.3.0]）。
 
 **（3）生成先验作为“解码侧外挂”的解耦架构。** Gen2-VC 证明轻量 LoRA 适配器可在码流与参考帧链零改动下复用于多个异构编码器 [paper:arxiv:2609.34725]；一步扩散持续压缩解码延迟 [paper:arxiv:2505.16687; paper:arxiv:2601.10373]。〔综述推断〕“标准码流+解码侧可插拔生成增强”将成为感知质量升级与标准演进解耦的产业路径，其标准化形态（模型信令、NNR 类压缩 [paper:arxiv:2609.37328]、向后兼容）是关键待解问题。
 
@@ -118,6 +124,14 @@ RDP 理论约束下，生成式压缩面临三重落地问题。其一，解码�
 
 **（5）模态与对象扩展。** 视频编码技术正在外溢：事件相机引导编码 [paper:arxiv:2610.02265]、3DGS/点云编码进入 MPEG GS 标准化 [paper:arxiv:2609.29041]、高斯泼溅作为视频表示（GSVC 1080p 1500fps 渲染）[paper:arxiv:2501.12060; paper:arxiv:2609.14129]、视频编解码器用于 LLM 权重压缩 [paper:arxiv:2606.05861]、神经无损视频压缩 [paper:arxiv:2604.03353]、传感器内闭环压缩（OASIS，6× 压缩、功耗降 5.8×）[paper:arxiv:2609.15749]。VVC 硬件编码支撑 8K 10-bit 4:2:2 V-PCC 实时流（122fps）[paper:arxiv:2606.29179] 显示传统标准向体积视频等新负载延伸。
 
-**（6）评测体系的多维化。** 复杂度约束前置进入 CTC（AV2 案例）[paper:arxiv:2605.15800]、UGC/AS 凸包/扩展色度纳入正式评测 [paper:arxiv:2605.15800]、频谱保真与时域一致性等结构化诊断补位 [paper:arxiv:2611.10000; paper:arxiv:2605.18378]、训练数据工程化（BVI-AOM 许可松绑）[paper:arxiv:2408.05042]。〔综述推断〕“率-失真-计算-鲁棒-任务”五维权衡将取代单一 RD 曲线成为领域默认报告口径，跨平台一致性与解码能耗有望进入标准化符合性测试。
+**（6）评测体系的多维化与可信度基础设施化。** 复杂度约束前置进入 CTC（AV2 案例）[paper:arxiv:2605.15800]、UGC/AS 凸包/扩展色度纳入正式评测 [paper:arxiv:2605.15800]、频谱保真与时域一致性等结构化诊断补位 [paper:arxiv:2611.10000; paper:arxiv:2605.18378]、训练数据工程化（BVI-AOM 许可松绑）[paper:arxiv:2408.05042]，而 LIC-Audit 把“参考锚点漂移与测量惯例”从方法学讨论推升为量化结论（3.56pp 锚点漂移、10/55 方法对排序翻转、padding 单变量即可反转比较）[paper:arxiv:2611.23419]。〔综述推断〕社区将走向固定 canonical VTM 锚点+共享测量 harness 的可复现基准，测量约定（锚点版本、图像填充、比特/PSNR 计算方式、质量区间）将像超参数一样成为论文必报项；“率-失真-计算-鲁棒-任务”五维权衡将取代单一 RD 曲线成为领域默认报告口径，跨平台一致性与解码能耗有望进入标准化符合性测试。
 
-**总体判断**：截至 2026-11，该领域正处于三线交汇期——传统标准线（AV2/ECM/NNVC）以复杂度为约束持续收割工具红利；神经编码线在 RD 越过 VTM 后把主战场转向部署属性（实时、一致、可控、鲁棒）；生成式线在极低码率感知质量上打开传统框架不可达的空间，其与传输表示的解耦正使“标准码流+智能增强”的分层生态成为可能。三线之间的方法互鉴（传统 RDO 思想回流神经编码 [paper:arxiv:2611.00181]、神经工具进入标准 [paper:arxiv:2309.05846]、感知度量驱动传统编码器 [paper:arxiv:2609.30077]）将是未来数年最富产出的方向。
+**总体判断**：截至 2026-11，该领域正处于三线交汇期——传统标准线（AV2/ECM/NNVC）以复杂度为约束持续收割工具红利；神经编码线在 RD 越过 VTM 后把主战场转向部署属性（实时、一致、可控、鲁棒）；生成式线在极低码率感知质量上打开传统框架不可达的空间，其与传输表示的解耦正使“标准码流+智能增强”的分层生态成为可能。三线之间的方法互鉴（传统 RDO 思想回流神经编码 [paper:arxiv:2611.00181]、神经工具进入标准 [paper:arxiv:2309.05846]、感知度量驱动传统编码器 [paper:arxiv:2609.30077]）将是未来数年最富产出的方向。同时，随着各线增益普遍收缩至几个百分点量级，评测基础设施本身（锚点、测量惯例、度量口径）的可信度已从二阶问题上升为一阶问题 [paper:arxiv:2611.23419]。
+
+## 本周演进
+
+- **【修正】LIC 增益数字的跨论文可比性被系统性否定。** LIC-Audit（36 仓库、353 条 RD 曲线、28,193 条受控编码记录）显示不同 VTM 参考运行之间的 BD-rate 结果差异最高 3.56pp，远超当前 LIC SOTA 方法间普遍 1–5pp 的差距量级，也远超标准化约 1% 的工具采纳判据 [paper:arxiv:2611.23419]。本综述 2.2 节此前并排罗列不同 VTM 锚点（12.1/16.2/17.0/23.1）数字的做法已加可比性警示——这些数字保留原口径但不再支持相互排序。
+- **【新增】排序反转的实证证据。** CLIC Pro 上已发表数字对 55 个方法对中的 10 个给出与统一计算不同的排序；统一测量后 GLIC 在 Tecnick 上对 HPCM 由领先 1.00% 反转为落后 1.43%；仅改变图像填充即反转 HPCM 与 CMIC 的比较 [paper:arxiv:2611.23419]。此前 3.8 节对“BD 数字不可直接比”的判断由定性提示升级为定量实证。
+- **【新增问题】测量惯例与度量口径成为未报告的实验变量。** 图像填充、比特计数方式、PSNR 计算方式、质量区间选择均能改变结论；以 MS-SSIM 替代 PSNR 时多数方法对差距收窄，提示 PSNR 口径下部分增益被夸大 [paper:arxiv:2611.23419]。这与方法既有 3.8(1) 的 BD 拟合误差问题、3.4 的 intra-period 协议问题合并成“评测基础设施可信度”问题簇。
+- **【新增口径】同口径纵向轨迹确立。** 统一计算下 Kodak 最佳 canonical BD-rate：2020 年 +2.58%（尚劣于 VTM）→ 2023 年 −13.96% → 2025 年 −18.95% [paper:arxiv:2611.23419]——强化“LIC 已系统性超越 VVC intra”的定性结论（统一口径下成立），但压缩了“方法间排序”结论的置信空间。
+- **【强化】参考软件解码器的内存安全是持续性而非一次性问题。** VVdeC 3.2.1（五项修复+fuzzing）→ 3.3.0（七项 GHSA 修复，含 SEI payload_size 回绕堆越界写、Picture::fillGrey 释放后写、TMVP 共位图像越界读、LMCS 表越界读），漏洞集中于 SEI 解析与非 4:2:0 胶片颗粒等非主路径 [repo_release:github:vvdec-v3.3.0]。同期 3.3.0 将 x86 SIMD 扩展至 MIP/CIIP/BDOF 等模块并扩大 ARM NEON 覆盖 [repo_release:github:vvdec-v3.3.0]——侧证趋势（2）中 VVC 分发生态仍在软件性能与加固两线持续深化。
