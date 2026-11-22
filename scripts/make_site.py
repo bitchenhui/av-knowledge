@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parent.parent
 ITEMS = ROOT / "kb" / "items"
 SYNTH = ROOT / "kb" / "synthesis"
 SITE = ROOT / "site"
-REPO_URL = "https://github.com/bitchenhui/LLM-Reading"
+REPO_URL = "https://github.com/bitchenhui/av-knowledge"
 
 DOMAIN_NAMES = {
     "video_image_coding": "视频/图像编码",
@@ -663,7 +663,7 @@ async function ask() {
 }
 
 document.getElementById("foot").innerHTML =
-  `音视频信息引擎 · 数据与代码：<a href="${DATA.repo_url}" target="_blank">LLM-Reading</a> · 每日 09:30 自动更新`;
+  `音视频信息引擎 · 数据与代码：<a href="${DATA.repo_url}" target="_blank">av-knowledge</a> · 每日 09:30 自动更新`;
 </script>
 </body>
 </html>

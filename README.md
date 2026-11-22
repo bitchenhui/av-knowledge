@@ -1,9 +1,9 @@
-# LLM-Reading —— 音视频领域信息整合引擎
+# av-knowledge —— 音视频领域信息整合引擎
 
 不做「抓取→总结→推送」的一次性管道，而是一个**垂类技术领域的信息整合引擎**：
 多来源信息归一化沉淀为可积累的知识基底（`kb/`），分发、问答、训练语料都只是基底之上的读取端。
 
-**在线前端：<https://bitchenhui.github.io/LLM-Reading/>**（push 到 main 自动从基底重建）
+**在线前端：<https://bitchenhui.github.io/av-knowledge/>**（push 到 main 自动从基底重建）
 
 ### 从前端使用知识库
 
