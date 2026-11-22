@@ -1,0 +1,24 @@
+README.md
+  h_bc262c8ac47a2c 6
+publishing/README.md
+  h_bc262c8ac47a2c 1-7
+publishing/github-readme.md
+  h_bc262c8ac47a2c 1-103
+publishing/github.json
+  h_bc262c8ac47a2c 1-10
+scripts/make_site.py
+  h_bc262c8ac47a2c 28,666
+scripts/sync_public.py
+  h_bc262c8ac47a2c 1-131
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6b8aa931be358b77a332f6288c88a7254c0e1e8d",
+  "prompts": {},
+  "humans": {
+    "h_bc262c8ac47a2c": {
+      "author": "bitchenhui <13261281092@163.com>"
+    }
+  }
+}
