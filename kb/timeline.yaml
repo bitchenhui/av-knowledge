@@ -1,4 +1,4 @@
-generated: '2026-11-21'
+generated: '2026-11-22'
 count: 1086
 by_kind:
   release: 55
@@ -1371,7 +1371,7 @@ facts:
 - date: '2026-06-25'
   entity: org:Via-LA
   kind: research
-  fact: WIPO与Via LA达成合作，扩充经专利池验证的标准必要专利数据。
+  fact: WIPO与Via LA达成合作，扩充经专利池核验的标准必要专利数据。
   evidence: industry_news:viala:wipo-expands-pool-verified-sep-data-with-via-licensing-allia
   url: https://ipfray.com/wipo-expands-pool-verified-sep-data-with-via-licensing-alliance-partnership/
 - date: '2026-06-23'

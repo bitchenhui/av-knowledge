@@ -10,24 +10,24 @@ source:
   url: https://ipfray.com/uspto-director-squires-to-deliver-keynote-speech-at-via-licensing-alliances-marquee-bridge-summit-this-october/
 time:
   published: '2026-07-22'
-  collected: '2026-11-21'
+  collected: '2026-11-22'
 entities:
 - ref: org:Via-LA
   role: subject
 claims:
-- statement: 美国专利商标局局长Squires将在Via Licensing Alliance今年十月举办的Bridge Summit上发表主题演讲
+- statement: USPTO局长Squires将在Via LA于十月举办的旗舰峰会Bridge Summit上发表主旨演讲。
   confidence: inferred
   evidence: abstract（初筛，未读全文）
 summaries:
-  one_liner_zh: USPTO局长Squires将出席Via LA十月举办的Bridge Summit并发表主题演讲。
-  abstract_zh: 据ip fray报道，美国专利商标局局长Squires将作为主讲嘉宾出席Via Licensing Alliance今年十月举办的重要活动Bridge Summit。该消息仅涉及活动安排，未披露标准或许可政策的具体内容。
+  one_liner_zh: USPTO局长Squires确认将在Via LA今年十月主办的旗舰活动Bridge Summit上发表主旨演讲。
+  abstract_zh: 据标题，Via Licensing Alliance宣布其十月举办的旗舰峰会Bridge Summit将由美国专利商标局（USPTO）局长Squires发表主旨演讲。该消息反映知识产权官方机构与专利池许可生态的互动。
 assessment:
   relevance: medium
   decision: summary_only
-  reason: 专利池组织Via LA的峰会活动且涉及USPTO官员出席，属专利许可生态相关新闻，但非标准或许可政策实质内容。
+  reason: 新闻涉及专利池组织Via LA的旗舰许可峰会及美国专利商标局局长发表主旨演讲，与专利池和许可政策生态相关，但属活动预告而非具体政策或标准内容。
   reviewer: glm-5.3-flash(llm_review)
 provenance:
-  created: '2026-11-21'
+  created: '2026-11-22'
   actor: pipeline-v0
   pipeline: llm_review
-title_zh: ip fray：美国专利商标局局长斯奎尔斯将在Via Licensing Alliance十月的Bridge Summit峰会上发表主题演讲
+title_zh: ip fray：美国专利商标局局长Squires将在Via授权联盟十月旗舰峰会Bridge Summit发表主旨演讲
