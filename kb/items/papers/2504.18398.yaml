@@ -61,12 +61,13 @@ summaries:
         G -->|介于两阈值| R[默认 RDO 搜索]
         G -->|达到上阈值| H[采用网络划分决策]
         T --> H
-    routing: 图 7 的双阈值用于 D ≤ Dmax 且当前 QT 深度 Qc ≥ 预测深度 Qp 时。pM < th1 早停，th1 ≤ pM < th2 搜索，pM ≥ th2 采用预测。L0 只使用 QT 深度，L1 还使用首层 MTT 图。
+    routing: 图 7 的 D 为当前 CU 的决策深度，Qp 才是预测的 QT 深度。仅 D ≤ Dmax 且当前 QT 深度 Qc ≥ Qp 时进入双阈值。pM < th1 早停，th1 ≤ pM < th2 搜索，pM ≥ th2（包括相等）采用预测；图 7 给出条件，未给出等号实际命中次数。L0 只使用 QT 深度，L1 还使用首层 MTT 图。
     source_sha256: 6ebd4768cc613df098574166484c79aa716844e7f39966461e4a209ff4c7213d
     evaluation: VTM-10.0 原始编码器为 anchor；JVET RA，22 条序列各取前 65 帧，QP 22/27/32/37。仅加速 P/B 帧。表 I 的 Average 不含单列的 D 类。ETS 以原始 VTM 用时为分母，测试用时包括推理、后处理和编码，默认 CPU 测试。
     findings:
       - 表 I 第 8 页，L0(0,1) 平均 ETS 44.39%、BDBR +1.66%；L1(0.2,1) 平均 ETS 51.30%、BDBR +2.12%。
       - 第 9 页 VI-B、图 8，L1(0.2,0.9) 报告 ETS 63.21%、BDBR +5.31%；更激进的预测有更高 RD 代价。
+      - 第 8 页表 I、第 9 页 VI-B 将该方法与 Pan、Tissier、Peng、Lin 等四种快速划分方法比较；这些对照仍使用论文的编码与测试条件。
     source_locations:
       - 图 3（网络总览） https://arxiv.org/pdf/2504.18398v2#page=4
       - 图 5–6（P-warp 与 MTT Net） https://arxiv.org/pdf/2504.18398v2#page=6
