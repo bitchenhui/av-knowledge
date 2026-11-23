@@ -3,7 +3,7 @@
 
 流程：
   1. 从 kb/items/papers/ 选 assessment.decision=deep_read 且尚无 deep_dive 的 items
-  2. 下载 PDF 到 paper/（幂等，已存在跳过）
+  2. 复用 paper/ 中已有 PDF 或在临时目录中读取原文
   3. pymupdf 抽取全文
   4. 用同主线/共实体的已有 items 作为「与其他论文的联系」素材
   5. 生成与 docs/ 手工精读同构的笔记 → docs/auto/{arxiv_id}.md
@@ -17,9 +17,12 @@ v1 说明：纯文本深读（不提取论文插图）；笔记为自动档，�
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import re
 import subprocess
 import sys
+import tempfile
 import time
 import urllib.request
 from datetime import date
@@ -41,7 +44,7 @@ DEEP_INSTRUCTIONS = """你是音视频/图像编码领域的资深研究员，�
 要求：
 - 忠实原文：所有量化结论必须来自论文文本，带口径（锚点/数据集/条件）；不确定的数字不写。
 - 中文、技术密度高：面向该领域研究者，直击方法机理与工程含义，不写科普腔。
-- 纯文本环境：不要引用/提及论文插图，不要输出图片占位。
+- 用全文中标注的 PDF 页码定位方法和主要结果，格式为 [p.7]。仅在正文能支持时，用 Mermaid 表示流程，不要推断看不到的图像内容。
 - 笔记全文控制在 6000-9000 字：方法机理写透，实验节保留关键行与结论数字，不逐表抄录。
 - 输出 markdown，遵循给定结构，七个小节完整写完。"""
 
@@ -50,7 +53,7 @@ DEEP_INSTRUCTIONS_GENERIC = """你是音视频技术交叉方向的资深研究�
 要求：
 - 忠实原文：所有量化结论必须来自论文文本，带口径（锚点/数据集/条件）；不确定的数字不写。
 - 中文、技术密度高：面向该领域研究者，直击方法机理与工程含义，不写科普腔。
-- 纯文本环境：不要引用/提及论文插图，不要输出图片占位。
+- 用全文中标注的 PDF 页码定位方法和主要结果，格式为 [p.7]。仅在正文能支持时，用 Mermaid 表示流程，不要推断看不到的图像内容。
 - 笔记全文控制在 6000-9000 字：方法机理写透，实验节保留关键行与结论数字，不逐表抄录。
 - 输出 markdown，遵循给定结构，七个小节完整写完。"""
 
@@ -96,15 +99,58 @@ def download_pdf(url: str, dest: Path) -> bool:
     return False
 
 
-def extract_text(pdf: Path) -> str:
-    import fitz  # pymupdf
+def read_source(item):
+    """Return text and provenance, keeping new PDFs outside the Git tree."""
+    import fitz
 
-    doc = fitz.open(pdf)
-    parts = []
-    for i, page in enumerate(doc):
-        parts.append(f"===== 第 {i + 1}/{len(doc)} 页 =====\n{page.get_text()}")
-    text = "\n".join(parts)
-    return text[:400_000]  # 安全上限（glm-5.3 上下文 1M，远够）
+    ext = item["source"]["external_id"]
+    if not re.fullmatch(r"[0-9]{4}\.[0-9]{4,5}(v[0-9]+)?", ext):
+        raise ValueError("unsupported arXiv identifier: " + ext)
+    url = f"https://arxiv.org/pdf/{ext}"
+    with tempfile.TemporaryDirectory(prefix="avk-paper-") as cache:
+        pdf = PAPER_DIR / f"{ext}.pdf"
+        if not pdf.is_file():
+            pdf = Path(cache) / "source.pdf"
+            if not download_pdf(url, pdf):
+                raise ValueError("PDF download failed")
+        digest = hashlib.sha256(pdf.read_bytes()).hexdigest()
+        with fitz.open(pdf) as doc:
+            pages = len(doc)
+            parts = [f"===== 第 {i + 1}/{pages} 页 =====\n{page.get_text()}" for i, page in enumerate(doc)]
+    return "\n".join(parts)[:400_000], url, pages, digest
+
+
+def link_source_pages(note, url, pages, digest):
+    """Only link cited pages that actually exist in this PDF version."""
+    citations = re.compile(r"\[p\.(\d+)\]")
+    refs = [int(n) for n in citations.findall(note)]
+    if not refs or any(n < 1 or n > pages for n in refs):
+        raise ValueError("missing or out-of-range PDF page reference")
+    cited = citations.sub(lambda m: f"[p.{m[1]}]({url}#page={m[1]})", note)
+    return f"{cited}\n\n[原文 PDF]({url}) · {pages} 页 · SHA-256 `{digest}`\n"
+
+
+def finish_note(response, url, pages, digest):
+    # The evidence card and the human-readable note come from the same read.
+    block = re.search(r"^```paper-evidence[ \t]*\n(.*?)\n```\s*\Z", response.strip(), re.M | re.S)
+    if not block:
+        raise ValueError("missing paper evidence card")
+    card = json.loads(block[1])
+    if (not isinstance(card, dict) or set(card) != {"method", "findings", "limitation"}
+            or not all(isinstance(card[k], str) and card[k].strip() for k in ("method", "limitation"))
+            or not isinstance(card["findings"], list) or not card["findings"]
+            or not all(isinstance(f, str) and f.strip() for f in card["findings"])):
+        raise ValueError("invalid paper evidence card")
+    for claim in [card["method"], *card["findings"]]:
+        refs = re.findall(r"\[p\.(\d+)\]", claim)
+        if not refs or any(not 1 <= int(n) <= pages for n in refs):
+            raise ValueError("card claim needs an in-range source page")
+    clean = response[:block.start()].strip()
+    note = link_source_pages(clean, url, pages, digest)
+    source_pages = sorted({int(n) for n in re.findall(r"\[p\.(\d+)\]", " ".join([card["method"], *card["findings"]]))})
+    card.update(review_status="model_extracted", source_sha256=digest,
+                source_locations=[f"{url}#page={n}" for n in source_pages])
+    return note, card
 
 
 def related_items(item: dict, all_items: list[dict], top: int = 8) -> list[dict]:
@@ -137,6 +183,8 @@ def build_prompt(item: dict, fulltext: str, related: list[dict]) -> str:
     return f"""请为以下论文撰写精读笔记，直接输出 markdown 笔记本体（从一级标题开始），结构与示例如下：
 
 {header}
+
+方法和主要结果都请写出 [p.N] 页码。笔记末尾另附一个 fenced code block，首行是 ```paper-evidence，内为有效 JSON 对象，键包括 method（一句方法，含 [p.N]）、findings（一个或多个含 [p.N] 的结果，每项写清适用条件）、limitation（一句对适用范围的说明）。以单独一行三个反引号结束。
 
 相关论文清单（第 7 节只能从中选确有真实关联的，写清关联依据）：
 {rel_list}
@@ -179,13 +227,12 @@ def main() -> int:
     for item in cands:
         arxiv_id = item["id"].split(":")[-1]
         print(f"[{arxiv_id}] {item['title'][:60]}")
-        ext = item["source"]["external_id"]  # 2609.01535v2
-        pdf = PAPER_DIR / f"{ext}.pdf"
-        if not download_pdf(item["source"].get("pdf_url") or f"https://arxiv.org/pdf/{ext}", pdf):
-            print("    ✗ PDF 下载失败，跳过")
+        try:
+            text, url, pages, digest = read_source(item)
+        except Exception as exc:
+            print(f"    ✗ 原文读取失败: {exc}")
             continue
-        text = extract_text(pdf)
-        print(f"    PDF {pdf.name}，全文 {len(text)} 字符")
+        print(f"    PDF {pages} 页，全文输入 {len(text)} 字符")
 
         # 队列里存过作者信息；item 里没有，从 queue 补
         q = ROOT / "queue" / "papers" / f"{arxiv_id}.yaml"
@@ -202,12 +249,20 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001
             print(f"    ✗ LLM 失败: {e}")
             continue
-        note = re.sub(r"^```(?:markdown)?\s*|\s*```$", "", note.strip())
+        note = note.strip()
+        if note.startswith("```markdown\n") and note.endswith("\n```"):
+            note = note[len("```markdown\n"):-4].strip()
+        try:
+            note, card = finish_note(note, url, pages, digest)
+        except ValueError as exc:
+            print(f"    ✗ 原文定位失败: {exc}")
+            continue
         DOCS_AUTO.mkdir(exist_ok=True)
         note_path.write_text(note, encoding="utf-8")
         print(f"    → 笔记 {note_path}（{len(note)} 字符）")
 
         item["summaries"]["deep_dive"] = str(note_path.relative_to(ROOT))
+        item["summaries"]["research_brief"] = card
         item["time"]["updated"] = today
         item.pop("_authors", None)
         item.pop("_path", None)

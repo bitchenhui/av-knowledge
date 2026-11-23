@@ -60,9 +60,8 @@ jobs:
 
       - name: 提交推送
         run: |
-          find paper -size +90M -delete 2>/dev/null || true   # 防 GitHub 100MB 拒收
           git config user.name "engine-bot"
           git config user.email "engine-bot@users.noreply.github.com"
-          git add kb/ queue/ docs/ paper/ corpus/
+          git add kb/ queue/ docs/ corpus/
           git diff --cached --quiet || git commit -m "chore(engine): daily run $(date -u +%F)"
           git push
