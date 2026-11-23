@@ -2,9 +2,10 @@ import json
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import Mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from deep_read import finish_note
+from deep_read import finish_note, make_reading
 
 
 class EvidenceTests(unittest.TestCase):
@@ -20,3 +21,13 @@ class EvidenceTests(unittest.TestCase):
         card["findings"] = ["invalid [p.5]"]
         with self.assertRaises(ValueError):
             finish_note(reply(), "https://arxiv.org/pdf/1234.0000v1", 4, "a"*64)
+
+    def test_existing_note_keeps_prose_and_gains_card(self):
+        raw = dict(method="方法 [p.1]", findings=["结果 [p.2]"], limitation="仅限论文实验")
+        llm = Mock()
+        llm.chat.return_value = "```json\n" + json.dumps(raw) + "\n```"
+        note, card = make_reading(llm, {"summaries": {"deep_dive": "docs/curated.md"}}, "PDF text",
+                                  "https://arxiv.org/pdf/1234.0000v1", 2, "a"*64, [])
+        self.assertIsNone(note)
+        self.assertEqual(card["source_locations"][-1], "https://arxiv.org/pdf/1234.0000v1#page=2")
+        llm.chat.assert_called_once()

@@ -130,12 +130,7 @@ def link_source_pages(note, url, pages, digest):
     return f"{cited}\n\n[原文 PDF]({url}) · {pages} 页 · SHA-256 `{digest}`\n"
 
 
-def finish_note(response, url, pages, digest):
-    # The evidence card and the human-readable note come from the same read.
-    block = re.search(r"^```paper-evidence[ \t]*\n(.*?)\n```\s*\Z", response.strip(), re.M | re.S)
-    if not block:
-        raise ValueError("missing paper evidence card")
-    card = json.loads(block[1])
+def checked_card(card, url, pages, digest):
     if (not isinstance(card, dict) or set(card) != {"method", "findings", "limitation"}
             or not all(isinstance(card[k], str) and card[k].strip() for k in ("method", "limitation"))
             or not isinstance(card["findings"], list) or not card["findings"]
@@ -145,12 +140,19 @@ def finish_note(response, url, pages, digest):
         refs = re.findall(r"\[p\.(\d+)\]", claim)
         if not refs or any(not 1 <= int(n) <= pages for n in refs):
             raise ValueError("card claim needs an in-range source page")
-    clean = response[:block.start()].strip()
-    note = link_source_pages(clean, url, pages, digest)
     source_pages = sorted({int(n) for n in re.findall(r"\[p\.(\d+)\]", " ".join([card["method"], *card["findings"]]))})
     card.update(review_status="model_extracted", source_sha256=digest,
                 source_locations=[f"{url}#page={n}" for n in source_pages])
-    return note, card
+    return card
+
+
+def finish_note(response, url, pages, digest):
+    # The evidence card and the human-readable note come from the same read.
+    block = re.search(r"^```paper-evidence[ \t]*\n(.*?)\n```\s*\Z", response.strip(), re.M | re.S)
+    if not block:
+        raise ValueError("missing paper evidence card")
+    card = checked_card(json.loads(block[1]), url, pages, digest)
+    return link_source_pages(response[:block.start()].strip(), url, pages, digest), card
 
 
 def related_items(item: dict, all_items: list[dict], top: int = 8) -> list[dict]:
@@ -193,6 +195,25 @@ def build_prompt(item: dict, fulltext: str, related: list[dict]) -> str:
 {fulltext}"""
 
 
+def make_reading(llm, item, text, url, pages, digest, all_items):
+    if item["summaries"].get("deep_dive"):
+        prompt = ("只读这份带页码的论文，输出有效 JSON 对象，键为 method、findings、limitation。"
+                  "method 用一句话说清输入、主要操作、输出并用 [p.N] 标出出处。"
+                  "findings 是字符串列表，每条写明实验条件、结果和 [p.N]，只摘录经原文支持的结论。"
+                  "limitation 写适用边界。请用中文，保留技术符号。\n" + text)
+        response = llm.chat(prompt, tier="deep", instructions="从公开论文制作可核对的证据卡。", max_tokens=8000).strip()
+        if response.startswith("```json\n") and response.endswith("\n```"):
+            response = response[8:-4]
+        return None, checked_card(json.loads(response), url, pages, digest)
+    instructions = (DEEP_INSTRUCTIONS if item.get("domain", "video_image_coding") == "video_image_coding"
+                    else DEEP_INSTRUCTIONS_GENERIC)
+    response = llm.chat(build_prompt(item, text, related_items(item, all_items)), tier="deep",
+                        instructions=instructions, max_tokens=30000).strip()
+    if response.startswith("```markdown\n") and response.endswith("\n```"):
+        response = response[len("```markdown\n"):-4].strip()
+    return finish_note(response, url, pages, digest)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=2)
@@ -205,7 +226,7 @@ def main() -> int:
     cands = [d for d in all_items
              if (d["assessment"]["decision"] == "deep_read"
                  or d["assessment"]["relevance"] == "high")
-             and not d["summaries"].get("deep_dive")]
+             and (not d["summaries"].get("deep_dive") or not d["summaries"].get("research_brief"))]
     # 引用量优先（5 年回补的"只读高引精华"策略），引用缺失按 0 处理
     for d in cands:
         q = ROOT / "queue" / "papers" / f"{d['id'].split(':')[-1]}.yaml"
@@ -213,8 +234,8 @@ def main() -> int:
             d["_cit"] = (yaml.safe_load(open(q, encoding="utf-8")) or {}).get("citation_count") or 0
         except Exception:  # noqa: BLE001
             d["_cit"] = 0
-    cands.sort(key=lambda d: (d["_cit"],
-                              {"high": 0, "medium": 1, "low": 2}[d["assessment"]["relevance"]],
+    cands.sort(key=lambda d: (not d["summaries"].get("deep_dive"), d["_cit"],
+                              {"high": 2, "medium": 1, "low": 0}[d["assessment"]["relevance"]],
                               d["time"]["published"]), reverse=True)
     cands = cands[: args.limit]
     print(f"deep_read 候选 {len(cands)} 篇（本次处理）\n")
@@ -238,30 +259,17 @@ def main() -> int:
         q = ROOT / "queue" / "papers" / f"{arxiv_id}.yaml"
         if q.exists():
             item["_authors"] = load_yaml(q).get("meta", {}).get("authors", [])
-        related = related_items(item, all_items)
-
-        note_path = DOCS_AUTO / f"{arxiv_id}.md"
-        instructions = (DEEP_INSTRUCTIONS if item.get("domain", "video_image_coding") == "video_image_coding"
-                        else DEEP_INSTRUCTIONS_GENERIC)
         try:
-            note = llm.chat(build_prompt(item, text, related), tier="deep",
-                            instructions=instructions, max_tokens=30000)
-        except Exception as e:  # noqa: BLE001
-            print(f"    ✗ LLM 失败: {e}")
+            note, card = make_reading(llm, item, text, url, pages, digest, all_items)
+        except Exception as exc:
+            print(f"    ✗ 精读或原文定位失败: {exc}")
             continue
-        note = note.strip()
-        if note.startswith("```markdown\n") and note.endswith("\n```"):
-            note = note[len("```markdown\n"):-4].strip()
-        try:
-            note, card = finish_note(note, url, pages, digest)
-        except ValueError as exc:
-            print(f"    ✗ 原文定位失败: {exc}")
-            continue
-        DOCS_AUTO.mkdir(exist_ok=True)
-        note_path.write_text(note, encoding="utf-8")
-        print(f"    → 笔记 {note_path}（{len(note)} 字符）")
-
-        item["summaries"]["deep_dive"] = str(note_path.relative_to(ROOT))
+        if note is not None:
+            note_path = DOCS_AUTO / f"{arxiv_id}.md"
+            DOCS_AUTO.mkdir(exist_ok=True)
+            note_path.write_text(note, encoding="utf-8")
+            item["summaries"]["deep_dive"] = str(note_path.relative_to(ROOT))
+        print(f"    → 证据页 {card['source_locations']}")
         item["summaries"]["research_brief"] = card
         item["time"]["updated"] = today
         item.pop("_authors", None)

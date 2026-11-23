@@ -29,17 +29,50 @@ claims:
   - name: BDBR
     value: 2.12%
     scope: 随机访问（RA）配置，相对基线VVC编码器平均
-  evidence: abstract（初筛，未读全文）
+  evidence: 第 8 页，表 I，Average 行，L1(0.2,1) 列；第 VI-A 节及式 (13)
+  evidence_url: https://arxiv.org/pdf/2504.18398v2#page=8
 - statement: 在帧内划分图方法基础上引入MTT掩码实现划分搜索提前终止，并设计融合空间与时域特征的神经网络预测划分图
   confidence: reported
-  evidence: abstract（初筛，未读全文）
+  evidence: 第 4 页图 3、第 6 页图 5–6、第 7 页图 7
+  evidence_url: https://arxiv.org/pdf/2504.18398v2#page=4
 - statement: 网络包含堆叠自顶向下/自底向上处理、QP调制层、划分自适应对齐三项专门设计，并通过双阈值方案实现复杂度与RD损失的细粒度权衡
   confidence: reported
-  evidence: abstract（初筛，未读全文）
+  evidence: 第 5 页图 4、第 6 页图 5、第 7 页图 7
+  evidence_url: https://arxiv.org/pdf/2504.18398v2#page=5
 summaries:
   one_liner_zh: 提出基于划分图的神经网络方法加速VVC帧间编码划分决策，随机访问配置下节省51.30%编码时间，BDBR仅增2.12%。
   abstract_zh: VVC的QT+MTT嵌套块结构带来显著编码增益，但其递归划分搜索大幅增加编码器复杂度。该工作在作者此前帧内编码划分图方法基础上，针对帧间编码特性引入MTT掩码以实现提前终止，并开发融合空间与时域特征的神经网络预测划分图，网络包含堆叠的自顶向下与自底向上处理、量化参数（QP）调制层以及划分自适应对齐等专门设计。此外提出双阈值决策方案，实现复杂度缩减与率失真（RD）性能损失之间的细粒度权衡。实验表明，在随机访问配置下方法平均节省51.30%编码时间，BDBR仅2.12%。
   deep_dive: docs/auto/2504.18398.md
+  research_brief:
+    method: 输入当前帧与最近前后参考帧的亮度。小尺度预测 QT 深度，中尺度用 QT 引导的 P-warp 对齐运动残差，再预测 CTU 级 MTT mask。只为选中的 CTU 计算细尺度 MTT 深度与方向，map-tree 后处理恢复合法划分。
+    diagram_mermaid: |-
+      flowchart TD
+        A[当前帧与参考帧亮度] --> B[多尺度特征与 QT 深度]
+        B --> C[P-warp 对齐残差]
+        C --> M[CTU 级 MTT mask 概率]
+        M --> N[选中 CTU 预测 MTT 深度和方向]
+        N --> T[map-tree 恢复合法划分]
+        M --> D{D 大于 Dmax}
+        D -->|是| E[结束当前 CU]
+        D -->|否| Q{Qc 小于 Qp}
+        Q -->|是| S[QT 划分后递归]
+        Q -->|否| G{按 pM 与 th1、th2 分流}
+        G -->|低于下阈值| L[终止 MTT 并评估非划分模式]
+        G -->|介于两阈值| R[默认 RDO 搜索]
+        G -->|达到上阈值| H[采用网络划分决策]
+        T --> H
+    routing: 图 7 的双阈值用于 D ≤ Dmax 且当前 QT 深度 Qc ≥ 预测深度 Qp 时。pM < th1 早停，th1 ≤ pM < th2 搜索，pM ≥ th2 采用预测。L0 只使用 QT 深度，L1 还使用首层 MTT 图。
+    source_sha256: 6ebd4768cc613df098574166484c79aa716844e7f39966461e4a209ff4c7213d
+    evaluation: VTM-10.0 原始编码器为 anchor；JVET RA，22 条序列各取前 65 帧，QP 22/27/32/37。仅加速 P/B 帧。表 I 的 Average 不含单列的 D 类。ETS 以原始 VTM 用时为分母，测试用时包括推理、后处理和编码，默认 CPU 测试。
+    findings:
+      - 表 I 第 8 页，L0(0,1) 平均 ETS 44.39%、BDBR +1.66%；L1(0.2,1) 平均 ETS 51.30%、BDBR +2.12%。
+      - 第 9 页 VI-B、图 8，L1(0.2,0.9) 报告 ETS 63.21%、BDBR +5.31%；更激进的预测有更高 RD 代价。
+    source_locations:
+      - 图 3（网络总览） https://arxiv.org/pdf/2504.18398v2#page=4
+      - 图 5–6（P-warp 与 MTT Net） https://arxiv.org/pdf/2504.18398v2#page=6
+      - 图 7、V-A/B（合法树与阈值路由） https://arxiv.org/pdf/2504.18398v2#page=7
+      - 表 I、VI-A、式 (13)（主结果、基线与计时） https://arxiv.org/pdf/2504.18398v2#page=8
+      - 图 8、VI-B（高速档） https://arxiv.org/pdf/2504.18398v2#page=9
 assessment:
   relevance: high
   decision: deep_read
