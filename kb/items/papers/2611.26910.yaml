@@ -1,0 +1,70 @@
+id: paper:arxiv:2611.26910
+type: paper
+title: 'AstronautBench: Measuring Agent Self-Improvement Across Episodes Through Knowledge, Evidence,
+  and Progress'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.26910v1
+  url: https://arxiv.org/abs/2611.26910
+  pdf_url: https://arxiv.org/pdf/2611.26910v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-19'
+  collected: '2026-11-23'
+  updated: '2026-11-23'
+entities:
+- ref: concept:SelfImprovement
+  role: subject
+- ref: concept:LLM
+  role: subject
+claims:
+- statement: 单一指标不足以刻画具身智能体的自我改进：知识正确性、证据支撑与世界进度三个视角在八回合基线中并不同步变化。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: GPT-6.1 Sol 智能体在世界知识问答中的正确答案率随回合持续提升。
+  confidence: reported
+  metrics:
+  - name: 正确答案占比
+    value: 14.6% → 26.8%
+    scope: GPT-6.1 Sol，164 个世界知识问题，第 1 回合 → 第 8 回合
+  evidence: abstract（初筛，未读全文）
+- statement: 到第 8 回合，GPT-6.1 Sol 的正确答案中相当比例并未被其引用的自身游玩证据支持。
+  confidence: reported
+  metrics:
+  - name: 证据支持率
+    value: 59–68%
+    scope: GPT-6.1 Sol，第 8 回合，正确答案中被其自引帧与位置证据支持的比例
+  evidence: abstract（初筛，未读全文）
+- statement: GPT-6.1 Sol 在第 3 回合后不再揭示新的传闻事实，但其到达地点与情景记忆仍在增长。
+  confidence: reported
+  metrics:
+  - name: 新增传闻事实数
+    value: '0'
+    scope: GPT-6.1 Sol，第 4–8 回合
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 基于 Outer Wilds 的基准，从知识、证据支撑与世界进度三视角度量 LLM 智能体跨回合自我改进。
+  abstract_zh: 论文提出 AstronautBench，以游戏 Outer Wilds 的 22 分钟循环为具身环境：世界每回合重置、仅智能体知识延续、进度受知识门控，据此在三条同源轨迹上度量自我改进——对
+    164 个世界知识问题的回答正确性、每个答案是否被其自引游玩帧与位置证据支持、以及到达地点与揭示传闻事实所反映的世界进度。每回合结束后由两个不同模型家族的 LLM 评委逐一核验答案。八回合基线实验（GPT-6.1
+    Sol 与 Gemini 4 Argon 规划器，通过学习控制器或自身手柄输入操作）表明三个视角并不同步：GPT-6.1 Sol 正确答案率从 14.6% 升至 26.8%，但第 8 回合仅 59–68%
+    的正确答案有引用证据支持，第 3 回合后不再揭示新的传闻事实，而其到达地点与记忆仍在增长。
+  deep_dive: docs/auto/2611.26910.md
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: LLM 智能体跨回合自我改进的评测基准论文，属自我改进 AI 域，非视频编码核心域，按规则仅收录为摘要级。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-23'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: AstronautBench：通过知识、证据与进度跨回合度量智能体自我改进
+relations:
+- type: same_topic
+  ref: paper:arxiv:2611.08946
+  note: 同为面向 LLM 智能体递归自我改进的评测基准研究
+- type: same_topic
+  ref: paper:arxiv:2510.07841
+  note: 同属 LLM 智能体自我改进（跨回合经验驱动）主题

@@ -1,0 +1,53 @@
+id: paper:arxiv:2611.27719
+type: paper
+title: 'VeilGS: Solving Darkness as a Veil of 2D Basis Maps over Retinex 3DGS'
+domain: immersive_media
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.27719v1
+  url: https://arxiv.org/abs/2611.27719
+  pdf_url: https://arxiv.org/pdf/2611.27719v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-20'
+  collected: '2026-11-23'
+entities:
+- ref: concept:3DGS
+  role: subject
+- ref: concept:IQA
+  role: measured_by
+claims:
+- statement: 在Gaussian-DK数据集上，VeilGS恢复渲染在无参考NIQE与CLIP-IQA上得分最优，并在55名参与者盲测用户研究中获最高评分。
+  confidence: reported
+  metrics:
+  - name: 盲测用户研究参与者数
+    value: '55'
+    scope: Gaussian-DK盲测用户研究
+  evidence: abstract（初筛，未读全文）
+- statement: 在LOM数据集上，VeilGS取得与当前最优方法相当的结果。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: VeilGS无需成对正常光照监督且不存储逐视角参数；增益粗基由小网络预测、系数按视角求解而非学习，训练经由此求解 discourages 高斯吸收帷幕可解释的暗光成分。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: VeilGS将暗光建模为空间变化增益加全局色调曲线的帷幕，实现无需成对监督的低光3DGS新视角重建。
+  abstract_zh: 现有低光三维重建方法要么对整帧施加统一色调曲线，要么把暗光吸收进三维表示中。VeilGS将暗光退化建模为叠加在清晰场景上的帷幕：每个高斯以反照率与光照潜变量替代球谐函数，实现表面颜色与光照分离。每个视角由小网络预测粗基、按视角求解系数的空间变化增益加全局色调曲线进行暗化，去掉帷幕渲染即得恢复后的场景，无需成对正常光照监督也不存储逐视角参数。在Gaussian-DK上其恢复渲染的无参考NIQE与CLIP-IQA得分最优，并在55人盲测用户研究中评分最高；在LOM上达到与SOTA相当的结果。
+assessment:
+  relevance: medium
+  decision: summary_only
+  reason: 属于沉浸式媒体域的3DGS低光新视角重建方法，非核心编码域，按收录规则仅作初筛摘要。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-23'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: VeilGS：将黑暗化解为覆盖Retinex三维高斯泼溅之上的二维基映射帷幕
+relations:
+- type: same_topic
+  ref: paper:arxiv:2601.15772
+  note: LL-GaussianImage同样基于高斯泼溅做低光照增强，同属低光增强×高斯表示方向
+- type: same_topic
+  ref: paper:arxiv:2608.03279
+  note: 3DGSI-Assessor研究3DGS图像质量评估，与本文用NIQE/CLIP-IQA评价3DGS渲染质量相呼应

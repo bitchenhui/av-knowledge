@@ -1,8 +1,8 @@
-generated: '2026-11-22'
-count: 1086
+generated: '2026-11-23'
+count: 1090
 by_kind:
   release: 55
-  research: 585
+  research: 589
   standard: 446
 facts:
 - date: '2026-11-20'
@@ -11,12 +11,30 @@ facts:
   fact: VVdeC 3.3.0 修复7项安全漏洞与SEI/胶片颗粒一致性问题，新增x86 SIMD与ARM NEON性能优化
   evidence: repo_release:github:vvdec-v3.3.0
   url: https://github.com/fraunhoferhhi/vvdec/releases/tag/v3.3.0
+- date: '2026-11-20'
+  entity: concept:RSI
+  kind: research
+  fact: Actor-Reflector双智能体框架，在不更新模型参数的前提下递归自改进机器人操作的执行harness。
+  evidence: paper:arxiv:2611.27689
+  url: https://arxiv.org/abs/2611.27689
 - date: '2026-11-19'
   entity: impl:SVT-AV1
   kind: release
   fact: 全面提速：VOD preset 5 CPU 降 14-15%，新增 16x16 ROI 映射与 AVX-512/Neon 内核
   evidence: repo_release:github:SVT-AV1-v4.3.1
   url: https://github.com/AOMediaCodec/SVT-AV1/releases/tag/v4.3.1
+- date: '2026-11-19'
+  entity: concept:SelfImprovement
+  kind: research
+  fact: 基于 Outer Wilds 的基准，从知识、证据支撑与世界进度三视角度量 LLM 智能体跨回合自我改进。
+  evidence: paper:arxiv:2611.26910
+  url: https://arxiv.org/abs/2611.26910
+- date: '2026-11-19'
+  entity: concept:RSI
+  kind: research
+  fact: 提出MedicalRSI，通过Solver/Improver双角色的模型-框架协同进化，让医学LLM智能体实现递归自我改进并泛化到新工作流。
+  evidence: paper:arxiv:2611.26806
+  url: https://arxiv.org/abs/2611.26806
 - date: '2026-11-19'
   entity: concept:IQA
   kind: research
@@ -1145,6 +1163,12 @@ facts:
   fact: 以Lean证明助手为根基构建Causalean库与自我改进代理流程，实现因果推断理论研究的自动化生成与机器验证。
   evidence: paper:arxiv:2607.22511
   url: https://arxiv.org/abs/2607.22511
+- date: '2026-07-22'
+  entity: org:Via-LA
+  kind: research
+  fact: USPTO局长Squires将于10月在Via LA旗舰峰会Bridge Summit发表主题演讲
+  evidence: industry_news:viala:uspto-director-squires-to-deliver-keynote-speech-at-via-lice
+  url: https://ipfray.com/uspto-director-squires-to-deliver-keynote-speech-at-via-licensing-alliances-marquee-bridge-summit-this-october/
 - date: '2026-07-21'
   entity: concept:SelfImprovement
   kind: research
@@ -1371,7 +1395,7 @@ facts:
 - date: '2026-06-25'
   entity: org:Via-LA
   kind: research
-  fact: WIPO与Via LA达成合作，扩充经专利池核验的标准必要专利数据。
+  fact: WIPO 与 Via LA 合作，扩充经专利池验证的标准必要专利数据。
   evidence: industry_news:viala:wipo-expands-pool-verified-sep-data-with-via-licensing-allia
   url: https://ipfray.com/wipo-expands-pool-verified-sep-data-with-via-licensing-alliance-partnership/
 - date: '2026-06-23'

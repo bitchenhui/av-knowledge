@@ -1,0 +1,69 @@
+id: paper:arxiv:2611.27689
+type: paper
+title: 'Embodied-Harness: Towards Recursive Self-Improvement for Robotic Manipulation'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.27689v1
+  url: https://arxiv.org/abs/2611.27689
+  pdf_url: https://arxiv.org/pdf/2611.27689v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-20'
+  collected: '2026-11-23'
+  updated: '2026-11-23'
+entities:
+- ref: concept:RSI
+  role: subject
+- ref: concept:SelfImprovement
+  role: uses
+claims:
+- statement: Embodied-Harness在不更新模型参数的前提下，通过Actor-Reflector双智能体与递归harness自改进提升机器人操作成功率
+  confidence: reported
+  metrics:
+  - name: 成功率
+    value: 82.4%
+    scope: RoboTwin 2.0 基准
+  - name: 成功率
+    value: 76.7%
+    scope: RoboSPA 基准
+  - name: 成功率
+    value: 94.4%
+    scope: RMBench 基准
+  evidence: abstract（初筛，未读全文）
+- statement: 真实世界部署验证了方法在实机操作上的有效性
+  confidence: reported
+  metrics:
+  - name: 平均成功率
+    value: 96.7%
+    scope: 真实环境三个操作任务平均
+  evidence: abstract（初筛，未读全文）
+- statement: 分层记忆架构、基于证据的失败归因与递归操作指导精炼共同支撑环境变化泛化、空间推理、长时程规划与记忆依赖操作能力
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: Actor-Reflector双智能体框架，在不更新模型参数的前提下递归自改进机器人操作的执行harness。
+  abstract_zh: 该文提出Embodied-Harness，一个面向机器人操作的双智能体框架，通过精炼执行harness而非更新模型参数实现自改进。Actor经机器人控制接口与环境交互，Reflector将执行证据转化为可复用的操作指导；分层记忆架构同时维护短期执行上下文与长期经验知识。基于证据的经验反思将失败诊断锚定于真实交互观测，递归harness自改进在多次尝试间持续精炼操作指导。方法在RoboTwin
+    2.0、RoboSPA、RMBench上分别取得82.4%、76.7%、94.4%的成功率，真实世界三个任务平均成功率达96.7%，并在环境变化泛化、空间推理、长时程规划与记忆依赖操作上展现优势。
+  deep_dive: docs/auto/2611.27689.md
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: 具身机器人操作方向的递归自改进（RSI）工作，属自我改进AI域且概念匹配明确，但非音视频核心域，按基准给 summary_only。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-23'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: Embodied-Harness：迈向机器人操作的递归自改进
+relations:
+- type: same_topic
+  ref: paper:arxiv:2609.37950
+  note: 同样通过harness演进而非参数更新实现递归自改进，本文将该范式引入具身机器人操作场景
+- type: same_topic
+  ref: paper:arxiv:2604.21725
+  note: 同属开放环境下进化agent harness的研究方向
+- type: same_topic
+  ref: paper:arxiv:2603.24639
+  note: 同样以经验反思（experiential reflection）驱动LLM智能体自改进

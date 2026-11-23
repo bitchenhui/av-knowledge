@@ -1,0 +1,62 @@
+id: paper:arxiv:2611.26806
+type: paper
+title: 'MedicalRSI: Medical Recursive Self-Improving Agents via Clinical Model-Harness Co-Evolution'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.26806v1
+  url: https://arxiv.org/abs/2611.26806
+  pdf_url: https://arxiv.org/pdf/2611.26806v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-19'
+  collected: '2026-11-23'
+  updated: '2026-11-23'
+entities:
+- ref: concept:RSI
+  role: subject
+- ref: concept:SelfImprovement
+  role: subject
+- ref: concept:LLM
+  role: uses
+claims:
+- statement: MedicalRSI在多个基准和多种LLM骨干上优于现有上下文级（context-level）与权重级（weight-level）自我改进方法。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: MedicalRSI具备良好迁移性，可迁移到未见临床工作流、新LLM骨干与数据库。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: 框架以相对无框架执行的增益作为奖励，Solver与Improver联合训练，使改进策略持续适应Solver尚未解决的问题。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: 医学场景实现RSI的难点在于临床工作流缺少参考框架（reference harness），且早期错误的修复不保证解决后续问题。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 提出MedicalRSI，通过Solver/Improver双角色的模型-框架协同进化，让医学LLM智能体实现递归自我改进并泛化到新工作流。
+  abstract_zh: 医学LLM智能体部署后通常固定不变，同类错误会在不同患者间重复出现；现有自我改进方法只更新智能体权重或医学框架，而改进策略本身固定，限制了改进上限。MedicalRSI提出临床模型-框架协同进化：同一模型扮演两个角色，Solver是医学智能体本身，Improver是可学习的改进策略，依据Solver的失败撰写医学框架（harness）。每个框架以其相对无框架执行的增益作为奖励，两角色联合训练，使Improver持续适应Solver尚未解决的问题。在多个基准与多种LLM骨干上，MedicalRSI优于现有上下文级与权重级自我改进方法，并能迁移到未见临床工作流、新LLM与新数据库。
+  deep_dive: docs/auto/2611.26806.md
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: 属于自我改进AI域的核心RSI工作（医学智能体的模型-框架协同进化），但与音视频技术无直接关联，按非核心域仅收录摘要。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-23'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: MedicalRSI：基于临床模型-框架协同进化的医学递归自我改进智能体
+relations:
+- type: same_topic
+  ref: paper:arxiv:2510.03687
+  note: 同为医学LLM自我改进方向（MedReflect：反思式纠错自我改进），与本文医学RSI主题相近
+- type: same_topic
+  ref: paper:arxiv:2607.15314
+  note: 同为医疗领域的递归自我改进工作（Cura 1T医疗基础模型RSI）
+- type: same_topic
+  ref: paper:arxiv:2609.37950
+  note: 同为基于harness进化的RSI框架（Video-RSI视频理解智能体框架进化），与本文模型-框架协同进化思想同源
+- type: same_topic
+  ref: paper:arxiv:2412.02674
+  note: 同属LLM自我改进能力研究线（Mind the Gap检验LLM自我改进能力）
