@@ -14,4 +14,4 @@ meta:
   outlet: Via LA News
 fetched: '2026-11-23'
 llm_decision: skip
-llm_reason: DRAM存储器数据中心专利池与音视频编解码标准、专利池及许可政策无关，超出收录范围
+llm_reason: 该新闻为数据中心DRAM内存专利池的成立，与音视频编解码标准及许可无关，不符合收录基准。

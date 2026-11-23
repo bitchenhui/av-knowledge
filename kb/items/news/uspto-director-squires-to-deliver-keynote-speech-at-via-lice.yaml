@@ -15,19 +15,19 @@ entities:
 - ref: org:Via-LA
   role: subject
 claims:
-- statement: USPTO局长Squires将于今年十月在Via LA的Bridge Summit上发表主题演讲
+- statement: USPTO局长Squires将在Via LA今年十月举办的Bridge Summit上发表主题演讲
   confidence: inferred
   evidence: abstract（初筛，未读全文）
 summaries:
-  one_liner_zh: 美国专利商标局局长Squires将在Via LA十月Bridge Summit峰会发表主题演讲。
-  abstract_zh: 据ip fray报道，美国专利商标局局长Squires将于今年十月在Via Licensing Alliance举办的旗舰活动Bridge Summit上发表主题演讲。该消息仅基于标题，具体议题内容未提及。
+  one_liner_zh: USPTO局长Squires确认将于十月Via LA Bridge Summit发表主题演讲。
+  abstract_zh: 据标题报道，美国专利商标局局长Squires将在Via许可联盟于今年十月举办的旗舰活动Bridge Summit上发表主题演讲。该消息仅涉及活动安排，未披露具体议题内容。
 assessment:
   relevance: medium
   decision: summary_only
-  reason: 新闻涉及专利池许可组织Via LA的旗舰峰会及美国专利商标局局长演讲，与专利池许可生态相关但未涉及具体编解码标准或许可条款。
+  reason: 涉及专利池组织Via LA的许可生态峰会及美国专利商标局局长演讲，与专利池/许可政策生态相关，但未直接涉及编解码标准。
   reviewer: glm-5.3-flash(llm_review)
 provenance:
   created: '2026-11-23'
   actor: pipeline-v0
   pipeline: llm_review
-title_zh: USPTO局长斯奎尔斯将于十月在Via LA旗舰活动Bridge Summit上发表主题演讲
+title_zh: ip fray：美国专利商标局局长斯奎尔斯将在Via许可联盟十月的旗舰活动Bridge Summit上发表主题演讲

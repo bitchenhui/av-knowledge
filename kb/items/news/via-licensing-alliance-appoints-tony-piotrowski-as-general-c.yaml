@@ -18,15 +18,15 @@ claims:
   confidence: inferred
   evidence: abstract（初筛，未读全文）
 summaries:
-  one_liner_zh: Via LA 宣布任命 Tony Piotrowski 出任总法律顾问一职。
-  abstract_zh: 据 Via LA 新闻，专利池组织 Via Licensing Alliance 任命 Tony Piotrowski 为总法律顾问。该消息属许可生态组织的人事变动，基于标题无法确认其具体职责范围或生效细节。
+  one_liner_zh: Via Licensing Alliance 任命 Tony Piotrowski 出任总法律顾问。
+  abstract_zh: 据标题，专利池管理组织 Via Licensing Alliance 宣布任命 Tony Piotrowski 为其总法律顾问。该任命属专利池治理层面的人事变动。
 assessment:
   relevance: medium
   decision: summary_only
-  reason: Via LA 为专利池许可组织，其总法律顾问人事任命属许可生态组织动态，与音视频技术本身无直接关联，故仅作摘要收录。
+  reason: Via LA 是音视频编解码专利池组织，其法务负责人任命属专利池生态动态，但非许可政策直接变更。
   reviewer: glm-5.3-flash(llm_review)
 provenance:
   created: '2026-11-23'
   actor: pipeline-v0
   pipeline: llm_review
-title_zh: Via Licensing Alliance 任命 Tony Piotrowski 为总法律顾问
+title_zh: Via LA 任命 Tony Piotrowski 为总法律顾问

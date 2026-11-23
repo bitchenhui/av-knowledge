@@ -1389,7 +1389,7 @@ facts:
 - date: '2026-06-25'
   entity: org:Via-LA
   kind: research
-  fact: WIPO与专利池组织Via LA达成合作，扩大经专利池核验的标准必要专利（SEP）数据覆盖。
+  fact: WIPO与Via LA合作，扩充经专利池核验的标准必要专利数据。
   evidence: industry_news:viala:wipo-expands-pool-verified-sep-data-with-via-licensing-allia
   url: https://ipfray.com/wipo-expands-pool-verified-sep-data-with-via-licensing-alliance-partnership/
 - date: '2026-06-23'
