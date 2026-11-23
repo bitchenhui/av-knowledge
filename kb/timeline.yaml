@@ -1,8 +1,8 @@
 generated: '2026-11-23'
-count: 1090
+count: 1089
 by_kind:
   release: 55
-  research: 589
+  research: 588
   standard: 446
 facts:
 - date: '2026-11-20'
@@ -1163,12 +1163,6 @@ facts:
   fact: 以Lean证明助手为根基构建Causalean库与自我改进代理流程，实现因果推断理论研究的自动化生成与机器验证。
   evidence: paper:arxiv:2607.22511
   url: https://arxiv.org/abs/2607.22511
-- date: '2026-07-22'
-  entity: org:Via-LA
-  kind: research
-  fact: USPTO局长Squires将于10月在Via LA旗舰峰会Bridge Summit发表主题演讲
-  evidence: industry_news:viala:uspto-director-squires-to-deliver-keynote-speech-at-via-lice
-  url: https://ipfray.com/uspto-director-squires-to-deliver-keynote-speech-at-via-licensing-alliances-marquee-bridge-summit-this-october/
 - date: '2026-07-21'
   entity: concept:SelfImprovement
   kind: research
@@ -1395,7 +1389,7 @@ facts:
 - date: '2026-06-25'
   entity: org:Via-LA
   kind: research
-  fact: WIPO 与 Via LA 合作，扩充经专利池验证的标准必要专利数据。
+  fact: WIPO与专利池组织Via LA达成合作，扩大经专利池核验的标准必要专利（SEP）数据覆盖。
   evidence: industry_news:viala:wipo-expands-pool-verified-sep-data-with-via-licensing-allia
   url: https://ipfray.com/wipo-expands-pool-verified-sep-data-with-via-licensing-alliance-partnership/
 - date: '2026-06-23'
