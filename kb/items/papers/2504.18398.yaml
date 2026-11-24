@@ -13,7 +13,7 @@ source:
 time:
   published: '2025-04-25'
   collected: '2026-11-14'
-  updated: '2026-11-18'
+  updated: '2026-11-24'
 entities:
 - ref: codec:VVC
   role: subject
@@ -25,10 +25,10 @@ claims:
   metrics:
   - name: 编码时间节省
     value: 51.30%
-    scope: 随机访问（RA）配置，相对基线VVC编码器平均
+    scope: 表 I 的 Average 行（A1、A2、B、C、E，D 类另列），RA，L1(0.2,1)，相对 VTM-10.0
   - name: BDBR
     value: 2.12%
-    scope: 随机访问（RA）配置，相对基线VVC编码器平均
+    scope: 表 I 的 Average 行（A1、A2、B、C、E，D 类另列），RA，L1(0.2,1)，相对 VTM-10.0
   evidence: 第 8 页，表 I，Average 行，L1(0.2,1) 列；第 VI-A 节及式 (13)
   evidence_url: https://arxiv.org/pdf/2504.18398v2#page=8
 - statement: 在帧内划分图方法基础上引入MTT掩码实现划分搜索提前终止，并设计融合空间与时域特征的神经网络预测划分图
@@ -63,9 +63,10 @@ summaries:
         T --> H
     routing: 图 7 的 D 为当前 CU 的决策深度，Qp 才是预测的 QT 深度。仅 D ≤ Dmax 且当前 QT 深度 Qc ≥ Qp 时进入双阈值。pM < th1 早停，th1 ≤ pM < th2 搜索，pM ≥ th2（包括相等）采用预测；图 7 给出条件，未给出等号实际命中次数。L0 只使用 QT 深度，L1 还使用首层 MTT 图。
     source_sha256: 6ebd4768cc613df098574166484c79aa716844e7f39966461e4a209ff4c7213d
-    evaluation: VTM-10.0 原始编码器为 anchor；JVET RA，22 条序列各取前 65 帧，QP 22/27/32/37。仅加速 P/B 帧。表 I 的 Average 不含单列的 D 类。ETS 以原始 VTM 用时为分母，测试用时包括推理、后处理和编码，默认 CPU 测试。
+    evaluation: VTM-10.0 原始编码器为 anchor；JVET RA，22 条序列各取前 65 帧，QP 22/27/32/37。仅加速 P/B 帧。表 I 按类别汇总。Average 汇总 A1、A2、B、C、E，D 类另列于 Average 下方。ETS 以原始 VTM 用时为分母，测试用时包括推理、后处理和编码，默认 CPU 测试。
     findings:
       - 表 I 第 8 页，L0(0,1) 平均 ETS 44.39%、BDBR +1.66%；L1(0.2,1) 平均 ETS 51.30%、BDBR +2.12%。
+      - 表 I 第 8 页，D 行，L0(0,1) 的 BDBR +1.78%、ETS 27.37%；L1(0.2,1) 的 BDBR +2.04%、ETS 37.66%。表 I 仅给各类别与 Average 行，逐序列数值不能从该表读出。
       - 第 9 页 VI-B、图 8，L1(0.2,0.9) 报告 ETS 63.21%、BDBR +5.31%；更激进的预测有更高 RD 代价。
       - 第 8 页表 I、第 9 页 VI-B 将该方法与 Pan、Tissier、Peng、Lin 等四种快速划分方法比较；这些对照仍使用论文的编码与测试条件。
     source_locations:
