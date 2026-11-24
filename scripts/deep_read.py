@@ -19,13 +19,14 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
 import tempfile
 import time
 import urllib.request
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import yaml
@@ -120,12 +121,64 @@ def read_source(item):
     return "\n".join(parts)[:400_000], url, pages, digest
 
 
+class EvidenceRejected(ValueError):
+    """A completed model response failed local paper-evidence validation."""
+
+
+def parse_card(text):
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as exc:
+        raise EvidenceRejected("invalid paper evidence JSON") from exc
+
+
+def record_rejection(root, item, day, digest, reason):
+    version = item["source"]["external_id"]
+    if not re.fullmatch(r"[0-9]{4}\.[0-9]{4,5}(v[0-9]+)?", version):
+        raise ValueError("unsupported arXiv identifier: " + version)
+    target = root / day.isoformat() / (version + ".json")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    row = {"paper_id": item["id"], "source_version": version, "date_utc": day.isoformat(),
+           "reason": reason, "source_sha256": digest}
+    # One completed rejection per source version and UTC day is enough to schedule its next attempt.
+    with tempfile.NamedTemporaryFile(dir=target.parent, mode="w", encoding="utf-8", delete=False) as tmp:
+        try:
+            json.dump(row, tmp, ensure_ascii=False, indent=2)
+            tmp.write("\n")
+            tmp.flush()
+            try:
+                os.link(tmp.name, target)
+            except FileExistsError:
+                pass
+        finally:
+            os.unlink(tmp.name)
+
+
+def select_due(ranked, limit, root, day):
+    """Apply content-specific backoff after the usual new-paper and citation ranking."""
+    failures = {}
+    for path in sorted(root.glob("*/*.json")):
+        row = json.loads(path.read_text())
+        failures.setdefault(row["source_version"], []).append(date.fromisoformat(row["date_utc"]))
+    fresh, due = [], []
+    for item in ranked:
+        days = failures.get(item["source"]["external_id"], [])
+        if not days:
+            fresh.append(item)
+        elif day >= max(days) + timedelta(days=2 ** min(5, len(set(days)))):
+            due.append(item)
+    # With a backlog, allow one due retry and keep the other slots for new attempts.
+    # If fresh work runs out, the remaining slots can serve more eligible retries.
+    fresh_count = min(len(fresh), max(1, limit - bool(due))) if limit else 0
+    return fresh[:fresh_count] + due[:limit - fresh_count]
+
+
 def link_source_pages(note, url, pages, digest):
     """Only link cited pages that actually exist in this PDF version."""
     citations = re.compile(r"\[p\.(\d+)\]")
     refs = [int(n) for n in citations.findall(note)]
     if not refs or any(n < 1 or n > pages for n in refs):
-        raise ValueError("missing or out-of-range PDF page reference")
+        raise EvidenceRejected("missing or out-of-range PDF page reference")
     cited = citations.sub(lambda m: f"[p.{m[1]}]({url}#page={m[1]})", note)
     return f"{cited}\n\n[原文 PDF]({url}) · {pages} 页 · SHA-256 `{digest}`\n"
 
@@ -135,11 +188,11 @@ def checked_card(card, url, pages, digest):
             or not all(isinstance(card[k], str) and card[k].strip() for k in ("method", "limitation"))
             or not isinstance(card["findings"], list) or not card["findings"]
             or not all(isinstance(f, str) and f.strip() for f in card["findings"])):
-        raise ValueError("invalid paper evidence card")
+        raise EvidenceRejected("invalid paper evidence card")
     for claim in [card["method"], *card["findings"]]:
         refs = re.findall(r"\[p\.(\d+)\]", claim)
         if not refs or any(not 1 <= int(n) <= pages for n in refs):
-            raise ValueError("card claim needs an in-range source page")
+            raise EvidenceRejected("card claim needs an in-range source page")
     source_pages = sorted({int(n) for n in re.findall(r"\[p\.(\d+)\]", " ".join([card["method"], *card["findings"]]))})
     card.update(review_status="model_extracted", source_sha256=digest,
                 source_locations=[f"{url}#page={n}" for n in source_pages])
@@ -150,8 +203,8 @@ def finish_note(response, url, pages, digest):
     # The evidence card and the human-readable note come from the same read.
     block = re.search(r"^```paper-evidence[ \t]*\n(.*?)\n```\s*\Z", response.strip(), re.M | re.S)
     if not block:
-        raise ValueError("missing paper evidence card")
-    card = checked_card(json.loads(block[1]), url, pages, digest)
+        raise EvidenceRejected("missing paper evidence card")
+    card = checked_card(parse_card(block[1]), url, pages, digest)
     return link_source_pages(response[:block.start()].strip(), url, pages, digest), card
 
 
@@ -204,7 +257,7 @@ def make_reading(llm, item, text, url, pages, digest, all_items):
         response = llm.chat(prompt, tier="deep", instructions="从公开论文制作可核对的证据卡。", max_tokens=8000).strip()
         if response.startswith("```json\n") and response.endswith("\n```"):
             response = response[8:-4]
-        return None, checked_card(json.loads(response), url, pages, digest)
+        return None, checked_card(parse_card(response), url, pages, digest)
     instructions = (DEEP_INSTRUCTIONS if item.get("domain", "video_image_coding") == "video_image_coding"
                     else DEEP_INSTRUCTIONS_GENERIC)
     response = llm.chat(build_prompt(item, text, related_items(item, all_items)), tier="deep",
@@ -214,15 +267,7 @@ def make_reading(llm, item, text, url, pages, digest, all_items):
     return finish_note(response, url, pages, digest)
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--limit", type=int, default=2)
-    args = ap.parse_args()
-
-    cfg = load_yaml(CONFIG)
-    llm = LLM(cfg)
-    all_items = [load_yaml(p) | {"_path": p} for p in sorted(ITEMS.glob("*.yaml"))]
-
+def rank_candidates(all_items):
     cands = [d for d in all_items
              if (d["assessment"]["decision"] == "deep_read"
                  or d["assessment"]["relevance"] == "high")
@@ -237,7 +282,24 @@ def main() -> int:
     cands.sort(key=lambda d: (not d["summaries"].get("deep_dive"), d["_cit"],
                               {"high": 2, "medium": 1, "low": 0}[d["assessment"]["relevance"]],
                               d["time"]["published"]), reverse=True)
-    cands = cands[: args.limit]
+    return cands
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--limit", type=int, default=2)
+    args = ap.parse_args()
+
+    if args.limit < 0:
+        ap.error("--limit must be nonnegative")
+
+    cfg = load_yaml(CONFIG)
+    llm = LLM(cfg)
+    all_items = [load_yaml(p) | {"_path": p} for p in sorted(ITEMS.glob("*.yaml"))]
+
+    rejection_root = ROOT / "queue" / "deep-read-rejections"
+    day = datetime.now(timezone.utc).date()
+    cands = select_due(rank_candidates(all_items), args.limit, rejection_root, day)
     print(f"deep_read 候选 {len(cands)} 篇（本次处理）\n")
     if not cands:
         print("无候选（全部已深读或无 deep_read 判定）——正常退出")
@@ -245,6 +307,7 @@ def main() -> int:
 
     today = date.today().isoformat()
     n_ok = 0
+    n_rejected = 0
     for item in cands:
         arxiv_id = item["id"].split(":")[-1]
         print(f"[{arxiv_id}] {item['title'][:60]}")
@@ -261,6 +324,11 @@ def main() -> int:
             item["_authors"] = load_yaml(q).get("meta", {}).get("authors", [])
         try:
             note, card = make_reading(llm, item, text, url, pages, digest, all_items)
+        except EvidenceRejected as exc:
+            record_rejection(rejection_root, item, day, digest, str(exc))
+            n_rejected += 1
+            print(f"    ✗ 原文证据未通过，已登记后续重试: {exc}")
+            continue
         except Exception as exc:
             print(f"    ✗ 精读或原文定位失败: {exc}")
             continue
@@ -284,7 +352,8 @@ def main() -> int:
                 d["summaries"]["deep_dive"] = item["summaries"]["deep_dive"]
 
     print(f"\n完成 {n_ok}/{len(cands)}；tokens in={llm.usage['in']} out={llm.usage['out']}")
-    if n_ok:
+    print(f"证据拒收 {n_rejected}，读取或服务失败 {len(cands) - n_ok - n_rejected}")
+    if n_ok or n_rejected:
         print("\n运行基底校验：")
         return subprocess.run([sys.executable, str(ROOT / "scripts" / "validate_kb.py")]).returncode
     return 1
