@@ -1,0 +1,64 @@
+id: paper:arxiv:2611.28239
+type: paper
+title: 'FinEvo: Recursive Self-Improvement for Long-Horizon Financial Modeling'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.28239v1
+  url: https://arxiv.org/abs/2611.28239
+  pdf_url: https://arxiv.org/pdf/2611.28239v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-20'
+  collected: '2026-11-25'
+entities:
+- ref: concept:RSI
+  role: subject
+- ref: concept:SelfImprovement
+  role: subject
+claims:
+- statement: FinEvo经验学习使held-out同源任务的整任务成功率从22.73提升至29.09。
+  confidence: reported
+  metrics:
+  - name: whole-task success
+    value: 22.73→29.09
+    scope: held-out within-source tasks，Qwen3.6-27B端到端执行
+  evidence: abstract（初筛，未读全文）
+- statement: 在SpreadsheetBench 2 Financial基准上，整任务成功率从13.13提升至19.19。
+  confidence: reported
+  metrics:
+  - name: whole-task success
+    value: 13.13→19.19
+    scope: SpreadsheetBench 2 Financial
+  evidence: abstract（初筛，未读全文）
+- statement: 跨任务源与评估设置的一致提升，以及对训练中未出现任务类别的改进，表明FinEvo强化的是跨任务共享的底层金融建模能力而非任务特化过拟合。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: FinEvo全程使用同一模型，通过自博弈迭代演化挑战并以可执行奖励学习；解题反馈还能识别可执行检查遗漏的规范问题。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 提出FinEvo自进化框架，用自博弈与可执行奖励提升LLM金融建模能力，为RSI在专业域提供实证。
+  abstract_zh: 该论文提出FinEvo，一个将自主经验构建与金融能力提升相结合的自进化框架，全程仅依赖同一模型。FinEvo先准备金融模型，通过自博弈迭代演化挑战任务，再利用可执行奖励从交互中学习，并在Qwen3.6-27B上完成端到端执行。结果显示，解题反馈既支持推理需求不断提升，也能发现可执行检查遗漏的规范问题。经验学习使held-out同源任务的整任务成功率从22.73提升至29.09，在SpreadsheetBench
+    2 Financial上从13.13提升至19.19。跨任务源与评估设置的一致提升、以及对训练中未出现任务类别的改进，表明FinEvo增强了跨任务共享的底层金融建模能力。
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: 递归自我改进（RSI）在金融建模专业域的实证框架，属self_improvement跟踪域，与音视频核心无关，按基准给summary_only。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: FinEvo：面向长程金融建模的递归自我改进
+relations:
+- type: same_topic
+  ref: paper:arxiv:2611.29716
+  note: 同为面向金融领域的LLM自我改进/RSI工作，FinEvo可视为金融建模能力提升路线的经验驱动自进化实现
+- type: same_topic
+  ref: paper:arxiv:2608.12841
+  note: 同为量化/金融研究代理的递归自我改进（AQuA），与FinEvo同属RSI金融域实证
+- type: same_topic
+  ref: paper:arxiv:2607.25886
+  note: 同属递归自我改进（RSI）数据为中心研究的实证评估脉络

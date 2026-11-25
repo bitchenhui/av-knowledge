@@ -1,0 +1,45 @@
+id: paper:arxiv:2611.29348
+status: skipped
+score: 1
+track: quality_assessment
+matched:
+- ref: concept:IQA
+  count: 2
+  weight: 1
+meta:
+  title: 'A Multi-Criteria Evaluation of Color Normalization Methods in Histopathology: Nuclei Preservation,
+    Artifact Sensitivity, Background Fidelity, and Downstream Performanc'
+  authors:
+  - Falah Jabar
+  - Aria Torkpour
+  - Pasquale Lombardi
+  - Masoud Tafavvoghi
+  - Per Niklas Benzler Waaler
+  - Sigve Andersen
+  - Ilona Urbarova
+  - David J. Pinato
+  - Mehrdad Rakaee
+  - Tom Donnem
+  - Lill-Tove Rasmussen Busund
+  - Elin Richardsen
+  published: '2026-11-22'
+  updated: '2026-11-22'
+  categories:
+  - cs.CV
+  abstract: Deep learning models for nuclei detection and classification may generalize poorly across
+    medical centers because of variations in staining and scanning. Although color normalization aims
+    to reduce these variations, its effects on nuclear structure, background preservation, artifact sensitivity,
+    and nuclei detection and classification performance have not been systematically evaluated. We present
+    a procedure to benchmark 11 classical and deep learning normalization methods using 7 public and private
+    nuclei datasets. Additionally, we investigate the effect of 7 input color spaces. The normalization
+    methods differed in their effects on nuclear structure, background, and sensitivity to artifacts.
+    However, detection and classification performance varied more across datasets than across normalization
+    methods, and the input color space had limited influence. No single method performed best on all criteria,
+    and image-level metrics did not reliably predict downstream performance, highlighting the need for
+    nuclei- and structure-aware normalization methods. To support this work, we introduce WSI Quality
+    Control and Normalization (WSI-QCN), a publicly available pipeline for robust whole-slide image quality
+    assessment and color normalization; the source code is available on GitHub.
+  url: https://arxiv.org/abs/2611.29348
+  pdf_url: https://arxiv.org/pdf/2611.29348v1
+  version: v1
+fetched: '2026-11-25'

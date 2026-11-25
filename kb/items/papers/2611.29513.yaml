@@ -1,0 +1,62 @@
+id: paper:arxiv:2611.29513
+type: paper
+title: 'Recursive Self-Editing: LLMs Program Their Own Weight Edits for Self-Improvement'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.29513v1
+  url: https://arxiv.org/abs/2611.29513
+  pdf_url: https://arxiv.org/pdf/2611.29513v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-22'
+  collected: '2026-11-25'
+entities:
+- ref: concept:RSI
+  role: subject
+- ref: concept:SelfImprovement
+  role: subject
+claims:
+- statement: 大语言模型可以在不使用任何梯度步骤的情况下，通过编写程序构造低秩权重编辑来有效改进自身权重。
+  confidence: reported
+  metrics:
+  - name: 门控集准确率
+    value: 73.95%→76.45%
+    scope: Qwen3.8-27B，DAPO-Math门控集，五代SELFWRITE
+  - name: held-out avg@4 准确率
+    value: 76.30%→77.75%
+    scope: 自改进循环从未见过的测试划分，avg@4
+  - name: held-out pass@4 准确率
+    value: 82.60%→84.80%
+    scope: 同一held-out测试划分，pass@4
+  evidence: abstract（初筛，未读全文）
+- statement: 被编辑后的模型能够继续编写出有用的下一轮权重编辑，验证了递归自我改进循环的可持续性。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 让LLM在Python会话中编写程序构造低秩权重编辑，无需梯度即可递归自我改进。
+  abstract_zh: 提出SELFWRITE框架：当前模型在新训练题上研究自身推理，在持久化Python会话中检查自身权重与激活，并编写程序用白盒原语（奇异方向、对错答案的激活对比、秩一投影等）构造低秩权重编辑，全程不使用训练或梯度工具。每个候选编辑在隐藏门控集上对照当前模型评估一次，仅合并严格改进的最优编辑，编辑后的模型继续编写下一代编辑。在Qwen3.8-27B与DAPO-Math数学题上，五代SELFWRITE将门控集准确率从73.95%提升至76.45%，在循环从未见过的held-out测试划分上avg@4从76.30%升至77.75%、pass@4从82.60%升至84.80%，且未执行任何梯度步骤。
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: LLM递归自我改进/权重空间编程方向的核心工作，与音视频编码无直接关联，按非核心域仅做摘要收录。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: 递归自编辑：大语言模型通过编写自身权重编辑实现自我改进
+relations:
+- type: same_topic
+  ref: paper:arxiv:2210.08229
+  note: 同属LLM自我改进主题，本文将自改进从数据/训练配方推进到直接编写自身权重
+- type: same_topic
+  ref: paper:arxiv:2611.28833
+  note: 同属权重空间编程（Weight-Space Programming）方向，均研究语言模型通过权重编辑实现自我改进
+- type: same_topic
+  ref: paper:arxiv:2611.21885
+  note: 同属语言模型改写自身权重的研究线
+- type: same_topic
+  ref: paper:arxiv:2310.02304
+  note: 同属递归自我改进（RSI）范式，STOP通过代码生成递归改进，本文改为权重编辑递归改进

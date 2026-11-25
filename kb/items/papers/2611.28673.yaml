@@ -1,0 +1,56 @@
+id: paper:arxiv:2611.28673
+type: paper
+title: 'ViewAgent3D: A Training-Free Multi-View Pipeline for 3D Scene Understanding'
+domain: immersive_media
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.28673v1
+  url: https://arxiv.org/abs/2611.28673
+  pdf_url: https://arxiv.org/pdf/2611.28673v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-21'
+  collected: '2026-11-25'
+entities:
+- ref: concept:TrainingFree
+  role: subject
+claims:
+- statement: 无需任务特定训练、推理时不用任何显式3D表示，仅用2D图像与一组推理工具即可完成多种3D场景理解任务。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: 在3D VQA任务上取得约10%的性能增益。
+  confidence: reported
+  metrics:
+  - name: 3D VQA增益
+    value: ~10%
+    scope: 相对基线的任务性能提升，论文摘要自报
+  evidence: abstract（初筛，未读全文）
+- statement: 在稠密描述（dense captioning）与具身问答（Embodied QA）任务上取得约5%的性能增益。
+  confidence: reported
+  metrics:
+  - name: dense captioning与Embodied QA增益
+    value: ~5%
+    scope: 相对基线的任务性能提升，论文摘要自报
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 免训练多视角证据选择管线，仅用2D图像与推理工具完成3D场景理解，3D VQA提升约10%。
+  abstract_zh: 论文提出一种免训练、按查询条件驱动的多视角推理管线，不构建显式3D表示，仅依赖多张2D RGB图像和纯推理工具。方法先将查询分解为若干概念属性，再执行由粗到细的证据选择：粗检索对所有视角评分，多样性感知选择器去冗余，重排序阶段按目标可见性或可回答性筛选视角，并可选地进行证据定位与自验证以精修开放性答案的最终响应。整个流程不进行任何任务特定训练、推理时不用点云/体素/场景图等3D表示。结果显示在3D
+    VQA上取得约10%增益，在稠密描述与Embodied QA上取得约5%增益。作者还提出基于评判者的评估系统，允许语义正确或部分正确的多样答案，以更全面地评估场景理解。
+assessment:
+  relevance: low
+  decision: summary_only
+  reason: 属三维场景理解（沉浸式三维邻域），但不含编码/传输/质量评估内容，且非核心域，仅作初筛摘要。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: ViewAgent3D：面向三维场景理解的免训练多视角流水线
+relations:
+- type: same_topic
+  ref: paper:arxiv:2611.19933
+  note: 同为免训练、以证据定位为核心的视觉问答agentic框架，方法路线相近
+- type: same_topic
+  ref: paper:arxiv:2609.15137
+  note: 均涉及3D视觉问答任务，本文以多视角选择替代3D表示求解

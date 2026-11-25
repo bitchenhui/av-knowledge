@@ -1,0 +1,39 @@
+id: paper:arxiv:2611.30629
+status: skipped
+score: 2
+track: video_image_coding
+matched:
+- ref: dataset:UVG
+  count: 1
+  weight: 1
+- ref: metric:PSNR
+  count: 1
+  weight: 1
+meta:
+  title: 'Faster, Smaller, and Better-Looking: Fast-GSVC for 2D Gaussian Video Coding'
+  authors:
+  - Longan Wang
+  - Yuang Shi
+  - Chia Qian Tan
+  - Wei Tsang Ooi
+  published: '2026-11-23'
+  updated: '2026-11-23'
+  categories:
+  - cs.MM
+  abstract: '2D Gaussians have emerged as a promising explicit representation for videos. However, fitting
+    Gaussians to a video sequence requires substantial computation, resulting in long encoding times.
+    In this work, we present Fast-GSVC, a 2D Gaussian video codec that accelerates encoding while improving
+    rate-distortion performance. We identify the key bottlenecks in 2DGS training and accelerate optimization
+    through improved initialization, smoother yet more aggressive parameter updates, coarse-to-fine progressive
+    Gaussian optimization, and optical-flow guidance for both Gaussian initialization and temporal propagation.
+    We also discovered that the quantization fine-tuning process of the existing codec does not fully
+    exploit temporal coherence between frames, leading to suboptimal compression. To address this, we
+    preserve spatiotemporal correlations to maintain concentrated residuals and introduce temporal-aware
+    quantization for further improved rate-distortion performance. In our experiments on the UVG dataset,
+    Fast-GSVC reduces encoding time by up to 92.5%, corresponding to a 13.4X speedup over GSVC. At comparable
+    PSNR, it reduces file size by up to 58%; at comparable bit-per-pixel, it improves PSNR by up to 2.5
+    dB. Project page: https://longanwang-cs.github.io/fastgsvc/.'
+  url: https://arxiv.org/abs/2611.30629
+  pdf_url: https://arxiv.org/pdf/2611.30629v1
+  version: v1
+fetched: '2026-11-25'

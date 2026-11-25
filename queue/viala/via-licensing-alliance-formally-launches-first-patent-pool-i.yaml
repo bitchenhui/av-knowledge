@@ -12,6 +12,6 @@ meta:
   published: '2026-09-10'
   url: https://www.via-la.com/via-licensing-alliance-formally-launches-first-patent-pool-in-the-datacenter-space-with-signed-licensors-in-its-dram-memory-program-announces-plans-for-another/
   outlet: Via LA News
-fetched: '2026-11-23'
+fetched: '2026-11-25'
 llm_decision: skip
-llm_reason: 该新闻为数据中心DRAM内存专利池的成立，与音视频编解码标准及许可无关，不符合收录基准。
+llm_reason: 该新闻为DRAM内存数据中心专利池，属于存储器许可范畴，与音视频编解码标准及许可无关

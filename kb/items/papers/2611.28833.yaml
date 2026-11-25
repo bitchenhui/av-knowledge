@@ -1,0 +1,72 @@
+id: paper:arxiv:2611.28833
+type: paper
+title: 'Self-WSP: Can Language Models Improve Themselves Through Weight-Space Programming?'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.28833v1
+  url: https://arxiv.org/abs/2611.28833
+  pdf_url: https://arxiv.org/pdf/2611.28833v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-21'
+  collected: '2026-11-25'
+entities:
+- ref: concept:SelfImprovement
+  role: subject
+- ref: concept:RSI
+  role: subject
+claims:
+- statement: Self-WSP 自编辑可将 Qwen3.5-0.8B 的 GSM8K 准确率从 11.8% 提升至 62.2%。
+  confidence: reported
+  metrics:
+  - name: GSM8K 准确率
+    value: 11.8% → 62.2%
+    scope: Qwen3.5-0.8B 自身权重编辑前后对比
+  evidence: abstract（初筛，未读全文）
+- statement: Self-WSP 自编辑可将 MATH500 准确率从 7.0% 提升至 32.2%。
+  confidence: reported
+  metrics:
+  - name: MATH500 准确率
+    value: 7.0% → 32.2%
+    scope: Qwen3.5-0.8B 自身权重编辑前后对比
+  evidence: abstract（初筛，未读全文）
+- statement: 部分显著增益仅来自对 16 个参数的改动，且某些情形下反复自我编辑可持续提升性能。
+  confidence: reported
+  metrics:
+  - name: 最小编辑参数量
+    value: '16'
+    scope: 产生显著性能提升的个案最小参数改动数
+  evidence: abstract（初筛，未读全文）
+- statement: 自编辑增益缺乏可解释性：模型对所做编辑理解甚少，随机搜索驱动的 WSP 有时性能相当，提示有效成分可能并非模型『理解』。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: Self-WSP 有望成为通往递归自我改进（RSI）的路径，但实现该前景尚需进一步探索。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 让 Qwen3.5-0.8B 读取并编辑自身权重实现自我改进，数学推理大幅提升，但增益缺乏可解释性。
+  abstract_zh: 论文将权重空间编程（WSP）从改进小模型扩展到语言模型自身，提出 Self-WSP：Qwen3.5-0.8B 读取自身权重、提出编辑并以编辑后的权重继续担任解题者与编辑者。实验观察到真实的自我改进：GSM8K
+    准确率可从 11.8% 提升至 62.2%，MATH500 从 7.0% 提升至 32.2%，有时仅改动 16 个参数，且部分情形下反复自我编辑可持续提升。然而分析显示这些增益缺乏可解释性：模型对所做编辑理解甚少，随机搜索驱动的
+    WSP 有时表现相当。作者认为 Self-WSP 为递归自我改进（RSI）提供了可行路径，但兑现该前景仍需进一步探索。
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: 非核心域：LLM 权重空间编程式自我改进/RSI 研究，与音视频技术无直接关联，按基准仅初筛摘要。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: Self-WSP：语言模型能通过权重空间编程实现自我改进吗？
+relations:
+- type: same_topic
+  ref: paper:arxiv:2611.21885
+  note: 同属权重空间编程（WSP）方向：本工作将『改写他模型权重』扩展为模型对自身权重的编辑
+- type: same_topic
+  ref: paper:arxiv:2611.07319
+  note: 同为 Weight-Space Programming 后续研究，本工作引入自指式（Self）编辑设定
+- type: same_topic
+  ref: paper:arxiv:2210.08229
+  note: 同属 LLM 自我改进（Self-Improve）研究脉络，本工作以权重编辑替代常规数据/提示层面的自改进

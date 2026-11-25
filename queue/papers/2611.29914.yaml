@@ -1,0 +1,32 @@
+id: paper:arxiv:2611.29914
+status: skipped
+score: 1
+track: video_image_coding
+matched:
+- ref: concept:ICM
+  count: 3
+  weight: 1
+meta:
+  title: Generalizable Variable-Rate Adaptation for Image Coding for Machines
+  authors:
+  - Yui Tatsumi
+  - Hiroshi Watanabe
+  published: '2026-11-23'
+  updated: '2026-11-23'
+  categories:
+  - eess.IV
+  - cs.CV
+  abstract: Image Coding for Machines (ICM) aims to preserve task-relevant information for machine vision
+    under limited bitrates. However, most ICM models are trained for a fixed operating point, and extending
+    them to variable-rate compression is challenging because their training objectives differ across tasks
+    and model designs. In this paper, we propose a loss-agnostic distillation framework for variable-rate
+    ICM. A pretrained fixed-rate ICM model is used as a frozen teacher, while a student model learns variable-rate
+    behavior through importance-adaptive quantization and distillation-based optimization. This enables
+    continuous bitrate control with a single model while preserving task-relevant latent components, without
+    requiring the original task-specific loss or downstream task labels. Experiments based on existing
+    ICM models demonstrate that the proposed method provides continuous bitrate control and achieves competitive
+    recognition performance compared with the fixed-rate models.
+  url: https://arxiv.org/abs/2611.29914
+  pdf_url: https://arxiv.org/pdf/2611.29914v1
+  version: v1
+fetched: '2026-11-25'

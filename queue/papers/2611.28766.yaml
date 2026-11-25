@@ -1,0 +1,45 @@
+id: paper:arxiv:2611.28766
+status: skipped
+score: 1
+track: quality_assessment
+matched:
+- ref: concept:IQA
+  count: 1
+  weight: 1
+meta:
+  title: 'JevNavAgent: A Single-Forward Visual Navigation Agent with Trajectory-Level RL for Gigapixel
+    Pathology'
+  authors:
+  - Yonghuang Wu
+  - Zhenyang Liang
+  - Pengfei Wang
+  - Yize Ma
+  - Guoqing Wu
+  - Jinhua Yu
+  published: '2026-11-21'
+  updated: '2026-11-21'
+  categories:
+  - cs.CV
+  abstract: 'Gigapixel whole-slide images (WSIs) exceed single-pass vision-language model (VLM) capacity
+    at cellular resolution, while multiple instance learning relies on query-agnostic offline patching
+    without interactive reasoning. Multi-step VLM navigation agents inspect regions on demand, yet face
+    two bottlenecks: (1) autoregressive action decoding incurs heavy latency, throttling exploration and
+    online multi-trajectory RL; and (2) offline distillation suffers from an existential-versus-universal
+    stopping asymmetry between positive detection and negative exclusion, inducing thumbnail and kinematic
+    shortcuts while leaving policies prone to passing metastases without stopping. Under the Jev (System
+    One) paradigm, a model predicts distributions over predefined decision spaces in one forward pass
+    (0 generated tokens) while deterministic code executes navigation. We build JevNavAgent, a 2B-parameter
+    agent combining factorized stopping, spatial-candidate, and contextual-bilinear answer heads with
+    overview modality dropout. We pair Stage-1 offline counterfactual trajectory alignment (mitigating
+    depth and panning shortcuts) with Stage-2 online trajectory-level GRPO (Traj-GRPO), using decoding-free
+    rollouts to optimize branch-level lesion discovery, in-polygon stopping, and step-wise confidence
+    gain. On Clean Visual WSI-VQA, JevNavAgent achieves 51.57% multi-scale (50.43% terminal-step) overall
+    and 51.39% focal accuracy, outperforming frontier VLM agents and 4B-11B open-source cascades while
+    running nearly 12x faster than frontier APIs (5.63s vs. 66.64-70.04s). On CAMELYON16 Official Test,
+    Traj-GRPO reaches 22.45% localization (converting 11/12, or 91.7%, of visited tumors into grounded
+    stops) with 93.75% specificity and 69.77% slide accuracy, surpassing Stage-1 SFT under matched stopping
+    rules alongside zero-shot budget scaling.'
+  url: https://arxiv.org/abs/2611.28766
+  pdf_url: https://arxiv.org/pdf/2611.28766v1
+  version: v1
+fetched: '2026-11-25'

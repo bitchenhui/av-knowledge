@@ -1,0 +1,42 @@
+id: paper:arxiv:2611.29489
+status: skipped
+score: 1
+track: quality_assessment
+matched:
+- ref: concept:IQA
+  count: 1
+  weight: 1
+meta:
+  title: 'CAR: Reducing Decoder Output Shift in Visual Token Pruning via Coverage Selection and Attention
+    Reallocation'
+  authors:
+  - Xixi Jiang
+  - Pingcheng Dong
+  - Chen Yang
+  - Xin Yang
+  - Kwang-Ting Cheng
+  published: '2026-11-22'
+  updated: '2026-11-22'
+  categories:
+  - cs.CV
+  abstract: Visual token pruning is an effective way to accelerate multimodal large language models (MLLMs).
+    However, existing methods degrade substantially under aggressive pruning, especially on visual grounding
+    (VG). We analyze the sources of this degradation from the perspective of the output shift that pruning
+    causes in decoder layers, and decompose this shift in closed form into two terms, an image summary
+    error and an attention allocation error. The summary error stems from the loss of visual information,
+    and the allocation error from the drop in the share of attention assigned to visual tokens. To reduce
+    both errors, we propose CAR (Coverage selection and Attention Reallocation), a token pruning framework
+    that restores attention share while maintaining information. Specifically, to minimize the summary
+    error, whose upper bound tightens as the retained tokens better cover all visual tokens, our coverage
+    selection retains tokens that are both salient and non-redundant, with saliency from encoder heads
+    chosen by a label-free probe. To minimize the allocation error, our attention reallocation reassigns
+    the attention of the discarded tokens to the retained ones through a closed-form logit bias. On Qwen2.5-VL-7B
+    with $90\%$ of the visual tokens pruned, CAR retains $93.0\%$ of the unpruned accuracy on visual question
+    answering (VQA) and $77.9\%$ on VG, against $26.5\%$ for the best existing method on VG; the logit
+    bias alone raises the VG accuracy of existing methods by up to $24$ points. Experiments on multiple
+    MLLMs across VQA, VG and video understanding show that CAR generalizes well and consistently outperforms
+    existing methods.
+  url: https://arxiv.org/abs/2611.29489
+  pdf_url: https://arxiv.org/pdf/2611.29489v1
+  version: v1
+fetched: '2026-11-25'

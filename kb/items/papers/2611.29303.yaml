@@ -1,0 +1,68 @@
+id: paper:arxiv:2611.29303
+type: paper
+title: 'From Vanishing Gradients to Recursive Self-Improvement: Evaluating the Most Influential Papers
+  in Large Language Model Evolution (1997-2026)'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.29303v1
+  url: https://arxiv.org/abs/2611.29303
+  pdf_url: https://arxiv.org/pdf/2611.29303v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-22'
+  collected: '2026-11-25'
+entities:
+- ref: concept:LLM
+  role: subject
+- ref: concept:RSI
+  role: subject
+- ref: concept:SelfImprovement
+  role: subject
+claims:
+- statement: 该综述以作者出生年1999为锚点、按因果时间线组织，覆盖1997–2026年间共22篇最具影响力的LLM演化论文。
+  confidence: reported
+  metrics:
+  - name: 论文覆盖数
+    value: '22'
+    scope: 综述评估的代表性论文数量
+  - name: 时间跨度
+    value: 1997-2026
+    scope: 综述所覆盖的论文发表年份区间
+  evidence: abstract（初筛，未读全文）
+- statement: 文章复述Chinchilla结论：仅扩展模型参数而不同步扩展数据会导致模型容量欠训练。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: 文章论证RLHF仅带来表面级对齐，遗留缺口进而演化为对抗性越狱与单向拒绝子空间（J-space）问题。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: 文章将2024–2026年LLM现状归纳为四点：递归模型坍塌、自主推理型越狱代理、机器速度代理级入侵、以及闭环递归自我改进（AIDE^2）。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 以因果时间线综述1997–2026年22篇LLM里程碑论文，终点落在RLHF对齐缺口与闭环递归自我改进。
+  abstract_zh: 该综述以作者出生年1999为锚点，构建因果式、按时间排序的分类法，评估1997–2026年间22篇最具影响力的LLM论文。文章从RNN的长程遗忘问题讲起，梳理LSTM门控机制如何选择性保留长期记忆，Word2Vec如何将语言变为向量运算，以及Transformer的全对全注意力为何既开启现代LLM时代又引入二次方瓶颈。随后讨论Chinchilla揭示的参数与数据需同步扩展的规律，以及RLHF带来的表面化对齐如何演化为越狱攻击与单向拒绝子空间（J-space）。最后综合2024–2026年现状，涵盖递归模型坍塌、自主推理型越狱代理、机器速度代理入侵与闭环递归自我改进（AIDE^2）。
+assessment:
+  relevance: medium
+  decision: summary_only
+  reason: LLM演化叙事综述（RNN/Transformer/Chinchilla/RLHF至闭环RSI），属自我改进AI域而非核心编码域，按基准不给deep_read。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: 从梯度消失到递归自我改进：大语言模型演化最具影响力论文评估（1997–2026）
+relations:
+- type: same_topic
+  ref: paper:arxiv:2609.11873
+  note: 同为递归自我改进（RSI）整体图景讨论
+- type: same_topic
+  ref: paper:arxiv:2410.04444
+  note: 综述末尾指向的闭环递归自我改进方向，与Gödel Agent自指式RSI同题
+- type: same_topic
+  ref: paper:arxiv:2412.14352
+  note: 同属LLM自我改进类综述
+- type: same_topic
+  ref: paper:arxiv:2503.22732
+  note: 同属LLM能力演化与开放问题的综述性工作

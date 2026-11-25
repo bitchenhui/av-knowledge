@@ -9,7 +9,7 @@ source:
   url: https://www.via-la.com/via-licensing-alliance-appoints-tony-piotrowski-as-general-counsel/
 time:
   published: '2026-09-15'
-  collected: '2026-11-23'
+  collected: '2026-11-25'
 entities:
 - ref: org:Via-LA
   role: subject
@@ -18,15 +18,15 @@ claims:
   confidence: inferred
   evidence: abstract（初筛，未读全文）
 summaries:
-  one_liner_zh: Via Licensing Alliance 任命 Tony Piotrowski 出任总法律顾问。
-  abstract_zh: 据标题，专利池管理组织 Via Licensing Alliance 宣布任命 Tony Piotrowski 为其总法律顾问。该任命属专利池治理层面的人事变动。
+  one_liner_zh: Via LA 任命 Tony Piotrowski 出任总法律顾问一职。
+  abstract_zh: 据标题，专利池运营机构 Via Licensing Alliance 任命 Tony Piotrowski 担任总法律顾问。该人事任命与专利池法律与许可事务管理相关，具体职责范围暂无法从标题确认。
 assessment:
   relevance: medium
   decision: summary_only
-  reason: Via LA 是音视频编解码专利池组织，其法务负责人任命属专利池生态动态，但非许可政策直接变更。
+  reason: 专利池运营组织 Via LA 的高管任命，属许可生态组织动态但未涉及具体许可政策。
   reviewer: glm-5.3-flash(llm_review)
 provenance:
-  created: '2026-11-23'
+  created: '2026-11-25'
   actor: pipeline-v0
   pipeline: llm_review
-title_zh: Via LA 任命 Tony Piotrowski 为总法律顾问
+title_zh: Via Licensing Alliance 任命 Tony Piotrowski 为总法律顾问

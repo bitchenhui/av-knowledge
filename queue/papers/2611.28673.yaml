@@ -1,0 +1,43 @@
+id: paper:arxiv:2611.28673
+status: reviewed
+score: 2
+track: quality_assessment
+matched:
+- ref: concept:IQA
+  count: 1
+  weight: 1
+- ref: concept:TrainingFree
+  count: 1
+  weight: 1
+meta:
+  title: 'ViewAgent3D: A Training-Free Multi-View Pipeline for 3D Scene Understanding'
+  authors:
+  - Sarosij Bose
+  - Arindam Dutta
+  - Konstantinos Karydis
+  - Amit K. Roy Chowdhury
+  published: '2026-11-21'
+  updated: '2026-11-21'
+  categories:
+  - cs.CV
+  abstract: '3D scene understanding tasks are often approached by building explicit 3D scene representations
+    or by training specialized multi-modal models over point clouds, voxels, or scene graphs. We take
+    a complementary view: for many queries, the main bottleneck is not the absence of a stronger 3D representation
+    but the selection of a small subset of multi-view RGB views that actually makes the query answerable.
+    We present a training-free, query-conditioned multi-view pipeline that performs diverse tasks using
+    only 2D images and a set of tools used purely for inference. Our method first decomposes each query
+    into a set of concepts that identify unique attributes that assist with reasoning. This drives a coarse-to-fine
+    evidence selection process: a coarse retrieval selects and scores all views, a diversity-aware selector
+    reduces redundancy, and a reranking stage helps shortlist views by target visibility or answerability.
+    The resulting evidence is optionally grounded for queries that benefit from explicit localization,
+    and a self-verification step helps refine the final response, especially for open-ended cases. Despite
+    using no task-specific training and no explicit 3D representations at inference time, our approach
+    provides approximately 10% gain on 3D VQA and 5% gain on dense captioning and Embodied QA while being
+    applicable across different scenarios. We further propose a unique judge-based evaluation system,
+    motivating a judge who takes into account many semantically correct or partially correct answers,
+    thereby improving holistic scene understanding.'
+  url: https://arxiv.org/abs/2611.28673
+  pdf_url: https://arxiv.org/pdf/2611.28673v1
+  version: v1
+fetched: '2026-11-25'
+llm_decision: summary_only

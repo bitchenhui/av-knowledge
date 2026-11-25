@@ -1,0 +1,75 @@
+id: paper:arxiv:2611.28817
+type: paper
+title: Rate-Quality-Energy Convex Hull for High Dynamic Range Adaptive Video Streaming
+domain: streaming_delivery
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.28817v1
+  url: https://arxiv.org/abs/2611.28817
+  pdf_url: https://arxiv.org/pdf/2611.28817v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-21'
+  collected: '2026-11-25'
+entities:
+- ref: concept:HLS
+  role: subject
+- ref: metric:VMAF
+  role: compared_against
+claims:
+- statement: 相比默认 HLS 码率阶梯，所提 HDR 感知方法在等 HDRVMAF 条件下最多可节省 54.34% 码率
+  confidence: reported
+  metrics:
+  - name: 码率节省
+    value: 54.34%
+    scope: 相对 Default HLS ladder，等 HDRVMAF 条件下的最大值
+  evidence: abstract（初筛，未读全文）
+- statement: 在较高能耗权重设置下，客户端处理能耗相对最多降低 43.10%
+  confidence: reported
+  metrics:
+  - name: 客户端能耗降低
+    value: 43.10%
+    scope: 较高能耗加权下相对降低的最大值
+  evidence: abstract（初筛，未读全文）
+- statement: 传统 VMAF 优化的码率阶梯频繁选择高分辨率编码，一旦计入解码与上采样能耗即在凸包上被支配
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: 实验基于 LIVE HDR VQA 数据库的 12 段 4K HDR 序列，每段编码评估 72 个表示
+  confidence: reported
+  metrics:
+  - name: 测试序列数
+    value: '12'
+    scope: LIVE HDR Video Quality Assessment Database 4K HDR 序列
+  - name: 每段表示数
+    value: '72'
+    scope: 每段视频的编码表示数量
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 提出联合码率、HDRVMAF 感知质量与客户端能耗的凸包框架，为 HDR 流媒体构建码率阶梯。
+  abstract_zh: 针对 HDR 视频解码复杂度与能耗显著高于 SDR、而现有码率阶梯仍以 VMAF 等 SDR 指标优化的问题，该文提出联合码率、HDR 感知质量（HDRVMAF）与客户端处理能耗（含解码与上采样）的码率-质量-能耗凸包优化框架。实验在
+    LIVE HDR 视频质量评估数据库的 12 段 4K HDR 序列上进行，每段评估 72 个表示。结果表明，传统 VMAF 优化的阶梯频繁选出一旦计入能耗即被支配的高分辨率编码；相比默认 HLS
+    阶梯，所提方法在等 HDRVMAF 下最多节省 54.34% 码率，并在较高能耗权重下实现最高 43.10% 的客户端能耗降低。该框架可作为显式暴露并控制感知质量-能耗权衡的 HDR 码率阶梯构建基础。
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: 属于 HDR 自适应流媒体码率阶梯与客户端能耗联合优化，为流媒体传输域而非核心编码域，按基准给 summary_only。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: 面向高动态范围自适应视频流媒体的码率-质量-能耗凸包优化
+relations:
+- type: same_topic
+  ref: paper:arxiv:2310.09570
+  note: 同属自适应流媒体码率阶梯估计，且均显式考虑客户端能耗
+- type: same_topic
+  ref: paper:arxiv:2408.09044
+  note: 同样利用质量-码率凸包分析自适应流媒体运行点
+- type: same_topic
+  ref: paper:arxiv:2307.14000
+  note: 关联同一团队的视频解码能耗估计研究方向，为本框架能耗项提供基础
+- type: same_topic
+  ref: paper:arxiv:2603.13597
+  note: 同为自适应流媒体码率阶梯（学习式 ladder）构建方法

@@ -1,10 +1,52 @@
-generated: '2026-11-23'
-count: 1089
+generated: '2026-11-25'
+count: 1099
 by_kind:
+  research: 598
   release: 55
-  research: 588
   standard: 446
 facts:
+- date: '2026-11-24'
+  entity: concept:RSI
+  kind: research
+  fact: 提出RecurSciBench基准，用可执行可验证的科学任务独立评估LLM智能体递归自我改进的跨任务与跨领域迁移收益。
+  evidence: paper:arxiv:2611.32508
+  url: https://arxiv.org/abs/2611.32508
+- date: '2026-11-23'
+  entity: concept:VolumetricVideo
+  kind: research
+  fact: 服务端令牌压缩+客户端超网络恢复的3DGS人体体积视频实时流式框架，轻量GPU上22.1ms解码。
+  evidence: paper:arxiv:2611.31140
+  url: https://arxiv.org/abs/2611.31140
+- date: '2026-11-23'
+  entity: concept:RSI
+  kind: research
+  fact: 提出无标签测试时递归自我改进框架TT-RSI，上下文与权重双路迭代精炼，显著超越自一致性基线。
+  evidence: paper:arxiv:2611.30965
+  url: https://arxiv.org/abs/2611.30965
+- date: '2026-11-23'
+  entity: concept:RSI
+  kind: research
+  fact: 首个在任务间隙无需训练/梯度即改写自身权重的具身智能体，实现稳定多轮递归自我改进
+  evidence: paper:arxiv:2611.31117
+  url: https://arxiv.org/abs/2611.31117
+- date: '2026-11-22'
+  entity: concept:RSI
+  kind: research
+  fact: 让LLM在Python会话中编写程序构造低秩权重编辑，无需梯度即可递归自我改进。
+  evidence: paper:arxiv:2611.29513
+  url: https://arxiv.org/abs/2611.29513
+- date: '2026-11-21'
+  entity: concept:SelfImprovement
+  kind: research
+  fact: 让 Qwen3.5-0.8B 读取并编辑自身权重实现自我改进，数学推理大幅提升，但增益缺乏可解释性。
+  evidence: paper:arxiv:2611.28833
+  url: https://arxiv.org/abs/2611.28833
+- date: '2026-11-21'
+  entity: concept:HLS
+  kind: research
+  fact: 提出联合码率、HDRVMAF 感知质量与客户端能耗的凸包框架，为 HDR 流媒体构建码率阶梯。
+  evidence: paper:arxiv:2611.28817
+  url: https://arxiv.org/abs/2611.28817
 - date: '2026-11-20'
   entity: impl:VVdec
   kind: release
@@ -17,6 +59,18 @@ facts:
   fact: Actor-Reflector双智能体框架，在不更新模型参数的前提下递归自改进机器人操作的执行harness。
   evidence: paper:arxiv:2611.27689
   url: https://arxiv.org/abs/2611.27689
+- date: '2026-11-20'
+  entity: concept:RSI
+  kind: research
+  fact: 提出FinEvo自进化框架，用自博弈与可执行奖励提升LLM金融建模能力，为RSI在专业域提供实证。
+  evidence: paper:arxiv:2611.28239
+  url: https://arxiv.org/abs/2611.28239
+- date: '2026-11-20'
+  entity: concept:RSI
+  kind: research
+  fact: 提出DiVE：五个8-12B小型开放权重模型经共享记忆、失败日志与最佳方案轮次集成，以多样性替代规模完成递归自改进。
+  evidence: paper:arxiv:2611.28420
+  url: https://arxiv.org/abs/2611.28420
 - date: '2026-11-19'
   entity: impl:SVT-AV1
   kind: release
@@ -1163,6 +1217,12 @@ facts:
   fact: 以Lean证明助手为根基构建Causalean库与自我改进代理流程，实现因果推断理论研究的自动化生成与机器验证。
   evidence: paper:arxiv:2607.22511
   url: https://arxiv.org/abs/2607.22511
+- date: '2026-07-22'
+  entity: org:Via-LA
+  kind: research
+  fact: 美国专利商标局局长Squires将于10月在Via LA旗舰Bridge峰会发表主题演讲。
+  evidence: industry_news:viala:uspto-director-squires-to-deliver-keynote-speech-at-via-lice
+  url: https://ipfray.com/uspto-director-squires-to-deliver-keynote-speech-at-via-licensing-alliances-marquee-bridge-summit-this-october/
 - date: '2026-07-21'
   entity: concept:SelfImprovement
   kind: research
@@ -1389,7 +1449,7 @@ facts:
 - date: '2026-06-25'
   entity: org:Via-LA
   kind: research
-  fact: WIPO与Via LA合作，扩充经专利池核验的标准必要专利数据。
+  fact: WIPO通过与Via LA合作，扩充经专利池核实的标准必要专利数据。
   evidence: industry_news:viala:wipo-expands-pool-verified-sep-data-with-via-licensing-allia
   url: https://ipfray.com/wipo-expands-pool-verified-sep-data-with-via-licensing-alliance-partnership/
 - date: '2026-06-23'

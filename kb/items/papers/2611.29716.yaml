@@ -1,0 +1,59 @@
+id: paper:arxiv:2611.29716
+type: paper
+title: 'Fin-RSI: A Unified Library of Financial Skills, Checks, and Self-Improvement for LLM Agents'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.29716v1
+  url: https://arxiv.org/abs/2611.29716
+  pdf_url: https://arxiv.org/pdf/2611.29716v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-22'
+  collected: '2026-11-25'
+entities:
+- ref: concept:SelfImprovement
+  role: subject
+- ref: concept:RSI
+  role: builds_on
+- ref: concept:LLM
+  role: uses
+claims:
+- statement: 工具发现使LLM智能体在交易持仓任务上产生有效程序的回合比例从9.7%提升至29.2%。
+  confidence: reported
+  metrics:
+  - name: 有效程序回合比例
+    value: 9.7% → 29.2%
+    scope: 20个开放权重模型、6个交易持仓任务，接入Fin-RSI工具库前后对比
+  evidence: abstract（初筛，未读全文）
+- statement: 对参数量≥140亿的开放权重模型，工具发现使有效程序回合比例从23.6%提升至64.6%。
+  confidence: reported
+  metrics:
+  - name: 有效程序回合比例
+    value: 23.6% → 64.6%
+    scope: 参数量≥14B的开放权重模型子集
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 统一金融技能库通过工具发现与检查反馈让LLM智能体自我改进，有效程序生成率显著提升。
+  abstract_zh: 论文提出Fin-RSI，一个为LLM智能体设计的统一Python库，整合市场分析、预测、投资组合构建与交易研究工具，并通过共享接口跨模型与智能体框架复用。智能体可从自然语言请求中发现合适工具、复用经过测试的实现，并通过检查与反馈机制改进生成的程序。在20个开放权重模型、6个交易持仓任务上评估，工具发现使产生有效程序的回合比例从9.7%提升到29.2%；对参数量≥140亿的模型，从23.6%提升到64.6%。该库与基准已作为共享资源开源发布。
+assessment:
+  relevance: medium
+  decision: summary_only
+  reason: 面向金融领域的LLM智能体统一技能库与自我改进基准，属self_improvement域，按收录规则仅给摘要级。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: Fin-RSI：面向LLM智能体的统一金融技能、检查与自我改进库
+relations:
+- type: same_topic
+  ref: paper:arxiv:2608.12841
+  note: 同为金融交易领域LLM智能体的递归自我改进工作
+- type: same_topic
+  ref: paper:arxiv:2512.17102
+  note: 同样围绕LLM智能体的技能库与自我改进机制
+- type: same_topic
+  ref: paper:arxiv:2510.18428
+  note: 同为自我改进型LLM经验/技能库构建与评估

@@ -1,0 +1,44 @@
+id: paper:arxiv:2611.29167
+status: skipped_by_llm
+score: 2
+track: quality_assessment
+matched:
+- ref: concept:LLM
+  count: 2
+  weight: 1
+- ref: concept:IQA
+  count: 1
+  weight: 1
+meta:
+  title: Decoupling Perception from Generation for Agentic 3D CT Report Generation
+  authors:
+  - Chenyu Wang
+  - Mingyu Chen
+  - Wenchao Li
+  - Kayhan Batmanghelich
+  published: '2026-11-22'
+  updated: '2026-11-22'
+  categories:
+  - cs.CV
+  abstract: 'Chest CT reports repeatedly assess the same anatomical regions for findings and their attributes,
+    such as whether a lung nodule is present and where it is located. These assessments suggest learning
+    to answer visual questions directly, rather than coupling perception to open-ended text generation.
+    Yet current CT report generation models largely follow generic vision-language modeling, which may
+    miss subtle abnormalities when training data are limited. We therefore formulate report generation
+    as a set of visual question-answering decisions coordinated by a large language model (LLM) agent.
+    This decouples visual perception from reasoning and report writing: perception can be learned as a
+    discriminative, non-generative task, while the LLM focuses on reasoning over patient context and posing
+    relevant visual queries. We introduce Rad-VL-JEPA, which unifies report retrieval, finding recognition,
+    and fine-grained attribute characterization through vision-language joint-embedding prediction. Building
+    on this perception module, an agent trained with reinforcement learning (RL) acquires patient-specific
+    visual evidence, while a separate editor incorporates the evidence into the final report, further
+    separating evidence acquisition from report realization. Experiments show that Rad-VL-JEPA achieves
+    strong performance on fine-grained CT understanding tasks with lower amortized per-query inference
+    time than a generative VLM baseline trained with the same CT encoder and VQA data. The resulting reporting
+    system outperforms strong VLM-based and agentic baselines.'
+  url: https://arxiv.org/abs/2611.29167
+  pdf_url: https://arxiv.org/pdf/2611.29167v1
+  version: v1
+fetched: '2026-11-25'
+llm_decision: skip
+llm_reason: 医疗影像（胸部CT）报告生成论文，与音视频技术整体无关，判定跳过；规则匹配中 concept:IQA 为噪声，concept:LLM 为真实使用组件

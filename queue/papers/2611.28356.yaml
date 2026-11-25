@@ -1,0 +1,39 @@
+id: paper:arxiv:2611.28356
+status: reviewed
+score: 2
+track: self_improvement
+matched:
+- ref: concept:LLM
+  count: 2
+  weight: 1
+- ref: concept:SelfImprovement
+  count: 1
+  weight: 1
+meta:
+  title: 'Engram: Multi-Stage Memory for Agentic Tuning of Heterogeneous Models'
+  authors:
+  - Huanran Li
+  - Nhat X. T. Le
+  - Kevin De Angeli
+  - Yao Xuan
+  - Alireza Vahdatpour
+  - Djordje Gligorijevic
+  published: '2026-11-20'
+  updated: '2026-11-20'
+  categories:
+  - cs.AI
+  abstract: 'Large language model (LLM) agents can now tune neural networks, yet without cross-session
+    memory they spend costly trials rediscovering known lessons. Reuse is difficult because production
+    models differ in architecture, training setup and inference budget. We present Engram, a memory system
+    that links past trial outcomes with the hypotheses and rationale behind them and assesses whether
+    this evidence applies to the current model. An online agent curates evidence at the decision points
+    where it is needed: Initial Guidance supplies validated lessons at the start, Session Retrieval supplies
+    related past sessions before each batch of hypotheses is generated, and Trial Candidate Review checks
+    each trial candidate against matching past trials. Between sessions, an offline agent distills validated
+    lessons, making the memory self-improving. On two ads models, Engram reaches the 32-trial result of
+    a no-memory control with 47% fewer trials and also ends with a better model on average.'
+  url: https://arxiv.org/abs/2611.28356
+  pdf_url: https://arxiv.org/pdf/2611.28356v1
+  version: v1
+fetched: '2026-11-25'
+llm_decision: summary_only

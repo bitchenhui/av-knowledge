@@ -1,0 +1,42 @@
+id: paper:arxiv:2611.29693
+status: skipped
+score: 1
+track: quality_assessment
+matched:
+- ref: concept:IQA
+  count: 2
+  weight: 1
+meta:
+  title: 'HandiVid: A High-Quality Dataset for Hand-Driven Interactive Video Generation'
+  authors:
+  - Chaoyang Zhang
+  - Shaohao Rui
+  - Xiaofeng Mao
+  - Yuanxun Xu
+  - Haoyuan Xia
+  - Xiaohong Liu
+  - Qinghe Du
+  - Weijie Ma
+  published: '2026-11-22'
+  updated: '2026-11-22'
+  categories:
+  - cs.CV
+  - cs.AI
+  abstract: Hand-driven egocentric interactive video generation aims to generate dynamic scenes with realistic
+    interaction responses conditioned on hand movements and camera motion. However, existing egocentric
+    video datasets struggle to provide scene diversity, meaningful hand-object interactions, and reliable
+    motion annotations simultaneously. To address these limitations, we introduce HandiVid, a high-quality
+    dataset comprising 200K curated and annotated egocentric interaction video clips for hand-driven interactive
+    video generation. We develop a unified data processing pipeline that integrates public datasets, online
+    videos and synthetic videos. Through video quality assessment, hand detection filtering, and multi-stage
+    interaction validation using vision-language models (VLMs), we select high-quality video clips with
+    meaningful hand-object interactions. Since 3D hand reconstruction relies on initial hand detections,
+    we integrate SAM 3 into the hand detection pipeline to reduce missed detections and improve the completeness
+    of 3D hand annotations. Each video clip is provided with high-quality hand renderings, camera trajectories,
+    and interaction descriptions. Comprehensive dataset analysis and downstream video generation experiments
+    demonstrate the effectiveness of HandiVid in terms of data diversity, annotation quality, and controllable
+    video generation.
+  url: https://arxiv.org/abs/2611.29693
+  pdf_url: https://arxiv.org/pdf/2611.29693v1
+  version: v1
+fetched: '2026-11-25'

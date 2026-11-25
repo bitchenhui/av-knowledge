@@ -1,0 +1,66 @@
+id: paper:arxiv:2611.31117
+type: paper
+title: Self-Upgrading Embodied Agents
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.31117v1
+  url: https://arxiv.org/abs/2611.31117
+  pdf_url: https://arxiv.org/pdf/2611.31117v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-23'
+  collected: '2026-11-25'
+entities:
+- ref: concept:RSI
+  role: subject
+- ref: concept:SelfImprovement
+  role: subject
+claims:
+- statement: 自我升级具身智能体通过权重空间编辑在任务间隙改写自身权重，无需训练、梯度、奖励模型或第二模型，即可完成更多任务且步数与token消耗更少
+  confidence: reported
+  metrics:
+  - name: 模型规模
+    value: 27B
+    scope: 实现自我升级的智能体基础模型参数量
+  - name: 评估种子数
+    value: '48'
+    scope: 每任务48个新种子，数千个held-out回合
+  evidence: abstract（初筛，未读全文）
+- statement: 自我改进是多轮、稳定且持续的：后续多夜的升级保持有效、无崩溃
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: 在同一模型家族的四个规模中，仅27B的智能体能够实现自我升级
+  confidence: reported
+  metrics:
+  - name: 模型家族规模数
+    value: '4'
+    scope: 四个不同参数规模的模型中仅27B成功
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 首个在任务间隙无需训练/梯度即改写自身权重的具身智能体，实现稳定多轮递归自我改进
+  abstract_zh: 该工作提出自我升级具身智能体：白天一个27B语言模型智能体在家庭环境中执行任务，夜间读取自身运行记录，发现大量步骤浪费于触达token上限的回复，将该习惯追溯到隐状态中的一个方向，并改写权重中的一个张量。整个升级过程无训练、无梯度、无奖励模型、无第二个模型、无测试时扩展、无提示工程。为保证不破坏自身，智能体以未改动的自身为对照，在练习任务上测试每个修改，仅保留通过验证的编辑。在数千个held-out回合、每任务48个新种子的评估中，单次保留编辑即使其完成更多任务、步数与token消耗更少；多轮升级稳定持续无崩溃，且四个规模的模型家族中仅27B具备此能力。
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: 论文属自我改进AI域：具身智能体在任务间隙通过权重空间编辑改写自身权重实现递归自我改进，与音视频技术无直接关联，按规则不给deep_read
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: 自我升级的具身智能体
+relations:
+- type: same_topic
+  ref: paper:arxiv:2611.28833
+  note: 同为语言模型通过权重空间编程（WSP）实现自我改进的研究线
+- type: same_topic
+  ref: paper:arxiv:2611.29513
+  note: 同为LLM编程自身权重编辑以达成自我改进
+- type: same_topic
+  ref: paper:arxiv:2611.27689
+  note: 同为具身/机器人场景下的递归自我改进
+- type: same_topic
+  ref: paper:arxiv:2611.21885
+  note: 同为语言模型改写自身权重的方向

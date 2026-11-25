@@ -1,0 +1,47 @@
+id: paper:arxiv:2611.28239
+status: reviewed
+score: 2
+track: self_improvement
+matched:
+- ref: concept:RSI
+  count: 3
+  weight: 1
+- ref: concept:SelfImprovement
+  count: 2
+  weight: 1
+meta:
+  title: 'FinEvo: Recursive Self-Improvement for Long-Horizon Financial Modeling'
+  authors:
+  - Chengjun Pan
+  - Shichun Liu
+  - Zekai Zhou
+  - Shihan Dou
+  - Jiahang Lin
+  - Chengsong Huang
+  - Dingwei Zhu
+  - Tao Gui
+  published: '2026-11-20'
+  updated: '2026-11-20'
+  categories:
+  - cs.AI
+  abstract: 'Advances in large language models (LLMs) have expanded their role in high-value productivity
+    tasks, including financial analysis and modeling, while enabling models to play an increasingly active
+    role in their own improvement. This motivates two complementary lines of inquiry: can financial modeling
+    capabilities provide a foundation for model self-evolution, and can self-evolution, in turn, advance
+    financial capabilities? We introduce FinEvo, a self-evolution framework that integrates autonomous
+    experience construction with financial capability improvement. FinEvo prepares financial models, iteratively
+    evolves challenges through self-play, and learns from the resulting interactions using executable
+    rewards, relying on the same model throughout. An end-to-end execution with Qwen3.6-27B shows that
+    solving feedback supports both increasing reasoning demands and identifying specification issues that
+    executable checks can miss. Learning from these experiences raises whole-task success from 22.73 to
+    29.09 on held-out within-source tasks and from 13.13 to 19.19 on SpreadsheetBench 2 Financial. Comparable
+    gains across task sources and evaluation settings, together with improvement on a task category absent
+    from training, suggest that FinEvo strengthens underlying financial modeling capabilities shared across
+    tasks. These findings support self-evolution as a path toward broader financial competence, advancing
+    the empirical exploration of recursive self-improvement (RSI) in professional domains. Code is available
+    at https://github.com/pcj-sudo/FinEvo.'
+  url: https://arxiv.org/abs/2611.28239
+  pdf_url: https://arxiv.org/pdf/2611.28239v1
+  version: v1
+fetched: '2026-11-25'
+llm_decision: summary_only

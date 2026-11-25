@@ -1,0 +1,68 @@
+id: paper:arxiv:2611.32508
+type: paper
+title: 'RecurSciBench: Benchmarking Recursive Self-Improvement in Data-Driven Scientific Research'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.32508v1
+  url: https://arxiv.org/abs/2611.32508
+  pdf_url: https://arxiv.org/pdf/2611.32508v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-24'
+  collected: '2026-11-25'
+entities:
+- ref: concept:RSI
+  role: subject
+- ref: concept:SelfImprovement
+  role: subject
+- ref: concept:LLM
+  role: builds_on
+claims:
+- statement: 提出RecurSciBench基准及RecurSciPipe框架，能从原始数据集自动构建科学建模与数据分析任务，并具备执行级验证与科学有效性检查。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: 基准覆盖多个科学领域、数据模态与科学目标，用于独立评估自我改进增益。
+  confidence: reported
+  metrics:
+  - name: 覆盖科学领域数
+    value: '4'
+    scope: RecurSciBench基准横跨的科学领域数量
+  evidence: abstract（初筛，未读全文）
+- statement: 在独立任务上对比四个RSI系统进化前后的表现，覆盖同类型、跨类型与跨领域迁移。
+  confidence: reported
+  metrics:
+  - name: 评估RSI系统数
+    value: '4'
+    scope: 基准中评估的RSI系统数量
+  evidence: abstract（初筛，未读全文）
+- statement: 自我改进收益因智能体系统和科学领域而异；总体正收益可与个别任务退化共存；经验可跨任务类型迁移，且即使源域无可测增益也能惠及其他领域。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 提出RecurSciBench基准，用可执行可验证的科学任务独立评估LLM智能体递归自我改进的跨任务与跨领域迁移收益。
+  abstract_zh: 针对LLM智能体自动科研中递归自我改进（RSI）缺乏可执行、可验证评估的问题，作者提出可扩展基准RecurSciBench。其RecurSciPipe框架可从原始数据集自动构建科学建模与数据分析任务，并配备执行级验证与科学有效性检查。基准覆盖四个科学领域、多种数据模态与多样科学目标。实验对比四个RSI系统在源任务上进化前后的初始态与进化态在独立任务上的表现，覆盖同类型、跨类型与跨领域迁移。结果显示自我改进收益因智能体系统和科学领域而异，总体正收益可与个别任务退化共存，且经验可在源域无可测增益时仍迁移惠及其他领域。
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: 提出面向数据驱动科研的递归自我改进（RSI）基准RecurSciBench，属自我改进AI核心主题，非音视频编码核心域，按规则给summary_only。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: RecurSciBench：面向数据驱动科学研究的递归自我改进基准
+relations:
+- type: same_topic
+  ref: paper:arxiv:2607.25886
+  note: 同为数据驱动科研中递归自我改进基准（RSIBench-Data），主题高度相近
+- type: same_topic
+  ref: paper:arxiv:2611.08946
+  note: Flex-RSI同为对前沿智能体RSI能力的基准评测
+- type: same_topic
+  ref: paper:arxiv:2310.02304
+  note: STOP同属递归自我改进（RSI）研究方向，可作为方法谱系参照
+- type: same_topic
+  ref: paper:arxiv:2210.11610
+  note: LLM自我改进（Self-Improvement）主题直接相关

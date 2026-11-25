@@ -9,24 +9,24 @@ source:
   url: https://ipfray.com/wipo-expands-pool-verified-sep-data-with-via-licensing-alliance-partnership/
 time:
   published: '2026-06-25'
-  collected: '2026-11-23'
+  collected: '2026-11-25'
 entities:
 - ref: org:Via-LA
   role: subject
 claims:
-- statement: WIPO通过与Via Licensing Alliance的合作，扩充经专利池核验的标准必要专利数据
+- statement: WIPO通过与Via许可联盟的合作，扩展了经专利池核实的SEP数据
   confidence: inferred
   evidence: abstract（初筛，未读全文）
 summaries:
-  one_liner_zh: WIPO与Via LA合作，扩充经专利池核验的标准必要专利数据。
-  abstract_zh: 据标题，WIPO与Via Licensing Alliance达成合作，扩充其经专利池核验的标准必要专利（SEP）数据。具体合作内容与范围标题未详述。
+  one_liner_zh: WIPO通过与Via LA合作，扩充经专利池核实的标准必要专利数据。
+  abstract_zh: 据标题，WIPO与Via许可联盟达成合作，扩展其经专利池核实的标准必要专利（SEP）数据。该消息由ip fray报道，具体合作细节标题未披露。
 assessment:
   relevance: high
   decision: summary_only
-  reason: 新闻涉及专利池核验的标准必要专利数据及许可生态合作，属专利池/许可政策范畴，按基准仅作摘要收录。
+  reason: 新闻涉及WIPO与Via LA合作扩展专利池核实的SEP数据，属专利池与许可生态范畴，按基准仅作摘要收录。
   reviewer: glm-5.3-flash(llm_review)
 provenance:
-  created: '2026-11-23'
+  created: '2026-11-25'
   actor: pipeline-v0
   pipeline: llm_review
-title_zh: ip fray报道：WIPO通过与Via Licensing Alliance合作扩充经专利池核验的标准必要专利数据
+title_zh: WIPO携手Via许可联盟，扩展经专利池核实的SEP数据

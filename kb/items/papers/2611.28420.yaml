@@ -1,0 +1,66 @@
+id: paper:arxiv:2611.28420
+type: paper
+title: 'Diversity over Scale: Recursive Self-Improvement with Ensembles of Small Open-Weight Models'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.28420v1
+  url: https://arxiv.org/abs/2611.28420
+  pdf_url: https://arxiv.org/pdf/2611.28420v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-20'
+  collected: '2026-11-25'
+entities:
+- ref: concept:RSI
+  role: subject
+- ref: concept:SelfImprovement
+  role: uses
+claims:
+- statement: 五个8-12B开放权重模型经DiVE集成后，测试误差显著低于集成的平均成员水平。
+  confidence: reported
+  metrics:
+  - name: 测试误差相对降幅
+    value: 25.4%
+    scope: 22个MLE-bench Lite竞赛，集成 vs. 其平均成员
+  evidence: abstract（初筛，未读全文）
+- statement: 小型模型集成在MLE-bench Lite上优于单个70B级大模型。
+  confidence: reported
+  metrics:
+  - name: 测试误差相对降幅
+    value: 16.7%
+    scope: 集成 vs. Llama 3.3 70B
+  evidence: abstract（初筛，未读全文）
+- statement: 小型模型集成性能接近超大规模模型且成本更低。
+  confidence: reported
+  metrics:
+  - name: 与最大模型测试误差差距
+    value: 7.1%
+    scope: 集成 vs. Qwen 3.5 122B-A10B
+  - name: 相对成本
+    value: 75%
+    scope: 相对Qwen 3.5 122B-A10B的调用成本
+  evidence: abstract（初筛，未读全文）
+- statement: 共享内存、失败日志与best-idea-wins轮次三项机制共同保障了小模型集成在RSI循环中不崩溃并持续改进。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 提出DiVE：五个8-12B小型开放权重模型经共享记忆、失败日志与最佳方案轮次集成，以多样性替代规模完成递归自改进。
+  abstract_zh: 论文指出现有RSI（递归自改进）循环依赖前沿大模型且单次运行需数百次调用，而单独使用小型开放权重模型时程序易崩溃、改进易停滞。作者提出DiVE（diverse models
+    evolve）集成方法，包含共享内存、失败日志和best-idea-wins轮次三个组件，使多个模型在同一上下文下撰写候选方案并逐轮保留最优思想。在22个MLE-bench Lite竞赛上，五个8-12B开放权重模型的集成测试误差比其平均成员低25.4%，比Llama
+    3.3 70B低16.7%，与Qwen 3.5 122B-A10B相差仅7.1%而成本仅为其75%。结论是小型模型间的多样性可以部分替代RSI所依赖的模型规模。
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: 直接研究递归自改进（RSI）方法，属于自我改进AI核心主题，非音视频核心域故仅初筛摘要。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: 多样性胜过规模：基于小型开放权重模型集成的递归自改进
+relations:
+- type: same_topic
+  ref: paper:arxiv:2310.02304
+  note: 同属递归自改进代码生成方向，均通过迭代重写程序并基于先前版本改进

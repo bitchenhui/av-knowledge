@@ -1,0 +1,69 @@
+id: paper:arxiv:2611.29716
+status: reviewed
+score: 3
+track: self_improvement
+matched:
+- ref: concept:SelfImprovement
+  count: 2
+  weight: 1
+- ref: concept:LLM
+  count: 1
+  weight: 1
+- ref: concept:RSI
+  count: 1
+  weight: 1
+meta:
+  title: 'Fin-RSI: A Unified Library of Financial Skills, Checks, and Self-Improvement for LLM Agents'
+  authors:
+  - Wanghao Ye
+  - Shwai He
+  - Sihan Chen
+  - Yiting Wang
+  - Bowei Tian
+  - Guoheng Sun
+  - Ziyi Wang
+  - Ziyao Wang
+  - Yexiao He
+  - Zheyu Shen
+  - Meng Liu
+  - Yuning Zhang
+  - Meng Feng
+  - Yifei Dong
+  - Yanhong Qian
+  - Yang Wang
+  - Siyuan Peng
+  - Yilong Dai
+  - Zhenle Duan
+  - Joshua Liu
+  - Lang Xiong
+  - Aarosh Das
+  - Zhaoyi Liu
+  - Daeun Jung
+  - Aditya Sarkar
+  - Parastoo Pilevar
+  - Xiaochuan Gong
+  - Yancheng Zhu
+  - Yingying Fan
+  - Qiong Wang
+  - Ang Li
+  published: '2026-11-22'
+  updated: '2026-11-22'
+  categories:
+  - cs.AI
+  abstract: As large language models (LLMs) become more capable, financial agents need tools they can
+    readily discover and use. Yet financial software is fragmented across libraries with different interfaces
+    and conventions, making it difficult to build reliable agent workflows. We present Fin-RSI, a unified
+    Python library of financial skills, checks, and self-improvement designed for LLM agents. It brings
+    together tools for market analysis, forecasting, portfolio construction, and trading research through
+    shared interfaces across models and agent frameworks. Agents can find suitable tools from natural-language
+    requests, reuse tested implementations, and improve generated programs through checking and feedback.
+    Developers can extend the library with new tools without rebuilding integrations for each model. Across
+    20 open-weight models on six trading-position tasks, tool discovery increased the proportion of episodes
+    producing valid programs from 9.7% to 29.2%; for models with at least 14 billion parameters, it rose
+    from 23.6% to 64.6%. We release the library and benchmark as a shared resource for the community and
+    plan to expand its tools and task coverage as financial agents evolve.
+  url: https://arxiv.org/abs/2611.29716
+  pdf_url: https://arxiv.org/pdf/2611.29716v1
+  version: v1
+fetched: '2026-11-25'
+llm_decision: summary_only

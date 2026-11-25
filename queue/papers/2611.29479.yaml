@@ -1,0 +1,47 @@
+id: paper:arxiv:2611.29479
+status: skipped_by_llm
+score: 3
+track: quality_assessment
+matched:
+- ref: concept:IQA
+  count: 2
+  weight: 1
+- ref: metric:PSNR
+  count: 1
+  weight: 1
+- ref: metric:SSIM
+  count: 1
+  weight: 1
+meta:
+  title: Neutron Imaging Enhancement for Lithium Batteries Based on Swin-Transformer and Image Fusion
+  authors:
+  - Hansheng Ding
+  - Fanxu Meng
+  - Tian Zhang
+  published: '2026-11-22'
+  updated: '2026-11-22'
+  categories:
+  - cs.CV
+  abstract: Neutron imaging is highly sensitive to light elements such as lithium and is therefore valuable
+    for non-destructive testing (NDT) and analyzing internal structural evolution in lithium batteries.
+    However, limited neutron-source flux and detector performance often result in images with mixed noise,
+    low contrast, and blurred edges, hindering accurate assessment of battery internal states. To address
+    these issues, this paper proposes a lithium-battery neutron image enhancement method combining an
+    improved Swin-Transformer with spatial-domain image fusion. First, an improved Swin-Transformer incorporating
+    Multi-Dconv Head Transposed Attention (MDTA) and Global Response Normalization (GRN) extracts and
+    reconstructs image features to suppress high-density white spots and Gaussian-Poisson mixed noise.
+    Second, guided filtering and a gradient-adaptive mask are used for selective edge enhancement, while
+    Contrast Limited Adaptive Histogram Equalization (CLAHE) improves local contrast. Finally, a spatial-frequency
+    (SF)-based local block-weighted fusion mechanism adaptively combines the edge-enhanced and contrast-equalized
+    images to preserve microscopic details while suppressing noise. Experiments show that, compared with
+    BM3D, DnCNN, and GAN, the proposed method achieves strong performance in full-reference and no-reference
+    evaluations. Its best PSNR and SSIM reach 33.0517 dB and 0.9637, respectively, while the NR-IQA and
+    Natural Image Quality Evaluator (NIQE) scores are as low as 0.1794 and 4.0974. The method reduces
+    artifacts and over smoothing, improving the visual fidelity and structural identifiability of lithium-battery
+    neutron images.
+  url: https://arxiv.org/abs/2611.29479
+  pdf_url: https://arxiv.org/pdf/2611.29479v1
+  version: v1
+fetched: '2026-11-25'
+llm_decision: skip
+llm_reason: 面向锂电池中子无损检测的去噪/对比度增强，属科学成像应用，与音视频编码、流媒体等AV技术体系无实质关联

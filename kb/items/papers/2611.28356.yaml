@@ -1,0 +1,60 @@
+id: paper:arxiv:2611.28356
+type: paper
+title: 'Engram: Multi-Stage Memory for Agentic Tuning of Heterogeneous Models'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.28356v1
+  url: https://arxiv.org/abs/2611.28356
+  pdf_url: https://arxiv.org/pdf/2611.28356v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-20'
+  collected: '2026-11-25'
+entities:
+- ref: concept:SelfImprovement
+  role: subject
+- ref: concept:LLM
+  role: uses
+claims:
+- statement: Engram在两个广告模型上以少47%的试验次数即达到无记忆对照32次试验所能取得的调优效果
+  confidence: reported
+  metrics:
+  - name: 试验次数减少
+    value: 47%
+    scope: 相对无记忆对照达到其32次试验结果所需试验数，两个ads模型上
+  - name: 对照基线试验数
+    value: 32 trials
+    scope: 无记忆对照组达到同等效果所用试验次数
+  evidence: abstract（初筛，未读全文）
+- statement: Engram最终取得的模型平均优于无记忆对照
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: 离线智能体在会话间蒸馏已验证经验，使记忆系统具备自我改进能力
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 提出跨会话记忆系统Engram，让LLM智能体调优异构神经网络时复用已验证经验，以少47%试验达到对照同等效果。
+  abstract_zh: 论文提出Engram，一种将过往试验结果与背后假设及推理依据关联、并评估证据是否适用于当前模型的记忆系统，解决生产模型在架构、训练设置与推理预算上的异构性导致经验难以复用的问题。在线智能体在关键决策点注入证据：Initial
+    Guidance在会话开始提供已验证经验，Session Retrieval在每批假设生成前检索相关历史会话，Trial Candidate Review将试验候选与匹配的过往试验比对；会话之间由离线智能体蒸馏已验证经验，使记忆具备自我改进能力。在两个广告（ads）模型上，Engram以少47%的试验次数达到无记忆对照32次试验的结果，且最终模型平均更优。
+assessment:
+  relevance: medium
+  decision: summary_only
+  reason: LLM智能体跨会话记忆使调优经验可复用并自我蒸馏改进，属自我改进AI方向，与音视频技术无直接关联，按非核心域初筛收录。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: Engram：面向异构模型智能体调优的多阶段记忆系统
+relations:
+- type: same_topic
+  ref: paper:arxiv:2509.04439
+  note: 同属LLM智能体终身/跨任务记忆复用经验以提升能力的研究线
+- type: same_topic
+  ref: paper:arxiv:2506.06698
+  note: 同属利用历史会话经验实现语言智能体自我改进的研究线
+- type: same_topic
+  ref: paper:arxiv:2510.04618
+  note: 同属智能体上下文/经验演化驱动的LLM自我改进研究线

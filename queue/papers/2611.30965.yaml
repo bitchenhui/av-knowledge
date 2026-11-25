@@ -1,0 +1,51 @@
+id: paper:arxiv:2611.30965
+status: reviewed
+score: 2
+track: self_improvement
+matched:
+- ref: concept:RSI
+  count: 3
+  weight: 1
+- ref: concept:SelfImprovement
+  count: 2
+  weight: 1
+meta:
+  title: 'Beyond Self-Consistency: Recursive Self-Improvement at Test Time'
+  authors:
+  - Jianyu Wu
+  - Yizhou Wang
+  - Encheng Su
+  - Jinouwen Zhang
+  - Pengze Li
+  - Lintao Wang
+  - Chen Tang
+  - Aoran Wang
+  - Wanli Ouyang
+  - Shixiang Tang
+  published: '2026-11-23'
+  updated: '2026-11-23'
+  categories:
+  - cs.CL
+  - cs.AI
+  - cs.LG
+  abstract: 'Large language models (LLMs) that continue improving after deployment (e.g., recursive self-improvement)
+    offer a promising path toward general intelligence. Current test-time methods pursue this goal on
+    unlabeled questions, primarily relying on self-consistency: they generate independent solutions and
+    use majority voting to select an answer or construct training targets. This leaves earlier reasoning
+    unused at inference and can reinforce an incorrect majority during training. Humans instead build
+    on earlier attempts to preserve useful reasoning, correct mistakes and improve their problem-solving
+    strategies. Following this principle, we propose Test-Time Recursive Self-Improvement (TT-RSI), a
+    label-free framework for improving LLMs at test time through two mutually reinforcing components:
+    (1) In-Context RSI repeatedly re-solves each question using the full previous solution as a reference,
+    letting the model decide whether and how to use it so that inference compute builds on earlier reasoning.
+    (2) In-Weight RSI distills successive refinements into the model''s weights, enabling progress beyond
+    an initially wrong majority and theoretically bringing the first attempt toward the model''s infinite-step
+    refinement limit. The updated model answers better and refines more effectively, generating stronger
+    references for subsequent training. Extensive experiments show that TT-RSI improves average accuracy
+    by +13.89% over the base model and outperforms the strongest self-consistency-based method by +4.79%
+    under the same test-time scaling budget.'
+  url: https://arxiv.org/abs/2611.30965
+  pdf_url: https://arxiv.org/pdf/2611.30965v1
+  version: v1
+fetched: '2026-11-25'
+llm_decision: summary_only

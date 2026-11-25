@@ -1,0 +1,83 @@
+id: paper:arxiv:2611.31140
+type: paper
+title: 'HoloSplat: Real-Time Token Streaming for Feed-Forward Human Reconstruction'
+domain: immersive_media
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.31140v1
+  url: https://arxiv.org/abs/2611.31140
+  pdf_url: https://arxiv.org/pdf/2611.31140v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-23'
+  collected: '2026-11-25'
+entities:
+- ref: concept:VolumetricVideo
+  role: subject
+- ref: concept:3DGS
+  role: uses
+- ref: metric:FPS
+  role: measured_by
+- ref: metric:PSNR
+  role: measured_by
+claims:
+- statement: HoloSplat在四块RTX 5090 GPU上以50 Mbit/s带宽平均实现32.2 FPS的实时流式传输。
+  confidence: reported
+  metrics:
+  - name: FPS
+    value: '32.2'
+    scope: 4×RTX 5090，50 Mbit/s带宽下的端到端平均帧率
+  evidence: abstract（初筛，未读全文）
+- statement: 客户端在RTX 3050 Ti笔记本GPU上将每帧解码为3D高斯仅需22.1 ms。
+  confidence: reported
+  metrics:
+  - name: 解码延迟
+    value: 22.1 ms
+    scope: RTX 3050 Ti笔记本GPU，每帧3D高斯解码
+  evidence: abstract（初筛，未读全文）
+- statement: 传输数据量较未压缩float32高斯减少22.8倍。
+  confidence: reported
+  metrics:
+  - name: 数据缩减倍数
+    value: 22.8×
+    scope: 相对未压缩float32 3D高斯载荷
+  evidence: abstract（初筛，未读全文）
+- statement: 神经会话校准（NSC）的校准解码使PSNR提升1.050 dB。
+  confidence: reported
+  metrics:
+  - name: PSNR
+    value: +1.050 dB
+    scope: NSC校准解码相对未校准解码
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 服务端令牌压缩+客户端超网络恢复的3DGS人体体积视频实时流式框架，轻量GPU上22.1ms解码。
+  abstract_zh: HoloSplat是面向以人为中心的体积视频实时流式传输框架，将前馈重建器在高斯头之前切开，构建由服务端令牌压缩与客户端令牌恢复组成的多码率流式编解码器。服务端采用不透明度引导的令牌剪枝、PCA降维与令牌锚点无损几何编码进行压缩；客户端将特征重建超网络融合进高斯头以恢复压缩损失。提出神经会话校准（NSC），在预热阶段利用新到的相机视角在线微调高斯头，以零逐帧开销解决新相机参数与采集条件差异导致的质量退化。系统在四块RTX
+    5090上以50 Mbit/s平均达32.2 FPS，在RTX 3050 Ti笔记本GPU上22.1 ms解码每帧3D高斯，传输数据较未压缩float32高斯减少22.8倍，校准解码使PSNR提升1.050
+    dB。
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: 以3DGS为表示的人体体积视频实时流式编解码框架，属沉浸式媒体域的重要工作，按规则不给deep_read。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-25'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: HoloSplat：面向前馈人体重建的实时令牌流式传输
+relations:
+- type: same_topic
+  ref: paper:arxiv:2310.08205
+  note: 同为以人为中心的实时体积视频直播流式传输系统
+- type: same_topic
+  ref: paper:arxiv:2409.13648
+  note: 同为面向轻量客户端的流式2D动态高斯体积视频方案
+- type: same_topic
+  ref: paper:arxiv:2412.04469
+  note: 同为动态高斯压缩以支持自由视点视频流式传输
+- type: same_topic
+  ref: paper:arxiv:2609.33969
+  note: 同样采用稀疏锚点思路的3DGS体积视频压缩
+- type: same_topic
+  ref: paper:arxiv:2606.29333
+  note: 同属前馈人体重建技术路线，HoloSplat在其基础上叠加流式编解码
