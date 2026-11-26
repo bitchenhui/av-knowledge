@@ -1,0 +1,34 @@
+id: paper:arxiv:2611.34420
+status: skipped
+score: 1
+track: quality_assessment
+matched:
+- ref: concept:IQA
+  count: 1
+  weight: 1
+meta:
+  title: 'DocSEAM: Bidirectional Cross-Page Encoding for Multi-Page Document Understanding'
+  authors:
+  - Hoang-Nhat Nguyen
+  - Chen Change Loy
+  published: '2026-11-25'
+  updated: '2026-11-25'
+  categories:
+  - cs.CV
+  - cs.CL
+  abstract: 'Multi-page document vision-language models encode each page independently, creating a feature-level
+    discontinuity at page boundaries: visual tokens are formed without access to content on adjacent pages,
+    and the language model must reason over these page representations formed in isolation. We introduce
+    DocSEAM (Document Selective Enrichment via Anchored Masking), a lightweight module inserted between
+    a pretrained vision encoder and the language model that injects the inductive bias of local cross-page
+    context into visual representations. For each page, DocSEAM forms a local triplet with its two neighbors,
+    applies center-anchored masked self-attention with directional salience gates to fuse information
+    from neighbor pages, and returns only the enriched center-page tokens, leaving the visual token count
+    unchanged. After a supervised cross-page warm-up and multi-page fine-tuning with DocSEAM frozen, our
+    9B-parameter model achieves state-of-the-art results among the evaluated open-weight models of up
+    to 10B parameters on five multi-page document VQA benchmarks. We further show that under controlled
+    re-pagination, DocSEAM reduces sensitivity to boundary placement and improves cross-page span localization'
+  url: https://arxiv.org/abs/2611.34420
+  pdf_url: https://arxiv.org/pdf/2611.34420v1
+  version: v1
+fetched: '2026-11-26'

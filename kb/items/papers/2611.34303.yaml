@@ -1,0 +1,69 @@
+id: paper:arxiv:2611.34303
+type: paper
+title: 'IRTIQA: Evolving in English, Evaluated in Urdu -- Does Agent Self-Evolution Transfer from English
+  to Urdu and Code-Switched Input?'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.34303v1
+  url: https://arxiv.org/abs/2611.34303
+  pdf_url: https://arxiv.org/pdf/2611.34303v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-25'
+  collected: '2026-11-26'
+entities:
+- ref: concept:SelfImprovement
+  role: subject
+- ref: concept:LLM
+  role: uses
+claims:
+- statement: AgentEvolver（经验引导RL自进化）将AppWorld目标完成率从近零提升至20-36%，在英语、乌尔都语与语码混合所有条件下均成立
+  confidence: reported
+  metrics:
+  - name: AppWorld目标完成率
+    value: 20-36%
+    scope: AgentEvolver框架，跨英/乌/语码混合全部条件（底座近零）
+  evidence: abstract（初筛，未读全文）
+- statement: Autogenesis（协议级进化）将SkillsBench通过率从16.48%提升至22.22%
+  confidence: reported
+  metrics:
+  - name: SkillsBench通过率
+    value: 22.22%
+    scope: Autogenesis进化后（进化前为16.48%）
+  evidence: abstract（初筛，未读全文）
+- statement: 自进化很少缩小语言差距：进化后系统在英语上仍更强，DROP F1英语领先乌尔都语最多0.26，多步任务上差距最大
+  confidence: reported
+  metrics:
+  - name: DROP F1英-乌差距
+    value: '0.26'
+    scope: 进化后系统，英语相对乌尔都语的最大差距
+  evidence: abstract（初筛，未读全文）
+- statement: 在共享Gemma-4 31B底座上语言差距进化前即存在，RL式进化对乌尔都语推理的伤害可能大于英语；语码混合应视为独立条件而非退化翻译，语言平权不能仅靠自我改进自发涌现
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 发布IRTIQA多语言基准，评估三种自进化框架，发现自进化提升能力但几乎不缩小英-乌尔都语能力差距
+  abstract_zh: 该工作构建IRTIQA基准，将DROP、SNIPS、AppWorld与SkillsBench对齐为英文、乌尔都语译文与乌尔都语语码混合三变体，采用矩阵语言语码混合流水线并经人工校验。作者用其评估三种自进化框架——Tool-R0（自博弈RL）、AgentEvolver（经验引导RL）与Autogenesis（协议级进化）——与未进化底座的差异。自进化普遍提升能力：AgentEvolver将AppWorld目标完成率从近零提升至20-36%，Autogenesis将SkillsBench通过率从16.48%提升至22.22%。但进化很少缩小语言差距：进化后系统在英语上仍领先最多0.26
+    DROP F1，多步任务差距最大，语码混合表现为独立条件而非退化翻译；在共享Gemma-4 31B底座上差距进化前即存在，且RL式进化对乌尔都语推理的伤害可能大于英语，故语言平权须作为显式设计目标。
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: LLM智能体自进化跨语言迁移基准（自我改进AI域），非音视频核心编码域，按规则给summary_only
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-26'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: IRTIQA：英文中进化、乌尔都语中评估——智能体自我进化能否从英语迁移到乌尔都语与语码混合输入
+relations:
+- type: same_topic
+  ref: paper:arxiv:2410.08964
+  note: 同为多语言环境下LLM自我改进研究，本工作聚焦乌尔都语/语码混合下自进化迁移
+- type: same_topic
+  ref: paper:arxiv:2210.11610
+  note: 同属LLM自我改进方向，本工作评估的是智能体级自进化框架的语言迁移性
+- type: same_topic
+  ref: paper:arxiv:2510.07841
+  note: 同属LLM智能体自进化及其评测研究

@@ -1,0 +1,83 @@
+id: paper:arxiv:2611.33836
+type: paper
+title: Can Its Own Misses Teach an MLLM to Find Small Brain Metastases?
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.33836v1
+  url: https://arxiv.org/abs/2611.33836
+  pdf_url: https://arxiv.org/pdf/2611.33836v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-25'
+  collected: '2026-11-26'
+entities:
+- ref: concept:LLM
+  role: subject
+- ref: concept:RSI
+  role: uses
+- ref: concept:SelfImprovement
+  role: uses
+claims:
+- statement: LANTERN 在 BraTS-MET 上经 15 轮无人值守迭代，将微调后 4B MLLM 在每扫描 1 个假阳性下的病灶检出率从 75% 提升到 94%。
+  confidence: reported
+  metrics:
+  - name: 病灶检出率
+    value: 94%
+    scope: BraTS-MET，每扫描 1 假阳性，LANTERN 15 轮迭代后
+  - name: 基线检出率
+    value: 75%
+    scope: 同一微调 4B MLLM，迭代前
+  evidence: abstract（初筛，未读全文）
+- statement: 对 0.1-1 mL 的小病灶，LANTERN 检出 91%，而五个前沿 MLLM 在起始协议下最多仅 51%（整体）/29%（小病灶）。
+  confidence: reported
+  metrics:
+  - name: 小病灶检出率
+    value: 91%
+    scope: 0.1-1 mL 病灶，每扫描 1 假阳性，LANTERN
+  - name: 前沿 MLLM 整体检出率
+    value: 51%
+    scope: 五个前沿 MLLM，起始协议，每扫描 1 假阳性
+  - name: 前沿 MLLM 小病灶检出率
+    value: 29%
+    scope: 0.1-1 mL 病灶，五个前沿 MLLM，起始协议
+  evidence: abstract（初筛，未读全文）
+- statement: 检出增益可泛化：外部队列达 89%，未见过的脑膜瘤任务达 77%。
+  confidence: reported
+  metrics:
+  - name: 外部队列检出率
+    value: 89%
+    scope: 外部独立队列，LANTERN 迭代后
+  - name: 脑膜瘤检出率
+    value: 77%
+    scope: 未见脑膜瘤数据，LANTERN 迭代后
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: LANTERN 让 MLLM 从自身漏检归因中递归自我改进，15 轮无监督迭代将脑转移瘤检出率从 75% 提升至 94%。
+  abstract_zh: 论文提出 LANTERN 框架，将模型开发组织为误差驱动的递归自我改进循环：失败普查把每个漏检病灶归因到四类原因，LLM 导师每轮在证据获取、视觉表示、学习策略、决策聚合四个层级之一进行修订，保留规则在首轮前冻结、不接触测试数据且工具调用全程可审计。在
+    BraTS-MET 上，经 15 轮无人值守迭代，微调后的 4B MLLM 在每扫描 1 个假阳性下的检出率从 75% 升至 94%，其中 0.1-1 mL 小病灶达 91%；五个前沿 MLLM
+    在起始协议下最多仅 51% 与 29%。增益在外部队列（89%）与未见过的脑膜瘤（77%）上仍然保持。
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: 误差驱动的 MLLM 递归自我改进（RSI）典型工作，属 self_improvement 域而非音视频核心域，按收录基准给 summary_only。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-26'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: 自身漏检能否教会多模态大模型发现小脑转移瘤？
+relations:
+- type: same_topic
+  ref: paper:arxiv:2611.26806
+  note: 同属医学领域递归自我改进（临床模型-管线协同演进）研究方向
+- type: same_topic
+  ref: paper:arxiv:2510.03687
+  note: 同为医学 LLM 自我改进（反思纠错 vs 误差驱动递归改进）
+- type: same_topic
+  ref: paper:arxiv:2608.03733
+  note: 同为失败/漏检信息驱动的 MLLM 自我改进
+- type: same_topic
+  ref: paper:arxiv:2604.17658
+  note: 同属错误归因驱动的自改进研究线

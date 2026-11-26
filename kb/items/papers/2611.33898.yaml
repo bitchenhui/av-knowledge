@@ -1,0 +1,56 @@
+id: paper:arxiv:2611.33898
+type: paper
+title: 'MoS: Mixture-of-Modality Streaming for Low-Latency Online Video LLM Analytics over Dynamic Networks'
+domain: streaming_delivery
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.33898v1
+  url: https://arxiv.org/abs/2611.33898
+  pdf_url: https://arxiv.org/pdf/2611.33898v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-25'
+  collected: '2026-11-26'
+entities:
+- ref: concept:LLM
+  role: subject
+claims:
+- statement: MoS 在 500 条 StreamingBench 视频问答对、4G/5G 上行轨迹、VideoLLM-Online 与 DisPider 后端上，相对被评估流式基线最多减少延迟违约
+    94.3%。
+  confidence: reported
+  metrics:
+  - name: 延迟违约减少
+    value: 94.3%
+    scope: 相对被评估流式基线，最多值；500 StreamingBench 视频问答对 + 4G/5G 上行轨迹 + VideoLLM-Online/DisPider 后端
+  evidence: abstract（初筛，未读全文）
+- statement: MoS 在相同测试条件下相对被评估流式基线最多提升准确率 60.4%。
+  confidence: reported
+  metrics:
+  - name: 准确率提升
+    value: 60.4%
+    scope: 相对被评估流式基线，最多值；500 StreamingBench 视频问答对 + 4G/5G 上行轨迹 + VideoLLM-Online/DisPider 后端
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 提出MoS系统，在波动网络上自适应混合传输视频与文本模态，实现帕累托最优的低延迟视频LLM在线分析。
+  abstract_zh: 针对云端视频大语言模型在线分析需持续上传视频、在恶劣动态网络下精度与响应性双双下降的问题，提出MoS流传输系统。其核心是利用视频LLM中视觉与派生文本模态的互补性与可替换性：设备端通过自适应锚帧选择与增量内容跟踪生成低延迟文本描述；联合性能剖析器刻画视频与文本配置对的精度与开销（含字幕输入分辨率与输出token预算）。基于随机优化的模态控制器结合两种模态的异步时延，按网络状况自适应选择模态组合与配置。在500条StreamingBench视频问答对、4G/5G上行轨迹及VideoLLM-Online与DisPider后端上，MoS相对被评估流式基线最多降低延迟违约94.3%、提升准确率60.4%。
+assessment:
+  relevance: high
+  decision: summary_only
+  reason: 该文是面向动态4G/5G网络的低延迟视频流传输系统（视频LLM分析），属流媒体与传输域，但非核心编码域，故按初筛摘要收录。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-26'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: MoS：面向动态网络上低延迟在线视频LLM分析的模态混合流传输系统
+relations:
+- type: same_topic
+  ref: paper:arxiv:2502.05695
+  note: 同为面向无线动态网络的自适应视频/语义流传输，按网络状态自适应调整传输内容以兼顾性能与开销
+- type: same_topic
+  ref: paper:arxiv:2308.00531
+  note: 同为无线网络上的视频语义通信/自适应流传输研究，以带宽受限下保持下游任务性能为目标
+- type: same_topic
+  ref: paper:arxiv:2608.06959
+  note: 同以设备端生成的文本摘要/描述替代原始视频上传以节省带宽并支撑云端模型推理

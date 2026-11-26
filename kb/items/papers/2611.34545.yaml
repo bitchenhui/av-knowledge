@@ -1,0 +1,59 @@
+id: paper:arxiv:2611.34545
+type: paper
+title: 'Recalling the Past to Answer the Present: Context-Aware Multi-Evidence Reasoning for Streaming
+  Video Question Answering'
+domain: streaming_delivery
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.34545v1
+  url: https://arxiv.org/abs/2611.34545
+  pdf_url: https://arxiv.org/pdf/2611.34545v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-25'
+  collected: '2026-11-26'
+entities:
+- ref: concept:TrainingFree
+  role: subject
+claims:
+- statement: StreamRecall基准包含4,983个问题、覆盖462个视频，提供与查询时刻对齐的上下文及细粒度时间证据标注。
+  confidence: reported
+  metrics:
+  - name: 问题数
+    value: 4,983
+    scope: StreamRecall基准
+  - name: 视频数
+    value: '462'
+    scope: StreamRecall基准
+  evidence: abstract（初筛，未读全文）
+- statement: 提出的EviStream是免训练的因果视觉记忆机制，可在固定KV缓存预算下保留对推理关键的证据，用于长时流式视频问答。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: 证据利用级联通过证据定位、证据接地、链补全与答案推导四个环节系统诊断流式视频问答模型的推理能力。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+- statement: 实验表明当前视觉语言模型与真实流式场景问答需求之间存在显著差距。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 提出流式视频问答基准StreamRecall与免训练因果视觉记忆EviStream，在固定KV预算下保留推理关键证据。
+  abstract_zh: 现有视频问答基准多为离线评测，难以反映真实流式场景中模型需在历史视频里检索并推理分散证据的需求。作者提出StreamRecall基准，包含462个视频上的4,983个问题，提供与查询时刻对齐的上下文及细粒度时间证据标注，要求模型检索、关联并推理时间上分散的证据。同时提出证据利用级联（Evidence
+    Utilization Cascade），从证据定位、接地、链补全到答案推导逐级诊断模型推理能力。为支持高效长时流式推理，提出免训练的因果视觉记忆机制EviStream，在固定KV缓存预算下保留对推理关键的证据。实验显示当前视觉语言模型与真实流式需求之间存在显著差距。
+assessment:
+  relevance: medium
+  decision: summary_only
+  reason: 面向流式视频在线理解的多证据问答基准与免训练因果记忆机制，贴近流式智能分析但非核心编码域，按规则仅初筛收录。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-26'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: 回忆过去以回答当下：面向流式视频问答的上下文感知多证据推理
+relations:
+- type: same_topic
+  ref: paper:arxiv:2611.33898
+  note: 同为面向流式/在线视频LLM分析的工作，均关注实时到达视频上的理解与资源约束
+- type: same_topic
+  ref: paper:arxiv:2606.00825
+  note: 同为长时程记忆驱动的视频问答基准，均评测VLM对历史视频中证据的检索与推理

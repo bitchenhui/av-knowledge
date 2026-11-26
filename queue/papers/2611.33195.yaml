@@ -1,0 +1,35 @@
+id: paper:arxiv:2611.33195
+status: skipped
+score: 1
+track: self_improvement
+matched:
+- ref: concept:SelfImprovement
+  count: 1
+  weight: 1
+meta:
+  title: Verified experience improves materials prediction with large language models
+  authors:
+  - Yiming Zhang
+  - Koji Tsuda
+  published: '2026-11-16'
+  updated: '2026-11-16'
+  categories:
+  - cs.CL
+  - cond-mat.mtrl-sci
+  - cs.AI
+  abstract: 'Materials discovery is an iterative loop: experiments and calculations verify predictions,
+    and each outcome can inform the next. Yet most predictors are specialized single-task models fixed
+    after training. Large language models have recently emerged as predictors across heterogeneous tasks
+    but generally underperform specialized models, and retrieval-augmented variants discard their own
+    outcomes. Benchmarks also score queries in isolation, leaving improvement from outcomes untested.
+    Here we construct MatMemBench, a sequential benchmark of 22 materials tasks that reveals outcomes
+    only after prediction and tests online adaptation, memory retention and cross-task transfer. We present
+    MatRecall, a framework that lets large language models store verified predictions, with evidence,
+    outcome and error, as episodes and recall them without retraining. MatRecall improved median performance
+    by 62% over a memory-free model, exceeded specialized models on 11 tasks, remained useful after feedback
+    stopped and transferred between related tasks. Verified experience could become a reusable resource
+    for self-improving discovery loops.'
+  url: https://arxiv.org/abs/2611.33195
+  pdf_url: https://arxiv.org/pdf/2611.33195v1
+  version: v1
+fetched: '2026-11-26'

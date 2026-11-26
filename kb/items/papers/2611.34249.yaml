@@ -1,0 +1,68 @@
+id: paper:arxiv:2611.34249
+type: paper
+title: 'Navigent: A Geometry-Grounded Agentic Framework for Vision Language Navigation'
+domain: self_improvement
+research_lines: []
+source:
+  channel: arxiv
+  external_id: 2611.34249v1
+  url: https://arxiv.org/abs/2611.34249
+  pdf_url: https://arxiv.org/pdf/2611.34249v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-25'
+  collected: '2026-11-26'
+entities:
+- ref: concept:SelfImprovement
+  role: subject
+claims:
+- statement: Navigent 在 R2R-CE validation-unseen 集上达到 84.0% 成功率（SR）
+  confidence: reported
+  metrics:
+  - name: SR
+    value: 84.0%
+    scope: R2R-CE validation-unseen，1839 episodes
+  evidence: abstract（初筛，未读全文）
+- statement: Navigent 在 R2R-CE validation-unseen 集上达到 72.9% SPL
+  confidence: reported
+  metrics:
+  - name: SPL
+    value: 72.9%
+    scope: R2R-CE validation-unseen，1839 episodes
+  evidence: abstract（初筛，未读全文）
+- statement: Navigent 在 RxR-CE validation-unseen 集上达到 86.0% 成功率（SR）
+  confidence: reported
+  metrics:
+  - name: SR
+    value: 86.0%
+    scope: RxR-CE validation-unseen，3669 episodes
+  evidence: abstract（初筛，未读全文）
+- statement: Navigent 在 RxR-CE validation-unseen 集上达到 69.1% SPL
+  confidence: reported
+  metrics:
+  - name: SPL
+    value: 69.1%
+    scope: RxR-CE validation-unseen，3669 episodes
+  evidence: abstract（初筛，未读全文）
+- statement: 离线自改进流程在不更新模型权重的前提下，通过分析成功与失败训练轨迹精炼导航提示词与 GEC 逻辑
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 基于冻结MLLM与几何执行批评器的VLN智能体框架，配合离线自改进，R2R-CE/RxR-CE上SR达84%/86%。
+  abstract_zh: 提出 Navigent，一个围绕冻结多模态大语言模型（MLLM）构建的智能体视觉语言导航（VLN）框架，核心组件为几何锚定执行批评器（GEC）。GEC 执行两类一致性检查：动作-运动一致性（核对实测位移与指令动作）以及运动-地标一致性（在世界坐标中跟踪智能体选择的视觉锚点与入口候选）；一旦检测到偏差即中断剩余动作序列，触发重观测、局部调整或基于节点的恢复，历史视觉记忆支持长程路线的进度跟踪。框架还包含离线自改进流程，通过分析成功与失败训练轨迹精炼导航提示词与
+    GEC 逻辑，且模型权重保持不变。在 R2R-CE validation-unseen（1,839 episodes）与 RxR-CE validation-unseen（3,669 episodes）上分别取得
+    84.0%/86.0% 成功率（SR）与 72.9%/69.1% SPL。
+assessment:
+  relevance: medium
+  decision: summary_only
+  reason: 属LLM智能体自改进方向（冻结权重下离线精炼提示词与批评逻辑），但核心为具身视觉语言导航，与音视频核心技术无直接关联，按非核心域收录。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-26'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: Navigent：一种几何锚定的视觉语言导航智能体框架
+relations:
+- type: same_topic
+  ref: paper:arxiv:2506.01551
+  note: 同为基于LLM的视觉语言导航自改进方向（EvolveNav）

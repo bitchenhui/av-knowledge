@@ -1,0 +1,42 @@
+id: paper:arxiv:2611.33839
+status: reviewed
+score: 3
+track: video_image_coding
+matched:
+- ref: concept:EntropyModel
+  count: 1
+  weight: 1
+- ref: metric:FID
+  count: 1
+  weight: 1
+- ref: metric:PSNR
+  count: 1
+  weight: 1
+meta:
+  title: 'PRISM: Perceptual Rate-Controllable Extreme Image Compression with Visual State-Space Models'
+  authors:
+  - Md Adnan Faisal Hossain
+  - Fengqing Zhu
+  published: '2026-11-25'
+  updated: '2026-11-25'
+  categories:
+  - eess.IV
+  - cs.CV
+  abstract: 'Generative codecs built on pretrained diffusion priors achieve high perceptual quality at
+    ultra-low bitrates (below 0.05 bpp). However, most methods still require a separate model for each
+    bitrate, and offer no control over the amount of detail synthesized. Their rate efficiency also depends
+    on the entropy model, where Mamba-based state-space models (SSMs) have recently improved autoregressive
+    context modeling. However, conventional SSM scans are not aligned with the decoding order, and each
+    decoding pass restarts from an empty state, discarding context accumulated in previous passes. We
+    propose PRISM, an extreme image compression method that addresses these limitations. A single model
+    provides two continuous controls: a rate knob that traverses the rate-distortion curve and a realism
+    knob that adjusts the level of detail synthesized. Its visual state-space (VSS) context model introduces
+    a decode-order-aligned (DOA) scan, which predicts each latent from a state that summarizes all decoded
+    context, and cross-tap state carry, which initializes each tap with a summary of the previous one.
+    Experiments show that PRISM outperforms both variable-rate and fixed-rate codecs, requiring on average
+    22% less bitrate than the strongest baseline at equal FID while also achieving higher PSNR.'
+  url: https://arxiv.org/abs/2611.33839
+  pdf_url: https://arxiv.org/pdf/2611.33839v1
+  version: v1
+fetched: '2026-11-26'
+llm_decision: deep_read

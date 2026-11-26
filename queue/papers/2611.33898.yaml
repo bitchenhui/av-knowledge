@@ -1,0 +1,44 @@
+id: paper:arxiv:2611.33898
+status: reviewed
+score: 2
+track: streaming_delivery
+matched:
+- ref: concept:LLM
+  count: 1
+  weight: 1
+- ref: metric:MOS
+  count: 1
+  weight: 1
+meta:
+  title: 'MoS: Mixture-of-Modality Streaming for Low-Latency Online Video LLM Analytics over Dynamic Networks'
+  authors:
+  - Zekai Li
+  - Xiaoyi Fan
+  - Yifei Zhu
+  published: '2026-11-25'
+  updated: '2026-11-25'
+  categories:
+  - cs.NI
+  abstract: The serving model for next-generation video analytics systems is shifting from traditional
+    task-specific vision models to general-purpose online video Large Language Models (LLMs). Online video
+    LLMs enable flexible, contextual understanding of continuously arriving video content via natural
+    language. However, their substantial resource requirements typically mandate cloud-based inference,
+    making continuous video streaming from user devices necessary to keep the cloud model's context current
+    for online interaction. This introduces significant challenges under existing dynamic and often harsh
+    networks, degrading both accuracy and responsiveness in latency-sensitive applications. In this paper,
+    we propose MoS, a new streaming system that adaptively streams a combination of visual and derived
+    textual modalities over fluctuating networks to enable Pareto-optimal video LLM analytics. The key
+    insight is to leverage the complementarity and interchangeability of different modalities, hidden
+    in video LLM, to improve system performance. Concretely, MoS introduces adaptive anchor frame selection
+    and incremental content tracking to enable low-latency text description generation at the device side.
+    A joint profiler characterizes the accuracy and overhead of paired video and textual configurations,
+    including caption input resolution and output-token budget. A stochastic optimization-based modality
+    controller then selects modality combinations and configurations using this profile and the asynchronous
+    latency of the two modalities to adapt to network conditions. Across 500 StreamingBench video-question
+    pairs, 4G/5G uplink traces, and the VideoLLM-Online and DisPider backends, MoS reduces latency violations
+    by up to 94.3% and improves accuracy by up to 60.4% relative to the evaluated streaming baselines.
+  url: https://arxiv.org/abs/2611.33898
+  pdf_url: https://arxiv.org/pdf/2611.33898v1
+  version: v1
+fetched: '2026-11-26'
+llm_decision: summary_only

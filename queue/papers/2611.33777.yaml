@@ -1,0 +1,38 @@
+id: paper:arxiv:2611.33777
+status: skipped
+score: 1
+track: quality_assessment
+matched:
+- ref: concept:IQA
+  count: 1
+  weight: 1
+meta:
+  title: Agentic Reinforcement Learning with Immediate and Prospective Credit Assignment for Medical Visual
+    Reasoning
+  authors:
+  - Yuqi Cheng
+  - Rui Meng
+  - Yijin Li
+  - Chandra Sekhar Reddy Edula
+  - Xiuwei Zhang
+  published: '2026-11-25'
+  updated: '2026-11-25'
+  categories:
+  - cs.CV
+  abstract: Medical visual question answering (VQA) requires acquiring useful evidence and deciding where
+    to look next. Yet final-answer rewards do not reveal which observations support answering or guide
+    subsequent inspection. We introduce MedPACT, an agentic reinforcement learning framework that learns
+    selective observation policies through immediate answer support and prospective guidance. Our content-controlled
+    estimator compares next actions induced by real and matched alternative observations under a shared
+    real-observation history, isolating how observed content improves subsequent decisions. We combine
+    both forms of credit within GRPO, assigning observation credit to the corresponding tool-call tokens
+    alongside trajectory-level outcome supervision. MedPACT uses a single vision-language model and image-question-answer
+    supervision, with credit estimation confined to training. Experiments with 4B and 8B backbones on
+    six medical VQA benchmarks demonstrate improved accuracy, strong out-of-distribution generalization,
+    and substantially lower inference costs. Case studies further illustrate how MedPACT avoids repeated
+    observations and uses acquired evidence to guide subsequent inspection, demonstrating real-world practice
+    potential.
+  url: https://arxiv.org/abs/2611.33777
+  pdf_url: https://arxiv.org/pdf/2611.33777v1
+  version: v1
+fetched: '2026-11-26'

@@ -1,0 +1,49 @@
+id: paper:arxiv:2611.33935
+status: skipped_by_llm
+score: 3
+track: quality_assessment
+matched:
+- ref: concept:LLM
+  count: 2
+  weight: 1
+- ref: concept:IQA
+  count: 1
+  weight: 1
+- ref: concept:TrainingFree
+  count: 1
+  weight: 1
+meta:
+  title: 'BayesPath: Reliability-Aware Bayesian Reasoning for Whole-Slide Pathology Agents'
+  authors:
+  - Bryan Wong
+  - Xun Xu
+  - Jongwoo Kim
+  - Huazhu Fu
+  - Nancy F. Chen
+  - Mun Yong Yi
+  published: '2026-11-25'
+  updated: '2026-11-25'
+  categories:
+  - cs.CV
+  abstract: 'Diagnosing whole-slide images (WSIs) requires hypothesis-driven reasoning: pathologists form
+    a differential diagnosis, seek discriminative evidence, weigh its reliability, and stop once it suffices.
+    However, existing training-free WSI agents lack an explicit framework for such reasoning. They typically
+    use a large language model (LLM) to aggregate the region descriptions of a multimodal LLM (MLLM),
+    without a belief over the candidates or regard for the descriptions'' reliability. Consequently, a
+    repeated model error counts as independent evidence for an incorrect diagnosis. We introduce BayesPath,
+    a training-free WSI agent that casts the pathologist''s Scan-Look-Weigh-Decide process as reliability-aware
+    Bayesian reasoning. An explicit belief over the candidates is updated with each observation through
+    a reliability-aware likelihood and guides where to look next and when to stop. This likelihood corrects
+    for the models'' answer bias, discounts correlated observations, and captures diagnostic confusions
+    estimated without labels. The updates form an interpretable evidence trail of how each observation
+    shapes the belief. On five MultiPathQA tasks spanning slide classification and slide VQA, BayesPath
+    achieves the highest average accuracy among training-free agents, 58.6% against 34.1% for the next
+    best, with large gains on slide classification. On identical observations, Bayesian updating outperforms
+    LLM aggregation on average, even with a larger LLM. BayesPath''s belief is also better calibrated
+    than naive Bayes, so uncertain cases can be deferred to pathologists. Code is available at https://github.com/bryanwong17/BayesPath'
+  url: https://arxiv.org/abs/2611.33935
+  pdf_url: https://arxiv.org/pdf/2611.33935v1
+  version: v1
+fetched: '2026-11-26'
+llm_decision: skip
+llm_reason: 面向病理全切片诊断的LLM智能体贝叶斯推理工作，属医学AI而非音视频技术，且非自我改进类研究，判为skip

@@ -1,0 +1,64 @@
+id: paper:arxiv:2611.33839
+type: paper
+title: 'PRISM: Perceptual Rate-Controllable Extreme Image Compression with Visual State-Space Models'
+domain: video_image_coding
+research_lines:
+- learned_codec
+source:
+  channel: arxiv
+  external_id: 2611.33839v1
+  url: https://arxiv.org/abs/2611.33839
+  pdf_url: https://arxiv.org/pdf/2611.33839v1
+  venue: arXiv preprint
+time:
+  published: '2026-11-25'
+  collected: '2026-11-26'
+entities:
+- ref: concept:EntropyModel
+  role: subject
+- ref: metric:FID
+  role: measured_by
+- ref: metric:PSNR
+  role: measured_by
+claims:
+- statement: PRISM 在相同 FID 下平均码率比最强基线低22%，同时取得更高的 PSNR，优于变码率与固定码率编解码器。
+  confidence: reported
+  metrics:
+  - name: 码率节省
+    value: 22%
+    scope: equal-FID条件下相对最强基线的平均码率节省
+  evidence: abstract（初筛，未读全文）
+- statement: 单一模型提供码率与真实感两个连续控制旋钮，可遍历率失真曲线并调节合成细节水平，面向低于0.05 bpp的超低码率区间。
+  confidence: reported
+  metrics:
+  - name: 目标码率区间
+    value: <0.05 bpp
+    scope: 基于扩散先验生成式编解码的超低码率工作区间
+  evidence: abstract（初筛，未读全文）
+- statement: 提出解码序对齐（DOA）扫描与跨tap状态传递：熵模型从汇总全部已解码上下文的状态预测各潜变量，并跨解码pass继承状态摘要而非从空状态重启。
+  confidence: reported
+  evidence: abstract（初筛，未读全文）
+summaries:
+  one_liner_zh: 单模型双旋钮（码率+真实感）极致图像压缩，SSM熵模型采用解码序对齐扫描与跨tap状态传递。
+  abstract_zh: 基于预训练扩散先验的生成式编解码器可在低于0.05 bpp的超低码率下获得高感知质量，但多数方法需为每个码率单独训练模型，且无法控制合成细节量。PRISM 用单一模型提供两个连续控制旋钮：码率旋钮遍历率失真曲线，真实感旋钮调节合成细节水平。其视觉状态空间（VSS）上下文模型引入与解码顺序对齐（DOA）的扫描，使每个潜变量从汇总全部已解码上下文的状态进行预测，并通过跨tap状态传递避免每次解码从空状态重启。实验表明，PRISM
+    优于变码率与固定码率编解码器，在相同 FID 下平均码率比最强基线低22%，同时取得更高 PSNR。
+assessment:
+  relevance: high
+  decision: deep_read
+  reason: 核心域学习式图像压缩：单模型同时实现码率与真实感双连续控制，并提出解码序对齐的SSM熵模型改进，贡献与基线对比明确。
+  reviewer: glm-5.3-flash(llm_review)
+provenance:
+  created: '2026-11-26'
+  actor: pipeline-v0
+  pipeline: llm_review
+title_zh: PRISM：基于视觉状态空间模型的感知级码率可控极致图像压缩
+relations:
+- type: same_topic
+  ref: paper:arxiv:2506.21977
+  note: 同为基于扩散先验的极致图像压缩研究方向
+- type: same_topic
+  ref: paper:arxiv:2505.16177
+  note: 同属超低码率生成式图像编码
+- type: same_topic
+  ref: paper:arxiv:2307.15421
+  note: 同为学习式图像压缩中的熵/上下文建模方向

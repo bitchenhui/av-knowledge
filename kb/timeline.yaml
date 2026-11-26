@@ -1,10 +1,34 @@
-generated: '2026-11-25'
-count: 1099
+generated: '2026-11-26'
+count: 1102
 by_kind:
-  research: 598
+  research: 601
   release: 55
   standard: 446
 facts:
+- date: '2026-11-25'
+  entity: concept:SelfImprovement
+  kind: research
+  fact: 发布IRTIQA多语言基准，评估三种自进化框架，发现自进化提升能力但几乎不缩小英-乌尔都语能力差距
+  evidence: paper:arxiv:2611.34303
+  url: https://arxiv.org/abs/2611.34303
+- date: '2026-11-25'
+  entity: concept:LLM
+  kind: research
+  fact: LANTERN 让 MLLM 从自身漏检归因中递归自我改进，15 轮无监督迭代将脑转移瘤检出率从 75% 提升至 94%。
+  evidence: paper:arxiv:2611.33836
+  url: https://arxiv.org/abs/2611.33836
+- date: '2026-11-25'
+  entity: concept:LLM
+  kind: research
+  fact: 提出MoS系统，在波动网络上自适应混合传输视频与文本模态，实现帕累托最优的低延迟视频LLM在线分析。
+  evidence: paper:arxiv:2611.33898
+  url: https://arxiv.org/abs/2611.33898
+- date: '2026-11-25'
+  entity: concept:EntropyModel
+  kind: research
+  fact: 单模型双旋钮（码率+真实感）极致图像压缩，SSM熵模型采用解码序对齐扫描与跨tap状态传递。
+  evidence: paper:arxiv:2611.33839
+  url: https://arxiv.org/abs/2611.33839
 - date: '2026-11-24'
   entity: concept:RSI
   kind: research
@@ -1217,12 +1241,6 @@ facts:
   fact: 以Lean证明助手为根基构建Causalean库与自我改进代理流程，实现因果推断理论研究的自动化生成与机器验证。
   evidence: paper:arxiv:2607.22511
   url: https://arxiv.org/abs/2607.22511
-- date: '2026-07-22'
-  entity: org:Via-LA
-  kind: research
-  fact: 美国专利商标局局长Squires将于10月在Via LA旗舰Bridge峰会发表主题演讲。
-  evidence: industry_news:viala:uspto-director-squires-to-deliver-keynote-speech-at-via-lice
-  url: https://ipfray.com/uspto-director-squires-to-deliver-keynote-speech-at-via-licensing-alliances-marquee-bridge-summit-this-october/
 - date: '2026-07-21'
   entity: concept:SelfImprovement
   kind: research
@@ -1449,7 +1467,7 @@ facts:
 - date: '2026-06-25'
   entity: org:Via-LA
   kind: research
-  fact: WIPO通过与Via LA合作，扩充经专利池核实的标准必要专利数据。
+  fact: WIPO与Via LA合作扩展经专利池验证的标准必要专利数据。
   evidence: industry_news:viala:wipo-expands-pool-verified-sep-data-with-via-licensing-allia
   url: https://ipfray.com/wipo-expands-pool-verified-sep-data-with-via-licensing-alliance-partnership/
 - date: '2026-06-23'

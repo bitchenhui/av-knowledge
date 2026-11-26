@@ -1,0 +1,39 @@
+id: paper:arxiv:2611.33689
+status: skipped
+score: 1
+track: streaming_delivery
+matched:
+- ref: concept:WebRTC
+  count: 1
+  weight: 1
+meta:
+  title: Learning Temporal Stabilization for Double-Talk-Robust Delay Estimation in Acoustic Echo Cancellation
+  authors:
+  - Lu Ma
+  - Yongliang Wang
+  - Zhewen Su
+  published: '2026-11-25'
+  updated: '2026-11-25'
+  categories:
+  - cs.SD
+  - cs.MM
+  abstract: 'Acoustic echo cancellation (AEC) depends on accurate time-delay estimation (TDE): the adaptive
+    canceller converges only after the bulk delay between the far-end reference and the microphone is
+    compensated. GCC-PHAT remains the standard TDE front-end and, in our stress tests, wins or ties against
+    a fully learned estimator under interference, low SNR, strong reverberation, loudspeaker nonlinearity,
+    and noisy references. Its principal failure mode is short-window sustained double-talk, where near-end
+    speech creates spurious correlation peaks that classical smoothing and confidence gating cannot reliably
+    suppress. We therefore retain GCC-PHAT as a fixed, non-learnable backbone and learn only a 13.2K-parameter
+    causal 2-D CNN stabilizer over the time--lag correlogram. The stabilizer exploits a simple temporal
+    distinction: true delays form persistent ridges, whereas double-talk artifacts appear as transient
+    spikes. Across synthetic and real AEC-Challenge echo paths, it reduces MAE and gross-outlier rates
+    by approximately $3$--$5\x$ over tuned classical estimators and the WebRTC AEC3 matched filter. A
+    faithful AEC3-style downstream testbed further shows that these delay gains translate into lower echo-leak
+    rates and faster post-jump ERLE recovery in time-varying regimes, closing much of the gap to the oracle-delay
+    ceiling. An optional coarse-to-fine pre-alignment stage extends the same residual stabilizer to stable
+    100--400\,ms bulk delays without retraining, while keeping the learned component focused on short-window
+    double-talk robustness.'
+  url: https://arxiv.org/abs/2611.33689
+  pdf_url: https://arxiv.org/pdf/2611.33689v1
+  version: v1
+fetched: '2026-11-26'

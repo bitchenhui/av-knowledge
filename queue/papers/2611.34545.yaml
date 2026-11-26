@@ -1,0 +1,44 @@
+id: paper:arxiv:2611.34545
+status: reviewed
+score: 2
+track: quality_assessment
+matched:
+- ref: concept:IQA
+  count: 1
+  weight: 1
+- ref: concept:TrainingFree
+  count: 1
+  weight: 1
+meta:
+  title: 'Recalling the Past to Answer the Present: Context-Aware Multi-Evidence Reasoning for Streaming
+    Video Question Answering'
+  authors:
+  - Cui Yakun
+  - Tiantian Geng
+  - Huixiang Kong
+  - Xingqun Qi
+  - Sirui Han
+  - Yike Guo
+  published: '2026-11-25'
+  updated: '2026-11-25'
+  categories:
+  - cs.CV
+  - cs.AI
+  abstract: Vision-language models (VLMs) have achieved remarkable progress in video understanding, yet
+    existing video question answering (VQA) benchmarks mainly evaluate models in offline settings. Real-world
+    streaming scenarios instead require models to answer context-dependent queries by retrieving and reasoning
+    over evidence distributed across the video history. We introduce StreamRecall, a benchmark for context-aware
+    Multi evidence reasoning in streaming video QA. StreamRecall requires models to retrieve, associate,
+    and reason over temporally scattered evidence to answer queries at the appropriate moment. It contains
+    4,983 questions over 462 videos, with context-aligned query times and fine-grained temporal evidence
+    annotations. We further propose the Evidence Utilization Cascade to diagnose model reasoning through
+    evidence localization, grounding, chain completion, and answer derivation. To enable efficient long-term
+    streaming reasoning, we present EviStream, a training-free causal visual memory mechanism that preserves
+    reasoning-critical evidence under a fixed KV budget. Experiments reveal substantial gaps between current
+    VLMs and realistic streaming requirements, establishing StreamRecall as a foundation for developing
+    evidence-aware streaming video intelligence.
+  url: https://arxiv.org/abs/2611.34545
+  pdf_url: https://arxiv.org/pdf/2611.34545v1
+  version: v1
+fetched: '2026-11-26'
+llm_decision: summary_only
