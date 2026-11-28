@@ -12,6 +12,7 @@ source:
 time:
   published: '2026-11-25'
   collected: '2026-11-26'
+  updated: '2026-11-28'
 entities:
 - ref: concept:LLM
   role: subject
@@ -58,6 +59,30 @@ summaries:
   abstract_zh: 论文提出 LANTERN 框架，将模型开发组织为误差驱动的递归自我改进循环：失败普查把每个漏检病灶归因到四类原因，LLM 导师每轮在证据获取、视觉表示、学习策略、决策聚合四个层级之一进行修订，保留规则在首轮前冻结、不接触测试数据且工具调用全程可审计。在
     BraTS-MET 上，经 15 轮无人值守迭代，微调后的 4B MLLM 在每扫描 1 个假阳性下的检出率从 75% 升至 94%，其中 0.1-1 mL 小病灶达 91%；五个前沿 MLLM
     在起始协议下最多仅 51% 与 29%。增益在外部队列（89%）与未见过的脑膜瘤（77%）上仍然保持。
+  deep_dive: docs/auto/2611.33836.md
+  research_brief:
+    method: LANTERN：故障普查把 1 FP/scan 下每个漏检验证病灶归因为 not seen/rejected/inconsistent/not recognized 四因之一 [p.5]，LLM
+      mentor 据此在 EA/VR/LP/DA 四级修订空间中预登记假设并以新代码实现一次修订 [p.6]，由轮前冻结的考官规则（DA 看种子20、其余看三种子平均的验证 ΔM>0）裁决 [p.6]，递归优化
+      4B Qwen3-VL trainee 权重与其读片协议 [p.4]。
+    findings:
+    - BraTS-MET 留出测试集（按患者 60/20/20 划分、396 个 ≥0.1 mL 病灶 [p.7]）上，15 轮无人值守后 M 从 .747 升至 .921（三种子均值，种子 .929/.920/.914），1
+      FP/scan 下 0.1–1 mL 小病灶召回 .908；同协议下最强前沿 Gemini 3.7 Flash 为 M .460、小病灶 .285 [p.3, p.8]。
+    - 增益跨机构与跨类型成立：外部 BrainMetShare M .865（r0 .641）、未见过的 MEN-RT 脑膜瘤零样本 M .740（r0 .607）[p.3, p.8]；测试集 1
+      FP/scan 漏检 100.3→25.0（三种子均值），其中 not recognized 82.0→18.0 [p.8]；逐种子配对 bootstrap 95% 区间全正、P=1.00 [p.15]。
+    - 终态 7 项接受修订留一消融均降低验证/测试/外部 M，薄层移除代价测试 −.053、外部 −.084 [p.8]；原文报告带普查的 LANTERN 以 8 轮而非 15 轮达到 score-only
+      对照系统最终达到的验证 M [p.16]；整轮运行 35 h 墙钟、72.8 GPU 小时 [p.8, p.13]。
+    limitation: 结论限定于 T1c 脑 MRI 转移灶/脑膜瘤的点定位（5 mm 命中容差、非勾画）、单一 4B trainee 与单一 mentor LLM、依赖参考分割标签的验证集普查；未评估跨任务迁移，视觉编码器未被修订
+      [p.4, p.8]。
+    review_status: model_extracted
+    source_sha256: f715d67130966b0dc79d77983a8a6634d7c27dc8a367b948853c993a0416fed4
+    source_locations:
+    - https://arxiv.org/pdf/2611.33836v1#page=4
+    - https://arxiv.org/pdf/2611.33836v1#page=5
+    - https://arxiv.org/pdf/2611.33836v1#page=6
+    - https://arxiv.org/pdf/2611.33836v1#page=7
+    - https://arxiv.org/pdf/2611.33836v1#page=8
+    - https://arxiv.org/pdf/2611.33836v1#page=15
+    - https://arxiv.org/pdf/2611.33836v1#page=16
 assessment:
   relevance: high
   decision: summary_only
